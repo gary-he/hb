@@ -3,10 +3,12 @@ package cn.tarena.ht.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.tarena.ht.mapper.UserMapper;
 import cn.tarena.ht.pojo.User;
 
+@Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired
