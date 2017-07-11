@@ -34,7 +34,7 @@
         
         <div class="panel-content">
 			<ul>
-				<li><a href="${ctx}/stat/statChartAction_factorySale" onclick="linkHighlighted(this)" target="main" id="aa_1">订票</a></li>
+				<li><a href="${ctx}/user/buy" onclick="linkHighlighted(this)" target="main" id="aa_1">订票</a></li>
 				<li><a href="${ctx}/stat/statChartAction_onlineInfo" onclick="linkHighlighted(this)" target="main" id="aa_1">我的订单</a></li>					
 				<li><a href="${ctx}/stat/statChartAction_productSale" onclick="linkHighlighted(this)" target="main" id="aa_1">个人信息</a></li>
 			</ul>
