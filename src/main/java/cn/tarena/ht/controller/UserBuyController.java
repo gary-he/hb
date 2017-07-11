@@ -18,7 +18,7 @@ public class UserBuyController {
 	BuyFlightService buyFlightService;
 	
 	//准备数据
-	@RequestMapping("/user/buy")
+	@RequestMapping("/user/buy/view")
 	public String BuyFlight(Model model){
 		List<Flight> flightList = buyFlightService.findAllFlight();
 		
