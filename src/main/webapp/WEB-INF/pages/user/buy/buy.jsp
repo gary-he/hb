@@ -2,7 +2,6 @@
 <%@ include file="../../baselist.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <head>
 	<title>订票页面</title>
 </head>
@@ -54,8 +53,8 @@
 		<td>${f.fCompanyName}</td>
 		<td>${f.fLoAirport}</td>
 		<td>${f.fDeAirport}</td>
-		<td>开始时间</td>
-		<td>结束时间</td>
+		<td><fmt:formatDate value="${f.fStarttime}" pattern="H:mm"/></td>
+		<td><fmt:formatDate value="${f.fOvertime}" pattern="H:mm"/></td>
 		<td>${f.fPrice}</td>
 	</tr>
 	</c:forEach>

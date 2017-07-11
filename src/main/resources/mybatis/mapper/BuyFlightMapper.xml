@@ -12,10 +12,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="fId" property="f_id"/>	
 	</resultMap>
 	
-	
-	
-	
-	
-	
 </mapper>
  
