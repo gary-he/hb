@@ -25,7 +25,7 @@
         <div class="panel-content">
 			<ul>
 					<li><a href="${ctx}/sysadmin/dept/list" onclick="linkHighlighted(this)" target="main" id="aa_1">报表</a></li>
-					<li><a href="${ctx}/sysadmin/user/list" onclick="linkHighlighted(this)" target="main" id="aa_1">航班管理</a></li>
+					<li><a href="${ctx}/sysadmin/flight/list" onclick="linkHighlighted(this)" target="main" id="aa_1">航班管理</a></li>
 			</ul>
         </div>
         </div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tarena.ht.mapper.FlightMapper">
+	<!-- 封装成主对象 -->
+	<resultMap type="Flight" id="flightRM" autoMapping="true">
+	<id column="f_id" property="fId"/>
+	</resultMap>
+	
+	<!-- 查找所有航班信息 -->
+	<select id="findAll" resultMap="FlightRM">
+		select * from flight_p
+	</select>
+
+</mapper>
