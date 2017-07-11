@@ -7,7 +7,7 @@ public class Flight extends BaseEntity{
 	private String fType;         //航程类型
 	private String fCompany;      //航空公司代码
 	private String fCompanyName;  //航空公司
-	private int fNumber;	      //航司票证
+	private Integer fNumber;	      //航司票证
 	private String fRank;         //仓位代码,折扣率
 	private String fLocation;     //始发地三字代码
 	private String fLocationName; //始发地名称
@@ -17,11 +17,11 @@ public class Flight extends BaseEntity{
 	private String fDeAirport; //目的地机场
 	private Date fStarttime;      //起飞时间  f_satrttime
 	private Date fOvertime;       //到达时间
-	private double fPrice;        //票面价
-	private int fTax;             //税费
-	private double fTotal;        //票面总价
-	private int fReserve;         //仓位数量
-	private double fCommission;   //代理费
+	private Double fPrice;        //票面价
+	private Integer fTax;             //税费
+	private Double fTotal;        //票面总价
+	private Integer fReserve;         //仓位数量
+	private Double fCommission;   //代理费
 	public String getfId() {
 		return fId;
 	}
