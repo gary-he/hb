@@ -6,6 +6,7 @@ public interface UserMapper {
 
 	public void updateUser(User user);
 
+	
 	public User findOne(String user_id);
 	/**
 	 * 根据userName查找对应用户
