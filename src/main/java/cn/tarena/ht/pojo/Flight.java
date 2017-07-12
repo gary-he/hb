@@ -16,12 +16,12 @@ public class Flight{
 	private String fLoAirport;    //始发地机场
 	private String fDeparture;    //目的地三字代码*
 	private String fDepartureName;//目的地名称
-	private String fDeAirport; //目的地机场
-	private Date fStartDate; 	//航班起飞日期
+	private String fDeAirport;    //目的地机场
+	private Date fStartDate; 	  //航班起飞日期
 	private Time fStarttime;      //起飞时间  f_satrttime
 	private Time fOvertime;       //到达时间
 	private Double fPrice;        //票面价
-	private Integer fTax;             //税费
+	private Integer fTax;         //税费
 	private Double fTotal;        //票面总价
 	private Integer fReserve;     //仓位数量
 	private Double fCommission;   //代理费*
