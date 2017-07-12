@@ -17,14 +17,36 @@ public class UserBuyController {
 	@Autowired
 	BuyFlightService buyFlightService;
 	
-	//准备数据
-	@RequestMapping("/user/buy/view")
-	public String BuyFlight(Model model){
-		List<Flight> flightList = buyFlightService.findAllFlight();
+	//订票页面
+	@RequestMapping("/index")
+	public String index(Model model){
 		
-		model.addAttribute("flightList", flightList);
-		
-		return "/user/buy/buy";
+		return "/hb/corptravel/search";
 	}
+	
+	//订票-保险确认页面-insurance
+	@RequestMapping("/pay/insurance")
+	public String insurance(){
+		
+		return "/hb/corptravel/pay/insurance";
+	}
+	
+	//订票 - 支付确认页面 - payment
+	@RequestMapping("/pay/payment")
+	public String payment(){
+		
+		
+		return "/hb/corptravel/pay/payment";
+	}
+	
+	//订票 - 支付成功页面 -succeed
+	@RequestMapping("/pay/succeed")
+	public String succeed(){
+		
+		
+		return "/hb/corptravel/pay/succeed";
+	}
+	
+
 
 }
