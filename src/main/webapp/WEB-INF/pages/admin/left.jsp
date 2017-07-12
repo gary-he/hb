@@ -25,7 +25,7 @@
         <div class="panel-content">
 			<ul>
 					<li><a href="${ctx}/admin/forms/list" onclick="linkHighlighted(this)" target="main" id="aa_1">报表</a></li>
-					<!--  <li><a href="${ctx}/admin/forms/" onclick="linkHighlighted(this)" target="main" id="aa_1">航班管理</a></li>-->
+					<li><a href="${ctx}/admin/flight/list" onclick="linkHighlighted(this)" target="main" id="aa_1">航班管理</a></li>
 			</ul>
         </div>
         </div>

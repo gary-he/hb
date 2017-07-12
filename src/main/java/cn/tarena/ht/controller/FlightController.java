@@ -11,12 +11,14 @@ import cn.tarena.ht.pojo.Flight;
 import cn.tarena.ht.service.FlightService;
 
 @Controller
+@RequestMapping("/admin/flight")
 public class FlightController {
 	@Autowired
 	private FlightService flightService;
 	
 	//1.请求展示航班信息列表
-	@RequestMapping("/admin/flight/list")
+	
+	@RequestMapping("/list")
 	public String findAll(Model model){
 		List<Flight> flightList=flightService.findAll();
 		return"/sysadmin/flight/fFlightList";
