@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 查找所有航班信息 -->
-	<select id="findAll" resultMap="FlightRM">
+	<select id="findAll" resultMap="flightRM">
 		select * from flight_p
 	</select>
 
