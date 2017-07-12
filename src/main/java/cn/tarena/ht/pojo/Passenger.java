@@ -8,6 +8,16 @@ public class Passenger {
 	private String pPhone;
 	private String pFId;
 	private String pType;
+	private String pOrderId;
+	
+	
+	
+	public String getpOrderId() {
+		return pOrderId;
+	}
+	public void setpOrderId(String pOrderId) {
+		this.pOrderId = pOrderId;
+	}
 	public String getpId() {
 		return pId;
 	}

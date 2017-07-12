@@ -20,9 +20,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findOne(Integer user_id) {
+	public User findOne(String user_id) {
 		
 		return userMapper.findOne(user_id);
 	}
+
+	
 
 }

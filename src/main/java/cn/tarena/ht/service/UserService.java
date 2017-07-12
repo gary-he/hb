@@ -6,6 +6,6 @@ public interface UserService {
 
 	public void updateUser(User user);
 
-	public User findOne(Integer user_id);
+	public User findOne(String user_id);
 
 }

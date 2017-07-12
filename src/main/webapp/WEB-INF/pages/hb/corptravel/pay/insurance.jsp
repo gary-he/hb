@@ -105,18 +105,22 @@
   <a href="" style=" display:block;float:left; margin-left:310px; line-height:70px; ">历史乘机人</a>
 </div>
   <div>
-     <input name="input" type="text" class="form-control input-sm w300" style=" display: inline-block;" placeholder="姓名，与登机所持证件中的姓名一致">
-     <select name="select" class="form-control input-sm w150" style=" display: inline-block;">
+     <input name="pName" type="text" class="form-control input-sm w150" style=" display: inline-block;" placeholder="姓名，与登机所持证件中的姓名一致">
+     <select name="pType" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="成人" selected="selected">成人</option>
             <option value="儿童">儿童（2-12岁）</option>
             <option value="婴儿">婴儿（14天-2岁）</option>
+     </select>
+     <select name="pSex" class="form-control input-sm w150" style=" display: inline-block;">
+            <option value="男" selected="selected">男</option>
+            <option value="女">女</option>
      </select>
   </div>
   <div class="mar-top-10">
      <select name="select" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="身份证" selected="selected">身份证</option>
      </select>
-     <input name="input" type="text" class="form-control input-sm w300" style=" display: inline-block;" placeholder="证件号码">
+     <input name="pIdentily" type="text" class="form-control input-sm w300" style=" display: inline-block;" placeholder="证件号码">
   </div>
   
   <div class=" mar-top-10">
@@ -129,9 +133,10 @@
 <div style="position:relative;">
   <h3 class="mar-bottom-20">保险</h3>
   <a href="" class="mar-right-10 safe">航意险</a>
-  <select name="select" class="form-control input-sm w150 mar-right-10" style=" display: inline-block;">
+  <select name="passenger.insuranceId" class="form-control input-sm w150 mar-right-10" style=" display: inline-block;">
             <option value="保险" selected="selected">￥30/份X1</option>
-           
+            
+         
   </select> 
   <span>保额￥260万/份</span> 
   
@@ -145,18 +150,18 @@
   
   <!-- 联系人 -->
   <h3 class="mar-bottom-20">联系人</h3>
-  <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名">
+  <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">
   <div class="mar-top-10">
   <select name="select" class="form-control input-sm w110 mar-right-10" style=" display: inline-block;">
        <option value="国家" selected="selected">中国&nbsp;&nbsp;+86</option>    
   </select>
-  <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:337px;" placeholder="手机号码，接收航班信息">
+  <input id="pPhone" name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:337px;" placeholder="手机号码，接收航班信息">
   </div> 
 
 
 <!-- 报销 -->
   <h3 class="mar-bottom-20">报销</h3>
-  <input type="checkbox" name="choice">&nbsp;需要报销凭证<span style=" color:#999;">（含：行程单和差额发票，快递费发票）</span>
+  <input type="checkbox" name="choice" value="1">&nbsp;需要报销凭证<span style=" color:#999;">（含：行程单和差额发票，快递费发票）</span>
 </div>
 <div class="col-sm-5 bg-gray-eee">
 <div style=" margin-left:-15px;">
@@ -242,7 +247,7 @@
 
 
 <div class="text-center mar-top-10">
-  <input type="checkbox" name="choice">&nbsp;我已阅读并接受免责条款、费用扣除、退保等在内的重要事项，其中包括 <a href="">《网络电子客票协议》</a> <a href="">《航意险说明》</a> <a href="">《延误险说明》</a> <a href="">《保险经纪委托协议》</a><br/>
+  <input type="checkbox" name="choice" value="1">&nbsp;我已阅读并接受免责条款、费用扣除、退保等在内的重要事项，其中包括 <a href="">《网络电子客票协议》</a> <a href="">《航意险说明》</a> <a href="">《延误险说明》</a> <a href="">《保险经纪委托协议》</a><br/>
   <input type="button" value="提交订单" class="btn btn-danger mar-top-20" onclick="window.location.href ='payment.html';" > 
 </div>
 
@@ -376,6 +381,19 @@ $('.tuigaiqian').click(
 			$('.instruction').toggle();
 			}
 )
+</script>
+
+
+<script type="text/javascript">
+$('.btn btn-danger mar-top-20').click(
+		function(){
+			
+			
+		}
+		
+		)
+
+
 </script>
 
 </body>

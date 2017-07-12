@@ -2,7 +2,7 @@ package cn.tarena.ht.pojo;
 
 import java.util.Date;
 
-public class Flight extends BaseEntity{
+public class Flight{
 	private String fId;           //航班编号
 	private String fType;         //航程类型
 	private String fCompany;      //航空公司代码
