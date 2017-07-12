@@ -19,4 +19,30 @@ public class FlightServiceImpl implements FlightService {
 		return flightMapper.findAll();
 	}
 
+	@Override
+	//根据fId查询航班详情
+	public Flight findOne(String fId) {
+		return flightMapper.findOne(fId);
+	}
+	
+	@Override
+	//更新航班信息
+	public void updateflight(Flight flight) {
+		flightMapper.updateFlight(flight);
+		
+	}
+
+	@Override
+	//删除航班信息
+	public void deleteFlight(String[] fIds) {
+		flightMapper.deleteFlight(fIds);
+		
+	}
+	//航班的新增
+	@Override
+	public void saveFlight(Flight flight) {
+		flightMapper.saveFlight(flight);
+		
+	}
+
 }

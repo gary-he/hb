@@ -12,7 +12,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 查找当前用户信息 -->
 	<select id="findOne" resultMap="userRM">
-		select * from user where user_id=1;<!-- #{user_id} -->
+		select * from user where user_id=#{user_id};<!-- #{user_id} -->
 	</select>
+	
+	<!-- 根据userName查询对应用户 -->
+	<select id="findUserByUserName" resultMap="userRM">
+		select * from user where username=#{userName}
+	</select>
+	
+	<!-- 注册用户 -->
+	<insert id="saveUser">
+		insert into user values(#{userId},#{username},#{password})
+	</insert>
 
 </mapper>

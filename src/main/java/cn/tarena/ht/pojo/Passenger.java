@@ -60,6 +60,11 @@ public class Passenger {
 	public void setpType(String pType) {
 		this.pType = pType;
 	}
+	@Override
+	public String toString() {
+		return "Passenger [pId=" + pId + ", pName=" + pName + ", pSex=" + pSex + ", pIdentily=" + pIdentily
+				+ ", pPhone=" + pPhone + ", pFId=" + pFId + ", pType=" + pType + "]";
+	}
 	
 	
 	

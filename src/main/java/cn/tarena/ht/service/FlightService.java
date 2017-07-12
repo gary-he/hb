@@ -8,4 +8,12 @@ public interface FlightService {
 
 	List<Flight> findAll();
 
+	Flight findOne(String fId);
+
+	void updateflight(Flight flight);
+
+	void deleteFlight(String[] fIds);
+
+	void saveFlight(Flight flight);
+
 }

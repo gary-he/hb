@@ -6,6 +6,14 @@ import cn.tarena.ht.pojo.Flight;
 
 public interface FlightMapper {
 
-	List<Flight> findAll();
+	public List<Flight> findAll();
+
+	public Flight findOne(String fId);
+	
+	public void updateFlight(Flight flight);
+
+	public void deleteFlight(String[] fIds);
+
+	public void saveFlight(Flight flight);
 
 }

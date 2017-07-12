@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
 <html lang="zh-CN">
 <head>
@@ -19,7 +18,7 @@
 <!-- IconFont图标 -->
 <link href="${ctx}/hb/css/iconfont.css" rel="stylesheet">
 <script type="text/javascript" src="${ctx}/hb/js/jquery-1.9.1.min.js"></script>
-<script src="${ctx}/hb/js/bootstrap.min.js"></script>
+<script src="${ctx}/js/hb/bootstrap.min.js"></script>
 <!-- 兼容IE8 -->
 <!--[if lte IE 9]>
 <script type="text/javascript" src="../../../js/html5shiv.min.js"></script>
@@ -72,6 +71,7 @@
   </div>
 </nav>
 <!-- 小导航结束 -->
+
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -88,42 +88,44 @@
       <ul class="nav navbar-nav navbar-right">
         <li  class="active"><a href="search.html"><i class="icon iconfont icon-nav-block font24" >&#xe620;</i> 在线预订</a></li>
          <li ><a href="order/orderList.html"><i class="icon iconfont icon-nav-block font24" >&#xe61c;</i> 订单管理</a></li>
+        
       </ul>
     </div><!-- /.navbar-collapse -->
+    
   </div>
 </nav>
 <!-- header end -->
 <!-- 搜索 -->
 <div class="index-wall white " style=" ">
   <div class="container" style=" position:relative;">
-    <form class="form-inline" method="post" >
+    <form class="form-inline">
       <div class="form-group">
-        <select name="fType" class="form-control">
+        <select name="" class="form-control">
           <option selected>单程</option>
           <option>往返</option>
         </select>
       </div>
       <div class="form-group mar-left-10">
         <label for="">出发城市</label>
-        <input type="text" name="fLocationName" class="form-control" style="width:85px;" value="广州" >
+        <input type="text" class="form-control" style="width:85px;" id="" value="成都" placeholder="">
       </div>
       <div class="form-group">
         <label for=""> — <a href="#" class="huan">换</a> —</label>
       </div>
        <div class="form-group">
         <label for="">到达城市</label>
-        <input type="text" name="fDepartureName" class="form-control" style="width:85px;" id="" value="北京" placeholder="北京">
+        <input type="text" class="form-control" style="width:85px;" id="" value="北京" placeholder="">
       </div>
       <div class="form-group mar-left-10">
         <label for="">出发日期</label>
-        <input type="text" name="fStarttime" class="form-control " style="width:110px;" id="" value="2016-01-13" placeholder="" onClick="WdatePicker()">
+        <input type="text" class="form-control " style="width:110px;" id="" value="2016-01-13" placeholder="" onClick="WdatePicker()">
       </div>
       <div class="form-group mar-left-10">
         <label for="">返回日期</label>
-        <input type="text" name="fOvertime" disabled class="form-control " id="" style="width:110px;" onClick="WdatePicker()" value="2016-01-13" placeholder="">
+        <input type="text" disabled class="form-control " id="" style="width:110px;" onClick="WdatePicker()" value="2016-01-13" placeholder="">
       </div>
       <div class="form-group mar-left-10">
-        <select id="dropAirlines"  name="fCompany" class="form-control" style=" width:120px;">
+        <select id="dropAirlines"  class="form-control" style=" width:120px;">
                             <option value="">全部航司</option>
                                 <option value="3U">3U-川航</option>
                                 <option value="8C">8C-东星</option>
@@ -163,11 +165,12 @@
                                 <option value="ZH">ZH-深航</option>
                         </select>
       </div>
-      <button type="submit" class="btn btn-warning mar-left-10" formaction="search">搜索</button>
+      <button type="submit" class="btn btn-warning mar-left-10">搜索</button>
     </form>
   </div>
 </div>
 <!-- 搜索结束 -->
+
 <!-- 日期开始 -->
 <div class="container mar-bottom-15 ">
   <div class=" bor-solid-1" style=" background:#EFF2F5;">
@@ -186,43 +189,132 @@
   </div>
 </div>
 <!-- 日期结束 -->
+
 <!-- 列表开始 -->
 <div class="container mar-bottom-30 ">
   <div class="hangbanlist">
-    
-    <!-- 循环 -->
     <div>
       <!-- 表头 -->
       <ul class="list-inline bor-bottom-solid-1  ">
-        <li class="w-percentage-25"><img src="${ctx}/hb/img/air/CA.png" width="24" height="24"> <strong>${f.fCompanyName}</strong>${f.fId}
-        <span class="gray-999 font12 mar-left-10">日期：<fmt:formatDate value="${f.fStartDate}" pattern="yyyy-MM-dd"/></span></li>
-        <li class="text-right w80"> <strong class="time "><fmt:formatDate value="${f.fStarttime}" pattern="HH:mm"/></strong></li>
+        <li class="w-percentage-25"><img src="${ctx}/hb/img/air/3U.png" width="24" height="24"> <strong> 川航</strong> 3U8891<span class="gray-999 font12 mar-left-10">机型：空客320（中）</span></li>
+        <li class="text-right w80"> <strong class="time ">16:30</strong></li>
         <li class=""> —— </li>
-        <li class="w80"> <strong class="time "><fmt:formatDate value="${f.fOvertime}" pattern="HH:mm"/></strong></li>
-        <li class="w100 text-right"> ${f.fLoAirport} </li>
+        <li class="w80"> <strong class="time ">23:30</strong></li>
+        <li class="w100 text-right"> 成都双流T2</li>
         <li class=""> —— </li>
-        <li class=" w100"> ${f.fDeAirport} </li>
-        <li class="w-percentage-20 text-center"> <span class="gray-999 ">机建 + 燃油：</span><span class="gray-999 rmb font12">￥${f.fTax} + ￥20</span></li>
+        <li class=" w100"> 北京首都T1 </li>
+        <li class="w-percentage-20 text-center"> <span class="gray-999 ">机建 + 燃油：</span><span class="gray-999 rmb font12">￥50 + ￥20</span></li>
+      </ul>
+      <!-- 表头结束 -->
+      <!-- 表BODY -->
+      <div class="collapse " id="collapseExample2" style=" display:block;">
+        <div class="hangbanlist-body " style=" background-color:#FEFCFC;">
+        
+        
+          <ul class="list-inline">
+            <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+            <li  class="w-percentage-25">座位数：≥9</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+          </ul>
+          
+          
+          <ul class="list-inline">
+            <li class="w-percentage-20">80折(M)</li>
+            <li  class="w-percentage-25">座位数：≥9</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥998</strong></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+          </ul>
+          
+          
+          <!-- 更多舱位 -->
+          <div class="panel " style="display:none;  background-color:#FEFCFC;" >
+            <ul class="list-inline">
+            <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+            <li  class="w-percentage-25">座位数：≥9</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+           
+            
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+          </ul>
+          <ul class="list-inline">
+            <li class="w-percentage-20"><strong class=" red">特惠(D)</strong></li>
+            <li  class="w-percentage-25">座位数：≤5</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥2980</span></li>
+           
+            
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥2560</strong></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+          </ul>
+          <ul class="list-inline">
+            <li class="w-percentage-20"><strong class="red">紧急通道(D)</strong></li>
+            <li  class="w-percentage-25">座位数：=1</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+            
+            
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+          </ul>
+          <ul class="list-inline">
+            <li class="w-percentage-20">80折(M)</li>
+            <li  class="w-percentage-25">座位数：≥9</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+            
+            
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥998</strong></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+            
+          </ul> 
+          </div>
+          <!-- 更多舱位 结束 -->
+          <div class=" lh30 text-right"> <a href="#" class="mar-right-20 font12 flip" >更多舱位</a></div>
+        </div>
+      </div> 
+      <!-- 表BODY 结束 --> 
+    </div>
+    
+    <div>
+      <!-- 表头 -->
+      <ul class="list-inline bor-bottom-solid-1  ">
+        <li class="w-percentage-25"><img src="${ctx}/hb/img/air/CA.png" width="24" height="24"> <strong>国航</strong> CA4109<span class="gray-999 font12 mar-left-10">机型：空客320（中）</span></li>
+        <li class="text-right w80"> <strong class="time ">16:30</strong></li>
+        <li class=""> —— </li>
+        <li class="w80"> <strong class="time ">23:30</strong></li>
+        <li class="w100 text-right"> 成都双流T2</li>
+        <li class=""> —— </li>
+        <li class=" w100"> 北京首都T1 </li>
+        <li class="w-percentage-20 text-center"> <span class="gray-999 ">机建 + 燃油：</span><span class="gray-999 rmb font12">￥50 + ￥20</span></li>
       </ul>
       <!-- 表头结束 -->
       <!-- 表BODY -->
       <div class="collapse" id="collapseExample" style=" display:block;">
         <div class="hangbanlist-body " style=" background-color:#FEFCFC;">
-          <!-- 仓位种类 -->
           <ul class="list-inline">
-            <c:if test="${f.fRank == 'M'}">
-	            <li class="w-percentage-20"><strong class="blue-0093dd">经济舱(M)</strong></li>
-            </c:if>
-            <li  class="w-percentage-25">余位数：${f.fReserve}</li>
-            <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice}</span></li>
-            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥${f.fPrice*0.9}</strong> <span class="gray font12">9折</span></li>
-            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance/${f.fId}';">订票</button></li>
+            <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+            <li  class="w-percentage-25">座位数：≥9</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+           
+            
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
           </ul>
-          
+          <ul class="list-inline">
+            <li class="w-percentage-20"><strong class=" red">特惠(D)</strong></li>
+            <li  class="w-percentage-25">座位数：≤5</li>
+            <li  class="w-percentage-25">票面价：<span class="rmb">￥2980</span></li>
+           
+            
+            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥2560</strong></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance.html';">订票</button></li>
+          </ul>
         </div>
       </div> 
       <!-- 表BODY 结束 --> 
     </div>
+    
     
     <!-- 分页 -->
   <nav class=" pull-right ">
