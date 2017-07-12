@@ -3,8 +3,14 @@ body {
 	padding-bottom: 40px;
 	background-color: #fff;
 	background-image: url("../images/login/bgimg.jpg");
-	background-position: 0 120px;
+	background-position: -200px 0px;
 	background-repeat: no-repeat;
+}
+
+#logo_box{
+	position: absolute;
+	left: 120px;
+	top:20px;
 }
 
 /* 
@@ -15,7 +21,7 @@ body {
 	background-color:#fff;
 	max-width: 330px;
 	padding: 15px;
-	margin: 150px 0 0 70%;
+	margin: 120px 0 0 60%;
 	border-radius:5px;
 }
 .form-signin a{
@@ -69,7 +75,7 @@ body {
 	background-color:#fff;
 	max-width: 330px;
 	padding: 15px;
-	margin: 150px 0 0 70%;
+	margin: 120px 0 0 60%;
 	border-radius:5px;
 }
 .form-regist div{

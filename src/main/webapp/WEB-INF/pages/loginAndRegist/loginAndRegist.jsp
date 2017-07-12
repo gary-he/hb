@@ -16,15 +16,19 @@
 </head>
 <body>
 	<div id="header">
-<!-- 		<div class="h_container"></div> -->
+		<div class="h_container">
+			<div id="logo_box">
+				<img alt="logo" src="${ctx }/staticfile/skin/default/images/login/hblogo2.png">
+			</div>
+		</div>
 	</div>
 	<div id="middle">
 		<div class="container">
 			<c:if test="${type==0 }">
 				<div id="signin_box">
-					<form class="form-signin" action="/login.action">
+					<form class="form-signin" action="/login.action" method="POST">
 						<h2 class="form-signin-heading">欢迎登录菜鸟航空</h2>
-						
+						<span style="color: red">${errorInfo }</span>
 						<input type="text" id="inputEmail" class="form-control"
 							placeholder="用户名" name="userName" required autofocus> 
 						
@@ -46,17 +50,16 @@
 			</c:if>
 			<c:if test="${type==1 }">
 				<div id="regist_box">
-					<form class="form-regist" action="/regist.action">
+					<form class="form-regist" action="/regist.action" method="POST">
 						<h2 class="form-regist-heading">欢迎注册菜鸟航空</h2>
-						
+						<span style="color: red">${errorInfo }</span>
 						<input type="text" id="inputEmail" class="form-control"
 							placeholder="用户名" name="userName" required autofocus> 
 						<input type="password" id="inputPassword" class="form-control"
 							placeholder="密码"  name="password" required>
 						<input type="password" id="inputPassword2" class="form-control"
-							placeholder="确认密码"  name="password2" required>
+							placeholder="确认密码"  name="password" required>
 						
-					
 						<button class="btn btn-lg btn-primary btn-block" type="submit">
 						注册
 						</button>
