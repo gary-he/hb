@@ -36,7 +36,7 @@
 			<ul>
 				<li><a href="${ctx}/user/buy/view" onclick="linkHighlighted(this)" target="main" id="aa_1">订票</a></li>
 				<li><a href="${ctx}/user/info/xxx" onclick="linkHighlighted(this)" target="main" id="aa_1">我的订单</a></li>					
-				<li><a href="${ctx}/user/order/xxx" onclick="linkHighlighted(this)" target="main" id="aa_1">个人信息</a></li>
+				<li><a href="${ctx}/user/info/userinfo" onclick="linkHighlighted(this)" target="main" id="aa_1">个人信息</a></li>
 			</ul>
         </div>
     </div>
