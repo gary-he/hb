@@ -3,17 +3,18 @@ package cn.tarena.ht.pojo;
 import java.sql.Time;
 import java.util.Date;
 
-public class Flight extends BaseEntity{
-	private String fId;           //航班编号
-	private String fType;         //航程类型
-	private String fCompany;      //航空公司代码
+
+public class Flight{
+	private String fId;           //航班编号*
+	private String fType;         //航程类型*
+	private String fCompany;      //航空公司代码*
 	private String fCompanyName;  //航空公司
-	private Integer fNumber;	      //航司票证
-	private String fRank;         //仓位代码,折扣率
-	private String fLocation;     //始发地三字代码
+	private Integer fNumber;	  //航司票证
+	private String fRank;         //仓位代码,折扣率*
+	private String fLocation;     //始发地三字代码*
 	private String fLocationName; //始发地名称
-	private String fLoAirport;  //始发地机场
-	private String fDeparture;    //目的地三字代码
+	private String fLoAirport;    //始发地机场
+	private String fDeparture;    //目的地三字代码*
 	private String fDepartureName;//目的地名称
 	private String fDeAirport; //目的地机场
 	private Date fStartDate; 	//航班起飞日期
@@ -22,8 +23,8 @@ public class Flight extends BaseEntity{
 	private Double fPrice;        //票面价
 	private Integer fTax;             //税费
 	private Double fTotal;        //票面总价
-	private Integer fReserve;         //仓位数量
-	private Double fCommission;   //代理费
+	private Integer fReserve;     //仓位数量
+	private Double fCommission;   //代理费*
 	public String getfId() {
 		return fId;
 	}
@@ -151,22 +152,8 @@ public class Flight extends BaseEntity{
 				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
 				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStartDate=" + fStartDate + ", fStarttime="
 				+ fStarttime + ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal="
-				+ fTotal + ", fReserve=" + fReserve + ", fCommission=" + fCommission + ", getfId()=" + getfId()
-				+ ", getfType()=" + getfType() + ", getfCompany()=" + getfCompany() + ", getfCompanyName()="
-				+ getfCompanyName() + ", getfNumber()=" + getfNumber() + ", getfRank()=" + getfRank()
-				+ ", getfLocation()=" + getfLocation() + ", getfLocationName()=" + getfLocationName()
-				+ ", getfLoAirport()=" + getfLoAirport() + ", getfDeparture()=" + getfDeparture()
-				+ ", getfDepartureName()=" + getfDepartureName() + ", getfDeAirport()=" + getfDeAirport()
-				+ ", getfStartDate()=" + getfStartDate() + ", getfStarttime()=" + getfStarttime() + ", getfOvertime()="
-				+ getfOvertime() + ", getfPrice()=" + getfPrice() + ", getfTax()=" + getfTax() + ", getfTotal()="
-				+ getfTotal() + ", getfReserve()=" + getfReserve() + ", getfCommission()=" + getfCommission()
-				+ ", getCreateBy()=" + getCreateBy() + ", getCreateDept()=" + getCreateDept() + ", getCreateTime()="
-				+ getCreateTime() + ", getUpdateBy()=" + getUpdateBy() + ", getUpdateTime()=" + getUpdateTime()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+				+ fTotal + ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
 	}
-	
-	
 	
 	
 
