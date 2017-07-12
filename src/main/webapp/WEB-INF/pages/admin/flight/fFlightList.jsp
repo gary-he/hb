@@ -18,8 +18,8 @@
 	<li id="new"><a href="#" onclick="formSubmit('tocreate','_self');this.blur();">新增</a></li>
 	<li id="update"><a href="#" onclick="formSubmit('toupdate','_self');this.blur();">修改</a></li>
 	<li id="delete"><a href="#" onclick="formSubmit('delete','_self');this.blur();">删除</a></li>
-	<li id="new"><a href="#" onclick="formSubmit('start','_self');this.blur();">启用</a></li>
-	<li id="new"><a href="#" onclick="formSubmit('stop','_self');this.blur();">停用</a></li>
+	<li id="new"><a href="#" onclick="formSubmit('import','_self');this.blur();">导入</a></li>
+	<li id="new"><a href="#" onclick="formSubmit('export','_self');this.blur();">导出</a></li>
 </ul>
   </div>
 </div>
@@ -41,15 +41,15 @@
 		<td class="tableHeader"><input type="checkbox" name="selid" onclick="checkAll('flightId',this)"></td>
 		<td class="tableHeader">航班编号</td>
 		<td class="tableHeader">航程类型</td>
-		<td class="tableHeader">航空公司名称</td>
-		<td class="tableHeader">始发地名称</td>
-		<td class="tableHeader">始发地机场</td>
+		<td class="tableHeader">航空公司</td>
+		<td class="tableHeader">始发地代码</td>
+		<td class="tableHeader">目的地代码</td>
 		<td class="tableHeader">起飞时间</td>
-		<td class="tableHeader">目的地名称</td>
-		<td class="tableHeader">目的地机场</td>
-		<td class="tableHeader">仓位折扣</td>
+		<td class="tableHeader">到达时间</td>
 		<td class="tableHeader">票面价</td>
-		<td class="tableHeader">仓位数量</td>
+		<td class="tableHeader">税费</td>
+		<td class="tableHeader">仓位折扣</td>
+		<td class="tableHeader">代理费</td>
 	</tr>
 	</thead>
 	<tbody class="tableBody" >
@@ -57,18 +57,18 @@
 	<c:forEach items="${flightList}" var="f" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
 		<td><input type="checkbox" name="fId" value="${f.fId}"/></td>
-		<td>${status.index+1}</td>
 		<td>${f.fId}</td>
 		<td>${f.fType}</td>
-		<td>${f.fCompanyName}</td>
-		<td>${f.fLotionName}</td>
-		<td>${f.fLoAirport}</td>
-		<td>${f.fStartTime}</td>
-		<td>${f.fDepartureName}</td>
-		<td>${f.fDeparAirport}</td>
-		<td>${f.fOverTime}</td>
+		<td>${f.fCompany}</td>
+		<td>${f.fLocation}</td>
+		<td>${f.fDeparture}</td>
+		<td><fmt:formatDate value="${f.fOvertime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+		<td><fmt:formatDate value="${f.fStarttime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 		<td>${f.fPrice}</td>
-		<td>${f.fReserve}</td>
+		<td>${f.fTax}</td>
+		<td>${f.fRank}</td>
+		<td>${f.fCommission}</td>
+		
 		
 		
 	</tr>
