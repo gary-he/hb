@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
 <html lang="zh-CN">
 <head>
@@ -29,6 +28,10 @@
 <script type="text/javascript" src="${ctx}/hb/js/layer/layer.js"></script>
 <!-- 日历控件 -->
 <script language="javascript" type="text/javascript" src="${ctx}/hb/js/My97DatePicker/WdatePicker.js"></script>
+<!-- 城市选择 -->
+
+
+
 </head>
 <body class="bg-body">
 <!-- header -->
@@ -186,81 +189,6 @@
   </div>
 </div>
 <!-- 日期结束 -->
-<!-- 列表开始 -->
-<div class="container mar-bottom-30 ">
-  <div class="hangbanlist">
-    
-    <!-- 循环 -->
-    <div>
-      <!-- 表头 -->
-      <ul class="list-inline bor-bottom-solid-1  ">
-        <li class="w-percentage-25"><img src="${ctx}/hb/img/air/CA.png" width="24" height="24"> <strong>${f.fCompanyName}</strong>${f.fId}
-        <span class="gray-999 font12 mar-left-10">日期：<fmt:formatDate value="${f.fStartDate}" pattern="yyyy-MM-dd"/></span></li>
-        <li class="text-right w80"> <strong class="time "><fmt:formatDate value="${f.fStarttime}" pattern="HH:mm"/></strong></li>
-        <li class=""> —— </li>
-        <li class="w80"> <strong class="time "><fmt:formatDate value="${f.fOvertime}" pattern="HH:mm"/></strong></li>
-        <li class="w100 text-right"> ${f.fLoAirport} </li>
-        <li class=""> —— </li>
-        <li class=" w100"> ${f.fDeAirport} </li>
-        <li class="w-percentage-20 text-center"> <span class="gray-999 ">机建 + 燃油：</span><span class="gray-999 rmb font12">￥${f.fTax} + ￥20</span></li>
-      </ul>
-      <!-- 表头结束 -->
-      <!-- 表BODY -->
-      <div class="collapse" id="collapseExample" style=" display:block;">
-        <div class="hangbanlist-body " style=" background-color:#FEFCFC;">
-          <!-- 仓位种类 -->
-          <ul class="list-inline">
-            <c:if test="${f.fRank == 'M'}">
-	            <li class="w-percentage-20"><strong class="blue-0093dd">经济舱(M)</strong></li>
-            </c:if>
-            <li  class="w-percentage-25">余位数：${f.fReserve}</li>
-            <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice}</span></li>
-            <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥${f.fPrice*0.9}</strong> <span class="gray font12">9折</span></li>
-            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance/${f.fId}';">订票</button></li>
-          </ul>
-          
-        </div>
-      </div> 
-      <!-- 表BODY 结束 --> 
-    </div>
-    
-    <!-- 分页 -->
-  <nav class=" pull-right ">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-      
-  </ul>
-</nav>
-  <!-- 分页结束 -->
-  <div class="clearfix"></div>
-  </div>
- 
- 
-  
 
-</div>
-<!-- 列表结束 -->
-
-<script type="text/javascript"> 
-$(document).ready(function(){
-$(".flip").click(function(){
-    $(".panel").slideToggle("");
-  });
-});
-</script>
 </body>
 </html>

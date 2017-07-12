@@ -1,5 +1,6 @@
 package cn.tarena.ht.pojo;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Flight extends BaseEntity{
@@ -15,8 +16,9 @@ public class Flight extends BaseEntity{
 	private String fDeparture;    //目的地三字代码
 	private String fDepartureName;//目的地名称
 	private String fDeAirport; //目的地机场
-	private Date fStarttime;      //起飞时间  f_satrttime
-	private Date fOvertime;       //到达时间
+	private Date fStartDate; 	//航班起飞日期
+	private Time fStarttime;      //起飞时间  f_satrttime
+	private Time fOvertime;       //到达时间
 	private Double fPrice;        //票面价
 	private Integer fTax;             //税费
 	private Double fTotal;        //票面总价
@@ -46,10 +48,10 @@ public class Flight extends BaseEntity{
 	public void setfCompanyName(String fCompanyName) {
 		this.fCompanyName = fCompanyName;
 	}
-	public int getfNumber() {
+	public Integer getfNumber() {
 		return fNumber;
 	}
-	public void setfNumber(int fNumber) {
+	public void setfNumber(Integer fNumber) {
 		this.fNumber = fNumber;
 	}
 	public String getfRank() {
@@ -94,48 +96,76 @@ public class Flight extends BaseEntity{
 	public void setfDeAirport(String fDeAirport) {
 		this.fDeAirport = fDeAirport;
 	}
-	public Date getfStarttime() {
+	public Date getfStartDate() {
+		return fStartDate;
+	}
+	public void setfStartDate(Date fStartDate) {
+		this.fStartDate = fStartDate;
+	}
+	public Time getfStarttime() {
 		return fStarttime;
 	}
-	public void setfStarttime(Date fStarttime) {
+	public void setfStarttime(Time fStarttime) {
 		this.fStarttime = fStarttime;
 	}
-	public Date getfOvertime() {
+	public Time getfOvertime() {
 		return fOvertime;
 	}
-	public void setfOvertime(Date fOvertime) {
+	public void setfOvertime(Time fOvertime) {
 		this.fOvertime = fOvertime;
 	}
-	public double getfPrice() {
+	public Double getfPrice() {
 		return fPrice;
 	}
-	public void setfPrice(double fPrice) {
+	public void setfPrice(Double fPrice) {
 		this.fPrice = fPrice;
 	}
-	public int getfTax() {
+	public Integer getfTax() {
 		return fTax;
 	}
-	public void setfTax(int fTax) {
+	public void setfTax(Integer fTax) {
 		this.fTax = fTax;
 	}
-	public double getfTotal() {
+	public Double getfTotal() {
 		return fTotal;
 	}
-	public void setfTotal(double fTotal) {
+	public void setfTotal(Double fTotal) {
 		this.fTotal = fTotal;
 	}
-	public int getfReserve() {
+	public Integer getfReserve() {
 		return fReserve;
 	}
-	public void setfReserve(int fReserve) {
+	public void setfReserve(Integer fReserve) {
 		this.fReserve = fReserve;
 	}
-	public double getfCommission() {
+	public Double getfCommission() {
 		return fCommission;
 	}
-	public void setfCommission(double fCommission) {
+	public void setfCommission(Double fCommission) {
 		this.fCommission = fCommission;
 	}
+	@Override
+	public String toString() {
+		return "Flight [fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName=" + fCompanyName
+				+ ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation + ", fLocationName="
+				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
+				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStartDate=" + fStartDate + ", fStarttime="
+				+ fStarttime + ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal="
+				+ fTotal + ", fReserve=" + fReserve + ", fCommission=" + fCommission + ", getfId()=" + getfId()
+				+ ", getfType()=" + getfType() + ", getfCompany()=" + getfCompany() + ", getfCompanyName()="
+				+ getfCompanyName() + ", getfNumber()=" + getfNumber() + ", getfRank()=" + getfRank()
+				+ ", getfLocation()=" + getfLocation() + ", getfLocationName()=" + getfLocationName()
+				+ ", getfLoAirport()=" + getfLoAirport() + ", getfDeparture()=" + getfDeparture()
+				+ ", getfDepartureName()=" + getfDepartureName() + ", getfDeAirport()=" + getfDeAirport()
+				+ ", getfStartDate()=" + getfStartDate() + ", getfStarttime()=" + getfStarttime() + ", getfOvertime()="
+				+ getfOvertime() + ", getfPrice()=" + getfPrice() + ", getfTax()=" + getfTax() + ", getfTotal()="
+				+ getfTotal() + ", getfReserve()=" + getfReserve() + ", getfCommission()=" + getfCommission()
+				+ ", getCreateBy()=" + getCreateBy() + ", getCreateDept()=" + getCreateDept() + ", getCreateTime()="
+				+ getCreateTime() + ", getUpdateBy()=" + getUpdateBy() + ", getUpdateTime()=" + getUpdateTime()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
 	
 	
 	

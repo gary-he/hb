@@ -12,5 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="fId" property="f_id"/>	
 	</resultMap>
 	
+	<select id="findFlights" resultMap="flightRM">
+		select * from flight_p where f_location=#{fl} and f_departure=#{fd} and f_company=#{fc}
+	</select>
+	
 </mapper>
  

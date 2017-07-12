@@ -19,4 +19,9 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 		return buyFlightMapper.findAllFlight();
 	}
 
+	@Override
+	public Flight findFlights(String fLocation, String fDeparture,String fCompany) {
+		return buyFlightMapper.findFlights(fLocation,fDeparture,fCompany);
+	}
+
 }
