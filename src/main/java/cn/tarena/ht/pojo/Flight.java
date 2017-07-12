@@ -136,6 +136,15 @@ public class Flight extends BaseEntity{
 	public void setfCommission(double fCommission) {
 		this.fCommission = fCommission;
 	}
+	@Override
+	public String toString() {
+		return "Flight [fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName=" + fCompanyName
+				+ ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation + ", fLocationName="
+				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
+				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStarttime=" + fStarttime + ", fOvertime="
+				+ fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal=" + fTotal + ", fReserve=" + fReserve
+				+ ", fCommission=" + fCommission + "]";
+	}
 	
 	
 	

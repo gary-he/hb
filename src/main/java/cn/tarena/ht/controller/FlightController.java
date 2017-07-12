@@ -16,7 +16,7 @@ public class FlightController {
 	private FlightService flightService;
 	
 	//1.请求展示航班信息列表
-	@RequestMapping("/admin/forms/list")
+	@RequestMapping("/admin/flight/list")
 	public String findAll(Model model){
 		List<Flight> flightList=flightService.findAll();
 		return"/sysadmin/flight/fFlightList";
