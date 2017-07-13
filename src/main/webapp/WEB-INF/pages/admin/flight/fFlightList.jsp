@@ -62,8 +62,8 @@
 		<td>${f.fCompany}</td>
 		<td>${f.fLocation}</td>
 		<td>${f.fDeparture}</td>
-		<td><fmt:formatDate value="${f.fOvertime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-		<td><fmt:formatDate value="${f.fStarttime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+		<td><fmt:formatDate value="${f.fOvertime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+		<td><fmt:formatDate value="${f.fStarttime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		<td>${f.fPrice}</td>
 		<td>${f.fTax}</td>
 		<td>${f.fRank}</td>

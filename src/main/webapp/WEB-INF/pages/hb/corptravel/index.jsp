@@ -50,7 +50,7 @@
     </div>
     <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${userSession.username } <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="系统管理/修改密码.html">修改密码</a></li>
             <li><a href="#">退出</a></li>
