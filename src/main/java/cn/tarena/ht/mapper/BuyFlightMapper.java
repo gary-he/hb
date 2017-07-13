@@ -10,6 +10,8 @@ public interface BuyFlightMapper {
 
 	List<Flight> findAllFlight();
 
-	Flight findFlights(@Param("fl") String fLocation,@Param("fd") String fDeparture,@Param("fc") String fCompany);
+	List<Flight> findFlights(@Param("fl") String fLocation,@Param("fd") String fDeparture);
+
+	List<Flight> findFlightsOneF_C(@Param("fl") String fLocation,@Param("fd") String fDeparture,@Param("fc") String fCompany);
 
 }

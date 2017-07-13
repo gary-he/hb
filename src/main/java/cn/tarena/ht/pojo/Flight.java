@@ -17,9 +17,8 @@ public class Flight{
 	private String fDeparture;    //目的地三字代码*
 	private String fDepartureName;//目的地名称
 	private String fDeAirport; //目的地机场
-	private Date fStartDate; 	//航班起飞日期
-	private Time fStarttime;      //起飞时间  f_satrttime
-	private Time fOvertime;       //到达时间
+	private Date fStarttime;      //起飞时间  f_satrttime
+	private Date fOvertime;       //到达时间
 	private Double fPrice;        //票面价
 	private Integer fTax;             //税费
 	private Double fTotal;        //票面总价
@@ -97,22 +96,16 @@ public class Flight{
 	public void setfDeAirport(String fDeAirport) {
 		this.fDeAirport = fDeAirport;
 	}
-	public Date getfStartDate() {
-		return fStartDate;
-	}
-	public void setfStartDate(Date fStartDate) {
-		this.fStartDate = fStartDate;
-	}
-	public Time getfStarttime() {
+	public Date getfStarttime() {
 		return fStarttime;
 	}
-	public void setfStarttime(Time fStarttime) {
+	public void setfStarttime(Date fStarttime) {
 		this.fStarttime = fStarttime;
 	}
-	public Time getfOvertime() {
+	public Date getfOvertime() {
 		return fOvertime;
 	}
-	public void setfOvertime(Time fOvertime) {
+	public void setfOvertime(Date fOvertime) {
 		this.fOvertime = fOvertime;
 	}
 	public Double getfPrice() {
@@ -150,8 +143,7 @@ public class Flight{
 		return "Flight [fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName=" + fCompanyName
 				+ ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation + ", fLocationName="
 				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
-				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStartDate=" + fStartDate + ", fStarttime="
-				+ fStarttime + ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal="
+				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStartDate=" + fStarttime + ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal="
 				+ fTotal + ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
 	}
 	

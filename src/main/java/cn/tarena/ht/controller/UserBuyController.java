@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.tarena.ht.pojo.Flight;
 import cn.tarena.ht.service.BuyFlightService;
+import cn.tarena.ht.tool.AirportCode;
 
 @Controller
 public class UserBuyController {
@@ -26,22 +27,46 @@ public class UserBuyController {
 	
 	//订票页面
 	@RequestMapping("/index")
-	public String index(){
+	public String index(Model model){
 		Date date = new Date();
-		System.out.println(date);
+		model.addAttribute("date", date);
 		return "/hb/corptravel/index";
 	}
 	@RequestMapping("/search")
 	public String search(String fLocationName,String fDepartureName,String fStarttime,String fCompany,Model model){
-		System.out.println(fLocationName);
-		System.out.println(fDepartureName);
-		System.out.println(fStarttime);
-		System.out.println(fCompany);
-		String fLocation = "CAN";
-		String fDeparture = "PEK";
-		Flight flightList = buyFlightService.findFlights(fLocation,fDeparture,fCompany);
-		System.out.println(flightList);
-		model.addAttribute("f", flightList);
+		System.out.println("fLocationName："+fLocationName);
+		System.out.println("fDepartureName："+fDepartureName);
+		System.out.println("fStarttime："+fStarttime);
+		System.out.println("fCompany："+fCompany);
+		//回显数据
+		model.addAttribute("fLocationName",fLocationName);
+		model.addAttribute("fDepartureName",fDepartureName);
+		//存储时间
+		Date date = new Date();
+		for (int i = 0; i < 7; i++) {
+			model.addAttribute("date"+i, date);
+			date = new Date(date.getTime()+1000*60*60*24);
+		}
+		//根据城市名称 查找 机场三字代码
+		String fLocation = AirportCode.findCode(fLocationName);
+		String fDeparture = AirportCode.findCode(fDepartureName);
+		
+		//查询操作
+		//1.默认查询当天航班
+		List<Flight> flightList = null;
+		
+		
+		if(fCompany == null || fCompany == ""){
+			//1.1全部航司
+			flightList = buyFlightService.findFlights(fLocation,fDeparture);
+			model.addAttribute("f", flightList);
+		}else{
+			//1.2指定航司
+			flightList = buyFlightService.findFlightsOneF_C(fLocation,fDeparture,fCompany);
+			model.addAttribute("f", flightList);
+		}
+		
+		//将查询到的数据存到页面
 		return "/hb/corptravel/search";
 	}
 	
