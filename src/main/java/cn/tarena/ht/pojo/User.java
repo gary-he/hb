@@ -1,12 +1,13 @@
 package cn.tarena.ht.pojo;
 
 public class User {
-	private String userId;
-	private String username;
-	private String password;
+	private String userId;//用户Id
+	private String username;//用户账号
+	private String password;//用户密码
 	
 	
 	
+
 	public String getUserId() {
 		return userId;
 	}

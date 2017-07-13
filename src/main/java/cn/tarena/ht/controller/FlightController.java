@@ -66,8 +66,10 @@ public class FlightController extends BaseController{
 	public String saveFlight(Flight flight){
 		flightService.saveFlight(flight);
 		return "redirect:/admin/flight/list";
-		
 	}
+	
+	//6.航班信息的导出
+	
 	
 
 }
