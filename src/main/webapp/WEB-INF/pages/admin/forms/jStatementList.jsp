@@ -17,6 +17,11 @@
 		 }
 		 
 </script>
+	<style type="text/css">
+		.eXtremeTable {
+			padding:10px;
+		}
+	</style>
 </head>
 <body  onload="wol();">
 <div id="menubar">
@@ -39,9 +44,9 @@
   </div> 
 <!-- 		/hb/src/main/webapp/WEB-INF/pages/admin/forms/ -->
 			<form action="tofind"  method="POST">
-				出票时间: <input id="qq" type="Date" name="ticketTime1" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" />
+				出票时间: <input id="qq" type="text" name="ticketTime1" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" />
 				至
-				<input type="Date" name="ticketTime2" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" />
+				<input type="text" name="ticketTime2" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" />
 				&nbsp;
 				&nbsp;
 				始发地: <input type="text" name="location"/>&nbsp;&nbsp; 目的地: <input type="text" name="departure"/>
@@ -95,7 +100,7 @@
 				&nbsp;
 				客票状态:
 				<select name="ticketState">
-					<option selected="selected">---无---</option>
+					<option value="">---无---</option>
 					<option value="1">已出票</option>
 					<option value="2">改签</option>
 					<option value="3">已退票</option>
@@ -103,19 +108,21 @@
 				</select>
 				
 				<input type="submit" value="查询"/>
+				<h1>销售榜单</h1>
+				<a href="download">销售下载</a>
 			</form>
 
 
 
   
-<div>
+<div >
 
 
-<div class="eXtremeTable" style="position:absolute; height:400px; overflow:scroll">
-<table id="ec_table" class="tableRegion" width="98%" >
+<div class="eXtremeTable" style="position:absolute; height:400px;width:100%"  >
+<table id="ec_table" class="tableRegion"    >
 	<thead>
 	<tr>
-		<td class="tableHeader" colspan="25" align="centre">票面信息</td>
+		<td class="tableHeader" colspan="24" align="centre">票面信息</td>
 	</tr>
 	<tr>
 		
@@ -143,7 +150,21 @@
 		<td class="tableHeader">账单价</td>
 		<td class="tableHeader">税费</td>
 		<td class="tableHeader">票面小计</td>
-		<td class="tableHeader">代理费</td>
+		<tr>
+		<td class="tableHeader" colspan="4" align="centre">销售明细</td>
+		</tr>
+		<td class="tableHeader">采购代理费率</td>
+		<td class="tableHeader">采购代理费</td>
+		<td class="tableHeader">采购金额</td>
+		<td class="tableHeader">毛利小计</td>
+		<tr>
+		<td class="tableHeader" colspan="5" align="centre">备注信息</td>
+		</tr>
+		<td class="tableHeader">订单号</td>
+		<td class="tableHeader">建单用户</td>
+		<td class="tableHeader">支付状态</td>
+		<td class="tableHeader">建单时间</td>
+		<td class="tableHeader">支付时间</td>
 		
 	</tr>
 	</thead>
@@ -153,7 +174,13 @@
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
 		<td>${status.index+1}</td>
 		<td>${s.productType}</td>
-		<td>${s.ticketState}</td>
+		<td>
+			<c:if test="${s.order.oState == 0}">未出票</c:if>
+			<c:if test="${s.order.oState == 1}">已出票</c:if>
+			<c:if test="${s.order.oState == 2}">改签</c:if>
+			<c:if test="${s.order.oState == 3}">退票</c:if>
+		</td>
+		
 		<td>${s.abroadInland}</td>
 		<td>${s.flight.fType}</td>
 		<td>${s.tickerType}</td>
@@ -170,15 +197,25 @@
 		<td>${s.flight.fDepartureName}</td>
 		<td>${s.flight.fId}</td>
 		<td>${s.flight.fRank}</td>
-		<td><fmt:formatDate value="${s.flight.fStarttime}" pattern="yyyy-MM-dd"/></td>
-		<td><fmt:formatDate value="${s.flight.fOvertime}" pattern="yyyy-MM-dd"/></td>
+		<td><fmt:formatDate value="${s.flight.fStarttime}" type="time" pattern="yyyy-MM-dd HH-mm-ss"/></td>
+		<td><fmt:formatDate value="${s.flight.fOvertime}" type="time" pattern="yyyy-MM-dd HH-mm-ss"/></td>
 		<td>${s.flight.fPrice}</td>
 		<td>${s.flight.fTax}</td>
 		<td>${s.flight.fTotal}</td>
+		<!-- 销售明细:采购代理费率/采购代理费/采购金额/毛利小计 -->
+		<td>${s.commissionFreePercent}</td>
 		<td>${s.flight.fCommission}</td>
-		<!-- <td><fmt:formatDate value="${u.userInfo.joinDate}" pattern="yyyy-MM-dd"/>订单创建时间</td> -->
-		<!--<td><fmt:formatDate value="${u.userInfo.joinDate}" pattern="yyyy-MM-dd"/>订单跟新时间</td> -->
-		<!--<td><fmt:formatDate value="${u.userInfo.joinDate}" pattern="yyyy-MM-dd"/>订单支付时间</td> -->
+		<td>${s.procurement}</td>
+		<td>${s.profit}</td>
+		<!-- 备注信息:订单号/建单用户/支付状态/建单时间/支付时间 -->
+		<td>${s.passenger.pOrderId}</td>
+		<td>${s.order.userPId}</td>
+		<td>
+		<c:if test="${s.order.oPayment == 0}"><font color="red">未支付</font></c:if>
+		<c:if test="${s.order.oPayment == 1}"><font color="green">已支付</font></c:if>
+		</td>
+		<td><fmt:formatDate value="${s.order.oCreatetime}" pattern="yyyy-MM-dd HH-mm-ss"/></td> 
+		<td><fmt:formatDate value="${s.order.oPaytime}" pattern="yyyy-MM-dd HH-mm-ss"/></td>
 		
 	</tr>
 	</c:forEach>
