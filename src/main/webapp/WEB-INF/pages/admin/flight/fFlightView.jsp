@@ -76,9 +76,9 @@
 		
 		<tr class="odd">
 			<td>起飞时间:</td>
-			<td><fmt:formatDate value="${flight.fStarttime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+			<td><fmt:formatDate value="${flight.fStarttime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			<td>到达时间:</td>
-			<td><fmt:formatDate value="${flight.fOvertime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+			<td><fmt:formatDate value="${flight.fOvertime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		</tr>
 		
 		<tr class="odd">

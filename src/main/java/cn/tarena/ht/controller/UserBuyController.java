@@ -46,20 +46,20 @@ public class UserBuyController {
 	}
 	
 	
-	//订票-保险确认页面-insurance
+	/*//订票-保险确认页面-insurance
 	@RequestMapping("/pay/insurance/{fId}")
 	public String insurance(@PathVariable String fId){
 		System.out.println(fId);
 		return "/hb/corptravel/pay/insurance";
-	}
+	}*/
 	
-	//订票 - 支付确认页面 - payment
+/*	//订票 - 支付确认页面 - payment
 	@RequestMapping("/pay/payment")
 	public String payment(){
 		
 		
 		return "/hb/corptravel/pay/payment";
-	}
+	}*/
 	
 	//订票 - 支付成功页面 -succeed
 	@RequestMapping("/pay/succeed")

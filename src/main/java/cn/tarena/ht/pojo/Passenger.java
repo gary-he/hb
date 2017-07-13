@@ -10,7 +10,7 @@ public class Passenger {
 	private String pType;
 	private String pOrderId;
 	
-	
+
 	public String getpOrderId() {
 		return pOrderId;
 	}
