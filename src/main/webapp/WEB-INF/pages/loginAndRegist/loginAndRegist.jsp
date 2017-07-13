@@ -30,12 +30,14 @@
 						<h2 class="form-signin-heading">欢迎登录菜鸟航空</h2>
 						<span style="color: red">${errorInfo }</span>
 						<input type="text" id="inputEmail" class="form-control"
-							placeholder="用户名" name="userName" required autofocus> 
+							placeholder="用户名" name="userName" required autofocus
+							value="${rmCookie }"> 
 						
 						<input type="password" id="inputPassword" class="form-control"
 							placeholder="密码"  name="password" required>
 						<div class="checkbox">
-							<label><input type="checkbox" name="remeberMe" value="remember-me">记住用户</label>
+							<label><input type="checkbox" name="remeberMe" value="remeber-me"
+								<c:if test="${!empty rmCookie }">checked="checked"</c:if>>记住用户</label>
 						</div>
 						<button class="btn btn-lg btn-primary btn-block" type="submit">
 						登录

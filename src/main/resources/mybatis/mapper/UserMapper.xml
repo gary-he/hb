@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="password" property="password"/>
 	</resultMap>
 	
+	<!-- =============================查询================================ -->
 	<!-- 查找当前用户信息 -->
 	<select id="findOne" resultMap="userRM">
 		select * from user where user_id=#{user_id};<!-- #{user_id} -->
@@ -20,9 +21,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where username=#{userName}
 	</select>
 	
+	
+	<!-- =============================新增================================ -->
 	<!-- 注册用户 -->
 	<insert id="saveUser">
 		insert into user values(#{userId},#{username},#{password})
 	</insert>
 
+	<!-- =============================修改================================ -->
+	<!-- =============================删除================================ -->
 </mapper>

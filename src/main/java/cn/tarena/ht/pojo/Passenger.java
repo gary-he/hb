@@ -10,8 +10,7 @@ public class Passenger {
 	private String pType;//乘客类型(成人,儿童...)
 	private String pOrderId;//乘客--订单Id
 	
-	
-	
+
 	public String getpOrderId() {
 		return pOrderId;
 	}
@@ -63,8 +62,9 @@ public class Passenger {
 	@Override
 	public String toString() {
 		return "Passenger [pId=" + pId + ", pName=" + pName + ", pSex=" + pSex + ", pIdentily=" + pIdentily
-				+ ", pPhone=" + pPhone + ", pFId=" + pFId + ", pType=" + pType + "]";
+				+ ", pPhone=" + pPhone + ", pFId=" + pFId + ", pType=" + pType + ", pOrderId=" + pOrderId + "]";
 	}
+	
 	
 	
 	
