@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Order {
 	
-	private String oId;
-	private String userPId;
-	private String oPayment;
-	private String oState;
-	private Date oCreatetime;
-	private Date oUpdatetime;
-	private Date oPaytime;
+	private String oId;//订单ID
+	private String userPId;//用户ID
+	private String oPayment;//0未支付,1支付成功,2支付失败
+	private String oState;//0未支付,1支付成功,2支付失败
+	private Date oCreatetime;//订单创建时间
+	private Date oUpdatetime;//订单更改时间
+	private Date oPaytime;//订单支付时间
 	public String getoId() {
 		return oId;
 	}

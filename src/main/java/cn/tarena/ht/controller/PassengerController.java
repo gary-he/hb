@@ -1,34 +1,83 @@
 package cn.tarena.ht.controller;
 
+import java.util.Date;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.tarena.ht.pojo.Flight;
+import cn.tarena.ht.pojo.Order;
 import cn.tarena.ht.pojo.Passenger;
+import cn.tarena.ht.pojo.User;
+import cn.tarena.ht.service.FlightService;
+import cn.tarena.ht.service.OrderService;
 import cn.tarena.ht.service.PassengerService;
 
 @Controller
 public class PassengerController {
-	
+	@Autowired
 	PassengerService passengerService;
-	
-	//订票跳转至保险确认页面
-	@RequestMapping("/pay/insurance")
-	public String insurance(String airlineType,Model model){
-		
-		model.addAttribute("airlineType", airlineType);
-		
+	@Autowired
+	FlightService flightService;
+//	@Autowired
+//	OrderService orderService;
+
+	// 订票跳转至保险确认页面
+	@RequestMapping("/pay/insurance/{airlineType}")
+	public String insurance(@PathVariable String airlineType, Model model) {
+
+		Flight flight = flightService.findOne(airlineType);
+		model.addAttribute("flight", flight);
+
 		return "/hb/corptravel/pay/insurance";
 	}
-	
-	//订票 - 支付确认页面 - payment
-		@RequestMapping("/pay/payment")
-		public String payment(Passenger passenger,Model model){
-			
-			passengerService.add(passenger);
-			
-						
-			return "/hb/corptravel/pay/payment";
+
+	// 订票 - 支付确认页面
+	@SuppressWarnings("null")
+	@RequestMapping("/pay/payment")
+	public String payment(String airlineType, Model model, Passenger pa, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
+		// 检查是否输入为空
+		if (StringUtils.isEmpty(pa.getpName()) || StringUtils.isEmpty(pa.getpIdentily())
+				|| StringUtils.isEmpty(pa.getpPhone())) {
+
+			model.addAttribute("msg", "用户名,身份证,手机号均不能为空");
+
+			// return "/hb/corptravel/pay/insurance";//有空值则返回页面
 		}
-	
+
+		Date date = new Date();
+		String pid = UUID.randomUUID().toString();// 乘客Id
+//		String poid = UUID.randomUUID().toString();// 乘客--订单关联id
+		String oid = UUID.randomUUID().toString();// 订单id
+		Order order = new Order();// 声明订单
+		String userId = ((User)session.getAttribute("userSession")).getUserId();//用户Id
+
+		pa.setpId(pid);
+		pa.setpFId(airlineType);
+		pa.setpOrderId(oid);
+
+		order.setoId(oid);
+		order.setUserPId(userId);//要根据用户ID来查询order信息
+		order.setoPayment("0");
+		order.setoState("0");
+		order.setoCreatetime(date);
+		order.setoUpdatetime(date);
+//		order.setoPaytime(null);
+
+		passengerService.add(pa,order);// 添加乘客
+
+
+		return "/hb/corptravel/pay/payment";
+	}
+
 }

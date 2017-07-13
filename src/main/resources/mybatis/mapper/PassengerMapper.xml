@@ -21,15 +21,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="o_createtime" property="oCreatetime"/>
 			<result column="o_updatetime" property="oUpdatetime"/>
 			<result column="o_paytime" property="oPaytime"/>
-			
 		</association>
 		 
 	</resultMap>
 	
 	<!-- 插入订单信息 -->
 	<insert id="add">
-	
-	
+		insert into passenger values(
+		<trim suffixOverrides=", ">
+				#{pId},
+				#{pName},
+				#{pSex},
+				#{pType},
+				#{pIdentily},
+				#{pPhone},
+				#{pFId},
+				#{pOrderId}
+		</trim>
+		)
 	</insert>
 	
 </mapper>

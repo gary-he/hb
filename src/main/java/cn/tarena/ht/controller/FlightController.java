@@ -21,7 +21,9 @@ public class FlightController {
 	@RequestMapping("/list")
 	public String findAll(Model model){
 		List<Flight> flightList=flightService.findAll();
-		return"/sysadmin/flight/fFlightList";
+		model.addAttribute("flightList", flightList);
+	
+		return"/admin/flight/fFlightList";
 		
 	}
 
