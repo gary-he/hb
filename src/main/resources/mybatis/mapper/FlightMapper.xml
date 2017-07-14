@@ -33,7 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		f_departure=#{fDeparture},
 		f_departure_name=#{fDepartureName},
 		f_de_airport=#{fDeAirport},
-		
 		f_starttime=#{fStarttime},
 		f_overtime=#{fOvertime},
 		f_price=#{fPrice},
@@ -56,12 +55,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 新增航班信息 -->
 	<insert id="saveFlight">
-		insert into flight_p (f_id,f_type,f_company,f_company_name,f_number,f_rank,f_location,
-		f_location_name,f_lo_airport,f_departure,f_departure_name,f_de_airport,
-		f_starttime ,f_overtime,f_price,f_tax,f_total,f_reserve,f_commission)
-		values(#{fId},#{fType},#{fCompany},#{fCompanyName},#{fNumber},#{fRank},#{fLocation},
-		#{fLocationName},#{fLoAirport},#{fDeparture},#{fDepartureName},#{fDeAirport},
-		#{fStarttime},#{fOvertime},#{fPrice},#{fTax},#{fTotal},#{fReserve},#{fCommission}
+		insert into flight_p values(
+			#{fId},#{fType},
+			#{fCompanyName},#{fCompany},
+			#{fNumber},
+			#{fLocation},#{fLocationName},
+			#{fLoAirport},#{fDeparture},
+			#{fDepartureName},#{fDeAirport},
+			#{fStarttime},#{fOvertime},#{fRank},#{fPrice},
+			#{fTax},#{fTotal},
+			#{fReserve},#{fCommission}
 		)
 	</insert>
 </mapper>

@@ -99,6 +99,11 @@
 <!-- 管理模板 -->
 <div class="container bg-gray-eee box-shadow mar-bottom-30" style="padding-right:0px; padding-left:0px; position:relative; margin-top:120px;">
 <div class="col-sm-7 container bg-white  pad-bottom-20">
+
+
+<form class="form-signin" action="/pay/payment" method="POST" >
+
+
 <!-- 航班信息 -->
 <div style="overflow:hidden;">
   <h3 class="mar-bottom-20" style=" display:block; float:left;">乘机人</h3>
@@ -124,7 +129,8 @@
   </div>
   
   <div class=" mar-top-10">
-  <input type="button" value="添加乘机人" class="btn btn-danger zw2" > 
+  <input type="button" value="添加乘机人" class="btn btn-danger zw2" >
+  <input type="hidden" name="airlineType" value=${flight.fId }>
 </div>
   
 <!-- 航班信息 结束 -->
@@ -149,9 +155,9 @@
 </div>
   
   <!-- 联系人 -->
-  <h3 class="mar-bottom-20">联系人</h3>
-  <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">
-  <div class="mar-top-10">
+  <h3 class="mar-bottom-20">联系电话</h3>
+<!--   <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">
+ -->  <div class="mar-top-10">
   <select name="select" class="form-control input-sm w110 mar-right-10" style=" display: inline-block;">
        <option value="国家" selected="selected">中国&nbsp;&nbsp;+86</option>    
   </select>
@@ -166,29 +172,29 @@
 <div class="col-sm-5 bg-gray-eee">
 <div style=" margin-left:-15px;">
 <h4 style="overflow:hidden; margin-left:10px;">
-  <span style="display:block; float:left;">03-16&nbsp;&nbsp;周三</span>
-  <span style="display:block; float:left; margin-left:80px;">成都-北京</span>
-  <span style=" display:block; float:right;color:#999; font-size:14px; margin-right:5px;">经济舱</span>
+  <span style="display:block; float:left;"><fmt:formatDate value="${flight.fStartDate}" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;周三</span>
+  <span style="display:block; float:left; margin-left:80px;">${flight.fLocationName }-${flight.fDepartureName}</span>
+  <span style=" display:block; float:right;color:#999; font-size:14px; margin-right:5px;">${flight.fRank}</span>
 </h4>
 </div>
 <div style=" overflow:hidden; margin-bottom:20px;">
         <div class="flight-from" style="float:left;">
-            <span class="time text-center">07:00</span><br/>
-            <span class="text-center">双流机场</span>
+            <span class="time text-center">${flight.fStarttime}</span><br/>
+            <span class="text-center">${flight.fLoAirport }</span>
         </div>
         <div class="flight-info" style="float:left; margin-left:100px;">
             <img src="${ctx}/hb/img/a.png">
             <span class="font12 gray-999">2h35m</span>
             <img src="${ctx}/hb/img/b.png"><br/>
-            <span class="text-center font12 gray-999 mar-left-10">西藏航空有限公司 TV6101</span><br/>
+            <span class="text-center font12 gray-999 mar-left-10">${flight.fCompanyName}有限公司 ${flight.fCompany}</span><br/>
             <img src="${ctx}/hb/img/c.png" class="mar-left-10">
-            <span class="text-center font12 gray-999">实际乘坐 CA4193</span><br/>
+            <span class="text-center font12 gray-999">实际乘坐 ${flight.fId }</span><br/>
             <span class="airline-direct"></span>
             <span class="arrow"></span>
         </div>
         <div class="flight-to" style="float:right;">
-            <span class="time text-center">09:35</span><br/>
-            <span class="text-center">首都机场</span>
+            <span class="time text-center"> ${flight.fOvertime }</span><br/>
+            <span class="text-center">${flight.fDeAirport}</span>
         </div>
       </div>
 <div>
@@ -224,7 +230,7 @@
 <table class="table">
   <tr>
     <td>成人票</td>
-    <td>￥991/人</td>
+    <td>￥${flight.fPrice}/人</td>
     <td>x1</td>
   </tr>
   <tr>
@@ -248,8 +254,10 @@
 
 <div class="text-center mar-top-10">
   <input type="checkbox" name="choice" value="1">&nbsp;我已阅读并接受免责条款、费用扣除、退保等在内的重要事项，其中包括 <a href="">《网络电子客票协议》</a> <a href="">《航意险说明》</a> <a href="">《延误险说明》</a> <a href="">《保险经纪委托协议》</a><br/>
-  <input type="button" value="提交订单" class="btn btn-danger mar-top-20" onclick="window.location.href ='payment.html';" > 
+  <input type="submit" value="提交订单" class="btn btn-danger mar-top-20" ;" > 
 </div>
+
+</form>
 
 
 <!-- 添加乘机人弹框 -->
@@ -277,7 +285,7 @@
 	</div>
 </div>
 
-
+</form>
 
 
 <script type="text/javascript">
@@ -395,6 +403,7 @@ $('.btn btn-danger mar-top-20').click(
 
 
 </script>
+
 
 </body>
 </html>

@@ -29,6 +29,9 @@
 <script type="text/javascript" src="${ctx}/hb/js/layer/layer.js"></script>
 <!-- 日历控件 -->
 <script language="javascript" type="text/javascript" src="${ctx}/hb/js/My97DatePicker/WdatePicker.js"></script>
+<!-- 城市选择 -->
+<link rel="stylesheet" href="${ctx}/hb/css/cityselect.css">
+<script type="text/javascript" src="${ctx}/hb/js/cityselect.js"></script>
 </head>
 <body class="bg-body">
 <!-- header -->
@@ -105,22 +108,22 @@
       </div>
       <div class="form-group mar-left-10">
         <label for="">出发城市</label>
-        <input type="text" name="fLocationName" class="form-control" style="width:85px;" value="广州" >
+        <input type="text" name="fLocationName" value="${fLocationName}" id="citySelect" class="form-control" style="width:95px;" placeholder="中文/拼音" >
       </div>
       <div class="form-group">
-        <label for=""> — <a href="#" class="huan">换</a> —</label>
+        <label for=""> — <a href="#" class="huan">换</a> — </label>
       </div>
        <div class="form-group">
         <label for="">到达城市</label>
-        <input type="text" name="fDepartureName" class="form-control" style="width:85px;" id="" value="北京" placeholder="北京">
+        <input type="text" name="fDepartureName" value="${fDepartureName}" id="citySelect1" class="form-control" style="width:95px;" placeholder="中文/拼音">
       </div>
       <div class="form-group mar-left-10">
         <label for="">出发日期</label>
-        <input type="text" name="fStarttime" class="form-control " style="width:110px;" id="" value="2016-01-13" placeholder="" onClick="WdatePicker()">
+        <input type="text" name="fStarttime" class="form-control " style="width:110px;" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>" onClick="WdatePicker()">
       </div>
       <div class="form-group mar-left-10">
         <label for="">返回日期</label>
-        <input type="text" name="fOvertime" disabled class="form-control " id="" style="width:110px;" onClick="WdatePicker()" value="2016-01-13" placeholder="">
+        <input type="text" name="fOvertime" disabled class="form-control " style="width:110px;" onClick="WdatePicker()" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>">
       </div>
       <div class="form-group mar-left-10">
         <select id="dropAirlines"  name="fCompany" class="form-control" style=" width:120px;">
@@ -173,14 +176,14 @@
   <div class=" bor-solid-1" style=" background:#EFF2F5;">
     <div class="arrow-left"><a href="#" style="">&nbsp;</a></div>
     <div class="arrow-right"><a href="#" style="">&nbsp;</a></div>
-    <ul class="nav nav-tabs nav-justified ">
-     <li role="presentation" class="active"><a href="#">01-11<br>周一</a></li>
-     <li role="presentation"><a href="#">01-12<br>周二</a></li>
-     <li role="presentation"><a href="#">01-13<br>周三</a></li>
-     <li role="presentation"><a href="#">01-14<br>周四</a></li>
-     <li role="presentation"><a href="#">01-15<br>周五</a></li>
-     <li role="presentation"><a href="#">01-16<br>周六</a></li>
-     <li role="presentation"><a href="#">01-17<br>周日</a></li>
+    <ul id="timeNav" class="nav nav-tabs nav-justified ">
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date0}" pattern="M-d"/><br><fmt:formatDate value="${date0}" pattern="E"/></a></li>
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date1}" pattern="M-d"/><br><fmt:formatDate value="${date1}" pattern="E"/></a></li>
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date2}" pattern="M-d"/><br><fmt:formatDate value="${date2}" pattern="E"/></a></li>
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date3}" pattern="M-d"/><br><fmt:formatDate value="${date3}" pattern="E"/></a></li>
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date4}" pattern="M-d"/><br><fmt:formatDate value="${date4}" pattern="E"/></a></li>
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date5}" pattern="M-d"/><br><fmt:formatDate value="${date5}" pattern="E"/></a></li>
+     <li role="presentation"><a href="#"><fmt:formatDate value="${date6}" pattern="M-d"/><br><fmt:formatDate value="${date6}" pattern="E"/></a></li>
     </ul>
     
   </div>
@@ -189,13 +192,16 @@
 <!-- 列表开始 -->
 <div class="container mar-bottom-30 ">
   <div class="hangbanlist">
-    
-    <!-- 循环 -->
+   
+   <c:if test="${empty f}">没有查询到符合要求的航班</c:if>
+   <!-- 循环 -->
+   <c:if test="${!empty f}">
+   	<c:forEach items="${f}" var="f">
     <div>
       <!-- 表头 -->
       <ul class="list-inline bor-bottom-solid-1  ">
-        <li class="w-percentage-25"><img src="${ctx}/hb/img/air/CA.png" width="24" height="24"> <strong>${f.fCompanyName}</strong>${f.fId}
-        <span class="gray-999 font12 mar-left-10">日期：<fmt:formatDate value="${f.fStartDate}" pattern="yyyy-MM-dd"/></span></li>
+        <li class="w-percentage-25"><img src="${ctx}/hb/img/air/${f.fCompany}.png" width="24" height="24"> <strong>${f.fCompanyName}</strong>${f.fId}
+        <span class="gray-999 font12 mar-left-10">起飞日期：<fmt:formatDate value="${f.fStarttime}" pattern="M月d日"/></span></li>
         <li class="text-right w80"> <strong class="time "><fmt:formatDate value="${f.fStarttime}" pattern="HH:mm"/></strong></li>
         <li class=""> —— </li>
         <li class="w80"> <strong class="time "><fmt:formatDate value="${f.fOvertime}" pattern="HH:mm"/></strong></li>
@@ -213,44 +219,23 @@
             <c:if test="${f.fRank == 'M'}">
 	            <li class="w-percentage-20"><strong class="blue-0093dd">经济舱(M)</strong></li>
             </c:if>
-            <li  class="w-percentage-25">余位数：${f.fReserve}</li>
+            <c:if test="${f.fRank == 'Y'}">
+	            <li class="w-percentage-20"><strong class="blue-0093dd">全票价(Y)</strong></li>
+            </c:if>
             <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice}</span></li>
             <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥${f.fPrice*0.9}</strong> <span class="gray font12">9折</span></li>
             <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance/${f.fId}';">订票</button></li>
+            <li  class="w-percentage-25">余位数：${f.fReserve}</li>
           </ul>
           
         </div>
       </div> 
       <!-- 表BODY 结束 --> 
     </div>
+    </c:forEach>
+   </c:if>
+   <!-- 循环结束 -->
     
-    <!-- 分页 -->
-  <nav class=" pull-right ">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-      
-  </ul>
-</nav>
-  <!-- 分页结束 -->
-  <div class="clearfix"></div>
-  </div>
- 
- 
-  
 
 </div>
 <!-- 列表结束 -->
@@ -260,7 +245,19 @@ $(document).ready(function(){
 $(".flip").click(function(){
     $(".panel").slideToggle("");
   });
+$("#timeNav li").click(function(){
+	for(i=0;i<$("#timeNav li").length;i++){
+		$($("#timeNav li").get(i)).removeAttr("class");
+	}
+	$(this).addClass("active");
 });
+});
+
 </script>
+<script type="text/javascript">
+	var test=new Vcity.CitySelector({input:'citySelect'});
+	var test=new Vcity.CitySelector({input:'citySelect1'});
+</script>
+
 </body>
 </html>

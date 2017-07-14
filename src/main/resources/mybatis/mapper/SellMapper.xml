@@ -32,33 +32,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap>
 
-	<select id="findByRules" resultMap="statementList">
+	<select id="findByRules" resultMap="statementList" >
 		
-		SELECT * FROM 
-		(SELECT * FROM
-		(SELECT p.p_id id,p_id,p.p_name,p.p_sex,p_type,p_identily,p.p_phone,p.p_f_id,p.p_order_id FROM passenger p)p
-			LEFT JOIN
+		select * from 
+		(select * from
+		(select p.p_id id,p_id,p.p_name,p.p_sex,p_type,p_identily,p.p_phone,p.p_f_id,p.p_order_id from passenger p)p
+			left join
 			flight_p  f
-			ON p.p_f_id=f.f_id)pf
-		LEFT JOIN 
+			on p.p_f_id=f.f_id)pf
+		left join 
 		order_p o
-		ON pf.p_order_id=o.o_id
+		on pf.p_order_id=o.o_id
 		<where>
-			<if test="location !=null">pf.f_location=#{location}</if>
-			and
-			<if test="f_departure !=null">pf.f_departure=#{departure}</if>
-			and 
-			<if test="location !=null">pf.p_name=#{passengerName}</if>
-			and
-			<if test="location !=null">pf.p_id=#{PNR}</if>
-			and
-			<if test="location !=null">pf.f_company=#{Airlines}</if>
-			and
-			<if test="location !=null">o.o_state=#{ticketState}</if>
-			and
-			<if test="location !=null">pf.f_location=#{location}</if>
-			pf.f_start_date BETWEEN #{ticketTime1,jdbcType=java.sql.Date} and #{ticketTime2,jdbcType=java.sql.Date}
-			<if test="location !=null">pf.f_location=#{location}</if>
+		
+			<if test="location !=null and location!='' ">pf.f_location=#{location}</if>
+			
+			<if test="departure !=null and departure!='' ">and pf.f_departure=#{departure}</if>
+			
+			<if test="passengerName !=null and passengerName!='' ">and pf.p_name=#{passengerName}</if>
+			
+			<if test="PNR !=null and PNR!='' ">and pf.p_id=#{PNR}</if>
+			
+			<if test="Airlines !=null and Airlines!='' ">and pf.f_company=#{Airlines}</if>
+			
+			<if test="ticketState !=null and ticketState!='' ">and o.o_state=#{ticketState}</if>
+			
+			<if test="ticketTime1 !=null and ticketTime1!='' ">and pf.f_start_date &gt;= #{ticketTime1}</if>
+			
+			<if test="ticketTime2 !=null and ticketTime2!='' ">and  pf.f_start_date  &lt;= #{ticketTime2}</if> 
 		</where>
 		
 	</select>

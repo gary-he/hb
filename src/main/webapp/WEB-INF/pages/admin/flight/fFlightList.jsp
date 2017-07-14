@@ -44,7 +44,6 @@
 		<td class="tableHeader">航空公司</td>
 		<td class="tableHeader">始发地代码</td>
 		<td class="tableHeader">目的地代码</td>
-		<td class="tableHeader">起飞日期</td>
 		<td class="tableHeader">起飞时间</td>
 		<td class="tableHeader">到达时间</td>
 		<td class="tableHeader">票面价</td>
@@ -63,9 +62,8 @@
 		<td>${f.fCompany}</td>
 		<td>${f.fLocation}</td>
 		<td>${f.fDeparture}</td>
-		<%-- <td><fmt:formatDate value="${f.fStartDate}" pattern="yyyy-MM-dd"/></td> --%>
-		<td><fmt:formatDate value="${f.fStarttime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		<td><fmt:formatDate value="${f.fOvertime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+		<td><fmt:formatDate value="${f.fStarttime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		<td>${f.fPrice}</td>
 		<td>${f.fTax}</td>
 		<td>${f.fRank}</td>
