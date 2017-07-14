@@ -63,10 +63,10 @@
       </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 020-12345678 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）020-12345678</a></li>
+            <li><a href="#">（或）020-12345678</a></li>
             <!--<li role="separator" class="divider"></li>-->
           </ul>
         </li>
