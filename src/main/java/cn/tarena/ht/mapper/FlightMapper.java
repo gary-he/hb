@@ -12,7 +12,7 @@ public interface FlightMapper {
 	
 	public void updateFlight(Flight flight);
 
-	public void deleteFlight(String[] fIds);
+	public void deleteFlight(String[] ids);
 
 	public void saveFlight(Flight flight);
 
