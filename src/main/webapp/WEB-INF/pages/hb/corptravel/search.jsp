@@ -119,7 +119,7 @@
       </div>
       <div class="form-group mar-left-10">
         <label for="">出发日期</label>
-        <input type="text" name="fStarttime" class="form-control " style="width:110px;" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>" onClick="WdatePicker()">
+        <input type="text" name="fStarttime" class="form-control " style="width:110px;" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>" value="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>" onClick="WdatePicker()">
       </div>
       <div class="form-group mar-left-10">
         <label for="">返回日期</label>
@@ -166,7 +166,7 @@
                                 <option value="ZH">ZH-深航</option>
                         </select>
       </div>
-      <button type="submit" class="btn btn-warning mar-left-10" formaction="search">搜索</button>
+      <button type="submit" class="btn btn-warning mar-left-10" formaction="${pageContext.request.contextPath}/search">搜索</button>
     </form>
   </div>
 </div>
@@ -177,13 +177,13 @@
     <div class="arrow-left"><a href="#" style="">&nbsp;</a></div>
     <div class="arrow-right"><a href="#" style="">&nbsp;</a></div>
     <ul id="timeNav" class="nav nav-tabs nav-justified ">
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date0}" pattern="M-d"/><br><fmt:formatDate value="${date0}" pattern="E"/></a></li>
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date1}" pattern="M-d"/><br><fmt:formatDate value="${date1}" pattern="E"/></a></li>
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date2}" pattern="M-d"/><br><fmt:formatDate value="${date2}" pattern="E"/></a></li>
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date3}" pattern="M-d"/><br><fmt:formatDate value="${date3}" pattern="E"/></a></li>
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date4}" pattern="M-d"/><br><fmt:formatDate value="${date4}" pattern="E"/></a></li>
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date5}" pattern="M-d"/><br><fmt:formatDate value="${date5}" pattern="E"/></a></li>
-     <li role="presentation"><a href="#"><fmt:formatDate value="${date6}" pattern="M-d"/><br><fmt:formatDate value="${date6}" pattern="E"/></a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date0}"><fmt:formatDate pattern="M月d日" value="${date0}"/><br>今天</a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date1}"><fmt:formatDate value="${date1}" pattern="M月d日"/><br>明天</a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date2}"><fmt:formatDate value="${date2}" pattern="M月d日"/><br><fmt:formatDate value="${date2}" pattern="E"/></a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date3}"><fmt:formatDate value="${date3}" pattern="M月d日"/><br><fmt:formatDate value="${date3}" pattern="E"/></a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date4}"><fmt:formatDate value="${date4}" pattern="M月d日"/><br><fmt:formatDate value="${date4}" pattern="E"/></a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date5}"><fmt:formatDate value="${date5}" pattern="M月d日"/><br><fmt:formatDate value="${date5}" pattern="E"/></a></li>
+     <li role="presentation"><a href="${pageContext.request.contextPath}/search/${date6}"><fmt:formatDate value="${date6}" pattern="M月d日"/><br><fmt:formatDate value="${date6}" pattern="E"/></a></li>
     </ul>
     
   </div>
@@ -224,7 +224,7 @@
             </c:if>
             <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice}</span></li>
             <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥${f.fPrice*0.9}</strong> <span class="gray font12">9折</span></li>
-            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance/${f.fId}';">订票</button></li>
+            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance/${f.id}';">订票</button></li>
             <li  class="w-percentage-25">余位数：${f.fReserve}</li>
           </ul>
           
@@ -248,7 +248,7 @@ $(".flip").click(function(){
 $("#timeNav li").click(function(){
 	for(i=0;i<$("#timeNav li").length;i++){
 		$($("#timeNav li").get(i)).removeAttr("class");
-	}
+	} 
 	$(this).addClass("active");
 });
 });

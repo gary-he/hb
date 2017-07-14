@@ -21,8 +21,8 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	//根据fId查询航班详情
-	public Flight findOne(String fId) {
-		return flightMapper.findOne(fId);
+	public Flight findOne(Integer id) {
+		return flightMapper.findOne(id);
 	}
 	
 	@Override
@@ -41,6 +41,7 @@ public class FlightServiceImpl implements FlightService {
 	//航班的新增
 	@Override
 	public void saveFlight(Flight flight) {
+		
 		flightMapper.saveFlight(flight);
 		
 	}
