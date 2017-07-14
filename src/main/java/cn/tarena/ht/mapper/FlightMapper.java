@@ -8,7 +8,7 @@ public interface FlightMapper {
 
 	public List<Flight> findAll();
 
-	public Flight findOne(String fId);
+	public Flight findOne(Integer id);
 	
 	public void updateFlight(Flight flight);
 

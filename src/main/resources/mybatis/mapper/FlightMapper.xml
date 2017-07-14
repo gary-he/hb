@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cn.tarena.ht.mapper.FlightMapper">
 	<!-- 封装成主对象 -->
 	<resultMap type="Flight" id="flightRM" autoMapping="true">
-		<id column="f_id" property="fId" />
+		<id column="id" property="id" />
 	</resultMap>
 
 	<!-- 查找所有航班信息 -->
@@ -13,13 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from flight_p
 	</select>
 
-	<!-- 根据fId查询航班详情信息 -->
+	<!-- 根据id查询航班详情信息 -->
 	<select id="findOne" resultMap="flightRM">
 		select * from flight_p where
-		f_id=#{fId}
+		id=#{id}
 	</select>
 
-	<!-- 根据fId修改航班信息 -->
+	<!-- 根据id修改航班信息 -->
 	<update id="updateFlight">
 		update flight_p set
 		f_type=#{fType},
@@ -41,14 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		f_reserve=#{fReserve},
 		f_commission=#{fCommission}
 
-		where f_id=#{fId}
+		where id=#{id}
 	</update>
 
 	<!-- 删除航班信息 -->
 	 <delete id="deleteFlight">
-		delete from flight_p where f_id in(
-		<foreach collection="array" item="fId" separator=",">
-			#{fId}
+		delete from flight_p where id in(
+		<foreach collection="array" item="id" separator=",">
+			#{id}
 		</foreach>
 		)
 	</delete> 

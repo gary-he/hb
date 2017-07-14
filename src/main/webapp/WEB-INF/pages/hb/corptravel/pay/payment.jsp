@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
 <head>
 <meta charset="utf-8">
@@ -69,7 +70,7 @@ $(document).ready(function() {
     </div>
     <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${remUserName } <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../系统管理/修改密码.html">修改密码</a></li>
             <li><a href="#">退出</a></li>
@@ -122,60 +123,74 @@ $(document).ready(function() {
 
 <div class="container bg-white box-shadow pad-15 mar-bottom-30" style="margin-top:120px;">
 <!-- 航班信息 -->
-  <h3 class="mar-bottom-20">航班信息 <span class="label label-primary font12 mar-left-10" style=" vertical-align:middle;">往返</span></h3>
+  <h3 class="mar-bottom-20">航班信息 <span class="label label-primary font12 mar-left-10" style=" vertical-align:middle;">${flight.fType }</span></h3>
   <div class="lh30 pad-10 bg-gray-f5">
     <ul class="list-inline ">
-      <li class="w-percentage-20"><b class="font16">成都 — 乌鲁木齐</b></li>
-      <li class="w-percentage-15">南航 CZ1252</li>
-      <li class="w-percentage-15">S舱(250折)</li>
-      <li class="w-percentage-20"><b class="font16">2015-08-27 06:45</b> 起飞</li>
-      <li class="w-percentage-20"><b class="font16">2015-08-27 12:45</b> 到达</li>
-    </ul>
-    <ul class="list-inline ">
-      <li class="w-percentage-20"><b class="font16">乌鲁木齐 — 成都</b></li>
-      <li class="w-percentage-15">南航 CZ1252</li>
-      <li class="w-percentage-15">S舱(250折)</li>
-      <li class="w-percentage-20"><b class="font16">2015-08-27 06:45</b> 起飞</li>
-      <li class="w-percentage-20"><b class="font16">2015-08-27 12:45</b> 到达</li>
+      <li class="w-percentage-20"><b class="font16">${flight.fLocationName }— ${flight.fDepartureName }</b></li>
+      <li class="w-percentage-15">${flight.fCompanyName}</li>
+      <li class="w-percentage-15">${flight.fRank}舱</li>
+      <li class="w-percentage-20"><b class="font16"><fmt:formatDate value="${flight.fStarttime}" pattern="HH:mm"/></b> 起飞</li>
+      <li class="w-percentage-20"><b class="font16"><fmt:formatDate value="${flight.fOvertime}" pattern="HH:mm"/></b> 到达</li>
     </ul>
   </div>
 <!-- 航班信息 结束 -->
 
+<!-- 判断乘客类型 -->
+
+
 <!-- 旅客信息 -->
-  <h3 class="mar-bottom-20">订单信息 <small class="mar-left-20 font14">乘客人数：5 人</small></h3>
+  <h3 class="mar-bottom-20">订单信息 <small class="mar-left-20 font14">乘客人数：1 人</small></h3>
   <div class="lh30 ">
     <div class=" bor-bottom-solid-d8-1 bor-top-solid-1">
       <ul class="list-inline ">
-        <li class="w-percentage-25">成人1：詹远强</li>
-        <li class="w-percentage-25">身份证：510301198808085555</li>
-        <li class="">手机：13855559999</li>
+        <li class="w-percentage-25">${pa.pType}1：${pa.pName}</li>
+        <li class="w-percentage-25">身份证：${pa.pIdentily}</li>
+        <li class="">手机：${pa.pPhone}</li>
       </ul>
-      <ul class="list-inline ">
-        <li class="w-percentage-25">结算价：1000（票面价：1100.0）</li>
-        <li class="w-percentage-25">机建/燃油/服务费：50/0/0</li>
-        <li class=""><b>中国人保 20元旅游航意险（10天）</b> 20元</li>
-        <li class="pull-right">合计：<b>1058</b></li>
-      </ul>
-    </div>
-    <div class=" bor-bottom-solid-d8-1 bor-top-solid-1">
-      <ul class="list-inline ">
-        <li class="w-percentage-25">成人1：詹远强</li>
-        <li class="w-percentage-25">身份证：510301198808085555</li>
-        <li class="">手机：13855559999</li>
-      </ul>
-      <ul class="list-inline ">
-        <li class="w-percentage-25">结算价：1000（票面价：1100.0）</li>
-        <li class="w-percentage-25">机建/燃油/服务费：50/0/0</li>
-        <li class=""><b>中国人保 20元旅游航意险（10天）</b> 20元</li>
-        <li class="pull-right">合计：<b>1058</b></li>
-      </ul>
-    </div>
-    
-    <div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">1916</span></div>
-    <div class="clearfix"></div>
+      
+      <td>
+		<c:if test="${pa.pType =='成人'}">
+		
+		
+      		<ul class="list-inline ">
+       		<li class="w-percentage-25">结算价：${flight.pTotal}（票面价：${flight.pTotal}）</li>
+        	<li class="w-percentage-25">机建/燃油/服务费：${flight.pTax}/0/0</li>
+       		<li class=""><b>中国人保 30元旅游航意险（10天）</b> 30元</li>
+        	<li class="pull-right">合计：<b>1058</b></li>
+     	</ul>
+    	</div>
+        
+    		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">1916</span></div>
+    		<div class="clearfix"></div>
+    		
+    		
+    		</c:if>
+		
+			<c:if test="${pa.pType =='儿童'}">
+		
+		
+      		<ul class="list-inline ">
+       		<li class="w-percentage-25">结算价：${flight.pTotal*0.5}（票面价：${flight.pTotal}）</li>
+        	<li class="w-percentage-25">机建/燃油/服务费：0/0/0</li>
+       		<li class=""><b>中国人保 30元旅游航意险（10天）</b> 30元</li>
+        	<li class="pull-right">合计：<b>1058</b></li>
+     	</ul>
+    	</div>
+        
+    		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">1916</span></div>
+    		<div class="clearfix"></div>
+    		
+    		
+    		</c:if>
+		</td>
+		
+		
   </div>
 
 <!-- 旅客信息 结束 -->
+
+
+
 
 <!-- 支付选择 -->
 <div class="tabbable" >

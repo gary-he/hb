@@ -42,4 +42,14 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 		return buyFlightMapper.findFlightsOneF_C(fLocation,fDeparture,fCompany);
 	}
 
+	@Override
+	public List<Flight> findFlightsT(String fLocation, String fDeparture, String fStarttime) {
+		List<Flight> flightList = buyFlightMapper.findFlightsT(fLocation,fDeparture,fStarttime);
+		for (Flight flight : flightList) {
+			System.out.println(flight);
+		}
+		System.out.println("3");
+		return buyFlightMapper.findFlightsT(fLocation,fDeparture,fStarttime);
+	}
+
 }
