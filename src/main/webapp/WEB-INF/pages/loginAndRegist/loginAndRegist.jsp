@@ -9,7 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/staticfile/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${ctx }/staticfile/skin/default/css/loginAndRegist.css">
-<script type="text/javascript" src="${ctx }/staticfile/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="${ctx }/staticfile/hb/js/jquery-1.9.1.min.js"></script>
+<script src="${ctx}/staticfile/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	
 </script>
@@ -17,6 +18,45 @@
 <body>
 	<div id="header">
 		<div class="h_container">
+			<!-- 小导航 -->
+			<nav class="navbar navbar-default" style=" min-height:30px; line-height:30px; margin-bottom:0px; border-radius:0;">
+			  <div class="container font12">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			    </div>
+			    <%-- <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${userSession.username } <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="系统管理/修改密码.html">修改密码</a></li>
+			            <li><a href="#">退出</a></li>
+			          </ul>
+			        </li>       
+			      </ul> --%>
+				<ul class="nav navbar-nav navbar-right nav-top-small">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#">（或）028-12345678</a></li>
+			            <li><a href="#">（或）028-12345678</a></li>
+			            <!--<li role="separator" class="divider"></li>-->
+			          </ul>
+			        </li>
+			        
+			      </ul>
+			    <ul class="nav navbar-nav navbar-right nav-top-small">
+			        <li><a href="帮助中心/help.html">帮助中心</a></li>
+			        
+			      </ul>
+			  </div>
+			</nav>
+			<!-- 小导航结束 -->
 			<div id="logo_box">
 				<img alt="logo" src="${ctx }/staticfile/skin/default/images/login/hblogo2.png">
 			</div>
@@ -42,7 +82,7 @@
 						<button class="btn btn-lg btn-primary btn-block" type="submit">
 						登录
 						</button>
-						<a href="toregist">
+						<a href="toregist.action">
 							<button class="btn btn-lg btn-primary btn-block" type="button">
 								注册
 							</button>

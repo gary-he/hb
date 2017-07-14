@@ -48,7 +48,7 @@
 			<td>航空公司代码:</td>
 			<td><input type="text" name="fCompany" value="${flight.fCompany}"/></td>
 			<td>航空公司:</td>
-			<td><select id="dropAirlines" name="Airlines" class="form-control">
+			<!-- <td><select id="dropAirlines" name="Airlines" class="form-control">
                             <option value="" >全部航司</option>
                                 <option value="3U">3U-川航</option>
                                 <option value="8C">8C-东星</option>
@@ -86,8 +86,8 @@
                                 <option value="Y8">Y8-扬子江快运航空</option>
                                 <option value="YI">YI-英安</option>
                                 <option value="ZH">ZH-深航</option>
-                        </select></td>
-			<%-- <td><input type="text" name="fCompanyName" value="${flight.fCompanyName}"/></td> --%>
+                        </select></td> -->
+			<td><input type="text" name="fCompanyName" value="${flight.fCompanyName}"/></td> 
 		</tr>
 		
 		<tr class="odd">
@@ -145,12 +145,12 @@
 			<td>票面价:</td>
 			<td><input type="text" name="fPrice" value="${flight.fPrice}"/></td>
 			<td>税费:</td>
-			<td><input type="text" name="fTax" value="${flight.fTax}"/></td>
+			<td><input type="text" name="fTax" value="50"/></td>
 		</tr>	
 		
 		<tr class="odd">
 			<td>票面总价:</td>
-			<td><input type="text" name="fTotal" value="${flight.fTotal}"/></td>
+			<td><input type="text" name="fTotal" value="${flight.fPrice}"/></td>
 			<td>仓位数量:</td>
 			<td><input type="text" name="fReserve" value="${flight.fReserve}"/></td>
 			

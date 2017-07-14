@@ -56,7 +56,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">（或）028-12345678</a></li>
             <li><a href="#">（或）028-12345678</a></li>
@@ -114,8 +114,7 @@
      <input name="pName" type="text" class="form-control input-sm w150" style=" display: inline-block;" placeholder="姓名，与登机所持证件中的姓名一致">
      <select name="pType" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="成人" selected="selected">成人</option>
-            <option value="儿童">儿童（2-12岁）</option>
-            <option value="婴儿">婴儿（14天-2岁）</option>
+            <option value="儿童">儿童（0-12岁）</option>
      </select>
      <select name="pSex" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="男" selected="selected">男</option>
@@ -131,7 +130,7 @@
   
   <div class=" mar-top-10">
   <input type="button" value="添加乘机人" class="btn btn-danger zw2" >
-  <input type="hidden" name="airlineType" value=${flight.fId }>
+  <input type="hidden" name="airlineType" value=${flight.id }>
 </div>
   
 <!-- 航班信息 结束 -->
@@ -157,12 +156,13 @@
   
   <!-- 联系人 -->
   <h3 class="mar-bottom-20">联系电话</h3>
-<!--   <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">
- -->  <div class="mar-top-10">
+<!--   <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">--> 
+  
+ <div class="mar-top-10">
   <select name="select" class="form-control input-sm w110 mar-right-10" style=" display: inline-block;">
        <option value="国家" selected="selected">中国&nbsp;&nbsp;+86</option>    
   </select>
-  <input id="pPhone" name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:337px;" placeholder="手机号码，接收航班信息">
+  <input name="pPhone" type="text" class="form-control input-sm" style=" display: inline-block; width:337px;" placeholder="手机号码，接收航班信息">
   </div> 
 
 
@@ -177,8 +177,7 @@
   			<fmt:formatDate value="${flight.fStarttime}" pattern="EE"/></span>
   			
   <span style="display:block; float:left; margin-left:80px;">${flight.fLocationName}
-  -
-  ${flight.fDepartureName}</span>
+  												-${flight.fDepartureName}</span>
   <span style=" display:block; float:right;color:#999; font-size:14px; margin-right:5px;">${flight.fRank}</span>
 </h4>
 </div>
