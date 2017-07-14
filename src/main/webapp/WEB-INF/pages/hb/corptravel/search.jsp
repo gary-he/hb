@@ -216,7 +216,7 @@
         <div class="hangbanlist-body " style=" background-color:#FEFCFC;">
           <!-- 仓位种类 -->
           <c:if test="${!empty s}">
-   			<c:forEach items="${s}" var="s">
+   			<c:forEach items="${f.sList}" var="s">
 	          <ul class="list-inline">
 		        <li class="w-percentage-20"><strong class="blue-0093dd">${s.sType}</strong></li>
 	            <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice*s.sRate*0.01}</span></li>
