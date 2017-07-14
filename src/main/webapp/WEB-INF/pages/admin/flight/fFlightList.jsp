@@ -39,6 +39,7 @@
 	<thead>
 	<tr>
 		<td class="tableHeader"><input type="checkbox" name="selid" onclick="checkAll('flightId',this)"></td>
+		<td class="tableHeader">序号</td>
 		<td class="tableHeader">航班编号</td>
 		<td class="tableHeader">航程类型</td>
 		<td class="tableHeader">航空公司</td>
@@ -55,8 +56,9 @@
 	<tbody class="tableBody" >
 	
 	<c:forEach items="${flightList}" var="f" varStatus="status">
-	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
-		<td><input type="checkbox" name="fId" value="${f.fId}"/></td>
+	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" align="center">
+		<td><input type="checkbox" name="id" value="${f.id}"/></td>
+		<td>${status.index+1}</td>
 		<td>${f.fId}</td>
 		<td>${f.fType}</td>
 		<td>${f.fCompany}</td>

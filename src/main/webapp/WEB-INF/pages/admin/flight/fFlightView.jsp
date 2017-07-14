@@ -33,10 +33,10 @@
 	<table id="ec_table" class="tableRegion" width="98%" >
 	
 		<tr class="odd">
+		<td>航班ID:</td>
+			<td>${flight.id}</td>
 			<td>航班编号:</td>
 			<td>${flight.fId}</td>
-			<td>航程类型:</td>
-			<td>${flight.fType}</td>
 		</tr>
 		
 		<tr class="odd">
@@ -75,6 +75,8 @@
 		</tr>
 		
 		<tr class="odd">
+			<td>航程类型:</td>
+			<td>${flight.fType}</td>
 			<td>代理费:</td>
 			<td>${flight.fCommission}</td>
 			<%-- <td>起飞日期:</td>
