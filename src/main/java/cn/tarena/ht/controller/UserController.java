@@ -39,6 +39,9 @@ public class UserController {
 		return "redirect:/user/info/userinfo";
 	}
 	
-	
+	@RequestMapping("/productBrand")
+	public String toProduct(){
+		return "/user/info/product-brand";
+	}
 	
 }

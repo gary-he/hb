@@ -90,12 +90,12 @@ public class PassengerController {
 		passengerService.add(pa,order);// 添加乘客.订单信息至数据库
 		
 		//查询飞机详情
-		Flight flight=flightMapper.findOne(airlineType);
+	//	Flight flight=flightMapper.findOne(airlineType);
 		
 		//回传乘客,订单信息
 		model.addAttribute("pa", pa);
 		model.addAttribute("order",order);
-		model.addAttribute("flight",flight);
+		//model.addAttribute("flight",flight);
 		
 		
 		
