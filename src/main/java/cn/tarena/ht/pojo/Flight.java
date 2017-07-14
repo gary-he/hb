@@ -15,6 +15,7 @@ public class Flight{
 	private String fLoAirport;  //始发地机场
 	private String fDeparture;    //目的地三字代码
 	private String fDepartureName;//目的地名称
+	private String fDeAirport;    //目的地机场名
 	private Date fStarttime;      //起飞时间  f_satrttime
 	private Date fOvertime;       //到达时间
 	private Double fPrice;        //票面价
@@ -88,6 +89,12 @@ public class Flight{
 	public void setfDepartureName(String fDepartureName) {
 		this.fDepartureName = fDepartureName;
 	}
+	public String getfDeAirport() {
+		return fDeAirport;
+	}
+	public void setfDeAirport(String fDeAirport) {
+		this.fDeAirport = fDeAirport;
+	}
 	public Date getfStarttime() {
 		return fStarttime;
 	}
@@ -135,10 +142,11 @@ public class Flight{
 		return "Flight [fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName=" + fCompanyName
 				+ ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation + ", fLocationName="
 				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
-				+ fDepartureName + ", fStarttime=" + fStarttime + ", fOvertime=" + fOvertime + ", fPrice=" + fPrice
-				+ ", fTax=" + fTax + ", fTotal=" + fTotal + ", fReserve=" + fReserve + ", fCommission=" + fCommission
-				+ "]";
+				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStarttime=" + fStarttime + ", fOvertime="
+				+ fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal=" + fTotal + ", fReserve=" + fReserve
+				+ ", fCommission=" + fCommission + "]";
 	}
+	
 	
 	
 	
