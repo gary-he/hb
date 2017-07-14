@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
 <head>
 <meta charset="utf-8">
@@ -46,7 +47,7 @@
     </div>
     <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${remUserName } <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../系统管理/修改密码.html">修改密码</a></li>
             <li><a href="#">退出</a></li>
@@ -55,7 +56,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">（或）028-12345678</a></li>
             <li><a href="#">（或）028-12345678</a></li>
@@ -113,8 +114,7 @@
      <input name="pName" type="text" class="form-control input-sm w150" style=" display: inline-block;" placeholder="姓名，与登机所持证件中的姓名一致">
      <select name="pType" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="成人" selected="selected">成人</option>
-            <option value="儿童">儿童（2-12岁）</option>
-            <option value="婴儿">婴儿（14天-2岁）</option>
+            <option value="儿童">儿童（0-12岁）</option>
      </select>
      <select name="pSex" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="男" selected="selected">男</option>
@@ -130,7 +130,7 @@
   
   <div class=" mar-top-10">
   <input type="button" value="添加乘机人" class="btn btn-danger zw2" >
-  <input type="hidden" name="airlineType" value=${flight.fId }>
+  <input type="hidden" name="airlineType" value=${flight.id }>
 </div>
   
 <!-- 航班信息 结束 -->
@@ -156,12 +156,13 @@
   
   <!-- 联系人 -->
   <h3 class="mar-bottom-20">联系电话</h3>
-<!--   <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">
- -->  <div class="mar-top-10">
+<!--   <input name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:460px;" placeholder="姓名" value="XXX">--> 
+  
+ <div class="mar-top-10">
   <select name="select" class="form-control input-sm w110 mar-right-10" style=" display: inline-block;">
        <option value="国家" selected="selected">中国&nbsp;&nbsp;+86</option>    
   </select>
-  <input id="pPhone" name="input" type="text" class="form-control input-sm" style=" display: inline-block; width:337px;" placeholder="手机号码，接收航班信息">
+  <input name="pPhone" type="text" class="form-control input-sm" style=" display: inline-block; width:337px;" placeholder="手机号码，接收航班信息">
   </div> 
 
 
@@ -172,14 +173,17 @@
 <div class="col-sm-5 bg-gray-eee">
 <div style=" margin-left:-15px;">
 <h4 style="overflow:hidden; margin-left:10px;">
-  <span style="display:block; float:left;"><fmt:formatDate value="${flight.fStartDate}" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;周三</span>
-  <span style="display:block; float:left; margin-left:80px;">${flight.fLocationName }-${flight.fDepartureName}</span>
+  <span style="display:block; float:left;"><fmt:formatDate value="${flight.fStarttime}" pattern="MM-dd"/>&nbsp;&nbsp;
+  			<fmt:formatDate value="${flight.fStarttime}" pattern="EE"/></span>
+  			
+  <span style="display:block; float:left; margin-left:80px;">${flight.fLocationName}
+  												-${flight.fDepartureName}</span>
   <span style=" display:block; float:right;color:#999; font-size:14px; margin-right:5px;">${flight.fRank}</span>
 </h4>
 </div>
 <div style=" overflow:hidden; margin-bottom:20px;">
         <div class="flight-from" style="float:left;">
-            <span class="time text-center">${flight.fStarttime}</span><br/>
+            <span class="time text-center"><fmt:formatDate value="${flight.fStarttime}" pattern="HH:mm"/></span><br/>
             <span class="text-center">${flight.fLoAirport }</span>
         </div>
         <div class="flight-info" style="float:left; margin-left:100px;">
@@ -193,7 +197,7 @@
             <span class="arrow"></span>
         </div>
         <div class="flight-to" style="float:right;">
-            <span class="time text-center"> ${flight.fOvertime }</span><br/>
+            <span class="time text-center"> <fmt:formatDate value="${flight.fOvertime}" pattern="HH:mm"/></span><br/>
             <span class="text-center">${flight.fDeAirport}</span>
         </div>
       </div>
@@ -209,14 +213,14 @@
   </tr>
   <tr>
     <td>起飞前24小时之前</td>
-    <td>￥169/人</td>
-    <td>￥368/人</td>
+    <td>￥${flight.fTotal*0.1}/人</td>
+    <td>￥${flight.fTotal*0.2}/人</td>
     <td>可以签转</td>
   </tr>
   <tr>
     <td>起飞前24小时之后</td>
-    <td>￥338/人</td>
-    <td>￥368/人</td>
+    <td>￥${flight.fTotal*0.2}/人</td>
+    <td>￥${flight.fTotal*0.3}/人</td>
     <td>可以签转</td>
   </tr>
 </table>
@@ -224,8 +228,8 @@
 </div>
 
 <div style=" margin-left:-15px; overflow:hidden;">
-<h4 class="mar-left-10" style="display:block; float:left;">订单总额</h4>
-<h4 class="red" style=" display:block; float:right; font-weight:bold;">￥1079</h4>
+<h4 class="mar-left-10" style="display:block; float:left;">成人票总额</h4>
+<h4 class="red" style=" display:block; float:right; font-weight:bold;">￥${flight.fTotal+30}</h4>
 </div>
 <table class="table">
   <tr>
@@ -235,7 +239,7 @@
   </tr>
   <tr>
     <td>机建费</td>
-    <td>￥50/成人</td>
+    <td>￥${flight.fTax}/成人</td>
     <td>x1</td>
   </tr>
   <tr>
@@ -244,11 +248,31 @@
     <td>x1</td>
   </tr>
 </table>
+
+<div style=" margin-left:-15px; overflow:hidden;">
+<h4 class="mar-left-10" style="display:block; float:left;">儿童票总额</h4>
+<h4 class="red" style=" display:block; float:right; font-weight:bold;">￥${flight.fPrice*0.5+30}</h4>
+</div>
+<table class="table">
+  <tr>
+    <td>儿童票</td>
+    <td>￥${flight.fPrice*0.5}/人</td>
+    <td>x1</td>
+  </tr>
+  <tr>
+    <td>航意险</td>
+    <td>￥30/人</td>
+    <td>x1</td>
+  </tr>
+</table>
+
 <div class="order-discount">
     </div>
 </div>
 
-      
+
+
+
 </div>
 
 
@@ -266,9 +290,8 @@
        <div>
      <input name="input" type="text" class="form-control input-sm w200" style=" display: inline-block;" placeholder="姓名">
      <select name="select" class="form-control input-sm w150" style=" display: inline-block;">
-            <option value="成人" selected="selected">成人</option>
-            <option value="儿童">儿童（2-12岁）</option>
-            <option value="婴儿">婴儿（14天-2岁）</option>
+            <option value="成人" selected="selected">成人（12岁以上）</option>
+            <option value="儿童">儿童（0-12岁）</option>
      </select>
   </div>
   <div class="mar-top-10">

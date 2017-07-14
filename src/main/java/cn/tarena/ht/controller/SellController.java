@@ -35,20 +35,19 @@ public class SellController extends BaseController{
 	 */
 	@RequestMapping("/list")
 	public String toSell(Model model){
-		List<Statement> list = sellService.findAll();
-		model.addAttribute("statementList", list);
+		
 		return "/admin/forms/jStatementList";
 	}
 	
-	/**String location,String departure,String passengerName,String PNR,
-			String Airlines,String ticketState
-	 * 按照日期查询 Date ticketTime1,Date ticketTime2
+	/**
+	 * 按照指定字段查询
 	 * @return
 	 */
 	@RequestMapping("/tofind")
 	public String findAllByDay(String location,String departure,String passengerName,String PNR,
-			String Airlines,String ticketState,Date ticketTime1,Date ticketTime2,Model model){
-
+			String Airlines,String ticketState,String ticketTime1,String ticketTime2,String payTime1,String payTime2,Model model){
+		
+		
 		location = location.trim();
 		departure = departure.trim();
 		passengerName = passengerName.trim();
@@ -57,21 +56,46 @@ public class SellController extends BaseController{
 		ticketState = ticketState.trim();
 		
 		List<Statement> list = sellService.findByRules(location,departure,passengerName,PNR,
-				Airlines,ticketState,ticketTime1,ticketTime2);
+				Airlines,ticketState,ticketTime1,ticketTime2,payTime1,payTime2);
 		model.addAttribute("statementList",list);
 		
+		model.addAttribute("location", location);
+		model.addAttribute("departure", departure);
+		model.addAttribute("passengerName", passengerName);
+		model.addAttribute("PNR", PNR);
+		model.addAttribute("Airlines", Airlines);
+		model.addAttribute("ticketState", ticketState);
+		model.addAttribute("ticketTime1", ticketTime1);
+		model.addAttribute("ticketTime2", ticketTime2);
+		model.addAttribute("payTime1", payTime1);
+		model.addAttribute("payTime2", payTime2);
 		
+		 
 		return "/admin/forms/jStatementList";
 	}
 	
+	
+	/**
+	 * 到处Excel表
+	 * @param location
+	 * @param departure
+	 * @param passengerName
+	 * @param PNR
+	 * @param Airlines
+	 * @param ticketState
+	 * @param ticketTime1
+	 * @param ticketTime2
+	 * @param response
+	 * @throws IOException
+	 */
 	@RequestMapping("/download")
 	public void download(String location,String departure,String passengerName,String PNR,
-			String Airlines,String ticketState,Date ticketTime1,Date ticketTime2,HttpServletResponse response) throws IOException{
+			String Airlines,String ticketState,String ticketTime1,String ticketTime2,String payTime1,String payTime2,HttpServletResponse response) throws IOException{
 		
 		
 		
 		List<Statement> list = sellService.findByRules(location,departure,passengerName,PNR,
-				Airlines,ticketState,ticketTime1,ticketTime2);
+				Airlines,ticketState,ticketTime1,ticketTime2,payTime1,payTime2);
 		
 		int num = 1;//序号
 		String result="序号,产品类型,票证状态,国际国内,航程类型,票证类型,承运人,承运人-票号,乘机人类型,乘客PNR,乘机人,航司二字代码,航司名字,"
@@ -89,12 +113,13 @@ public class SellController extends BaseController{
 		
 	}
 	
-	@RequestMapping("/download/jj")
+	@RequestMapping("/download/POIExcel")
 	public void download2(String location,String departure,String passengerName,String PNR,
-			String Airlines,String ticketState,Date ticketTime1,Date ticketTime2,HttpServletResponse response){
+			String Airlines,String ticketState,String ticketTime1,String ticketTime2,String payTime1,String payTime2,HttpServletResponse response){
+		
 		
 		List<Statement> list = sellService.findByRules(location,departure,passengerName,PNR,
-				Airlines,ticketState,ticketTime1,ticketTime2);
+				Airlines,ticketState,ticketTime1,ticketTime2,payTime1,payTime2);
 		
 		HSSFWorkbook workbook = sellService.createExcel(list);
 		//定义excle名称 ISO-8859-1防止名称乱码  

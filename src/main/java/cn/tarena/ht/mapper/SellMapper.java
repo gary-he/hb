@@ -18,7 +18,9 @@ public interface SellMapper {
 			@Param("PNR")String PNR, 
 			@Param("Airlines")String Airlines,
 			@Param("ticketState")String ticketState, 
-			@Param("ticketTime1")Date ticketTime1, 
-			@Param("ticketTime2")Date ticketTime2);
+			@Param("ticketTime1")String ticketTime1, 
+			@Param("ticketTime2")String ticketTime2, 
+			@Param("payTime1")String payTime1, 
+			@Param("payTime2")String payTime2);
 
 }

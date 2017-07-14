@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
 		userMapper.saveUser(user);
 	}
 
+	@Override
+	public String findUserRoleById(String userId) {
+		return userMapper.findUserRoleById(userId);
+	}
+
 	
 
 }

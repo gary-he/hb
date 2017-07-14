@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+	//转向前台首页
+	@RequestMapping("/hb")
+	public String hb(){
+		return "/hb/corptravel/search";
+	}
 	//转向欢迎页面
 	@RequestMapping("/home")
 	public String home(){

@@ -7,7 +7,7 @@ public class Passenger {
 	private String pIdentily;//身份证号码
 	private String pPhone;//手机号
 	private String pFId;//乘客--飞机ID
-	private String pType;//乘客类型(成人,儿童...)
+	private String pType;//乘客类型(成人,儿童)
 	private String pOrderId;//乘客--订单Id
 	
 
