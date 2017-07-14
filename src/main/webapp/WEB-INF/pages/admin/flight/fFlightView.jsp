@@ -75,10 +75,17 @@
 		</tr>
 		
 		<tr class="odd">
+			<td>代理费:</td>
+			<td>${flight.fCommission}</td>
+			<%-- <td>起飞日期:</td>
+			<td><fmt:formatDate value="${flight.fStartDate}" pattern="yyyy-MM-dd"/></td> --%>
+		</tr>
+		
+		<tr class="odd">
 			<td>起飞时间:</td>
-			<td><fmt:formatDate value="${flight.fStarttime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+			<td><fmt:formatDate value="${flight.fStarttime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			<td>到达时间:</td>
-			<td><fmt:formatDate value="${flight.fOvertime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+			<td><fmt:formatDate value="${flight.fOvertime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		</tr>
 		
 		<tr class="odd">
@@ -96,9 +103,7 @@
 			
 		</tr>
 		
-		<tr><td>代理费:</td>
-			<td>${flight.fCommission}</td>
-		</tr>
+		
 		
 	</table>
 </div>

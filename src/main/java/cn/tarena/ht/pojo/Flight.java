@@ -16,7 +16,7 @@ public class Flight{
 	private String fDeparture;    //目的地三字代码
 	private String fDepartureName;//目的地名称
 	private String fDeAirport;    //目的地机场
-	private Date fStartDate; 	  //航班起飞日期
+	//private Date fStartDate; 	  //航班起飞日期
 	private Time fStarttime;      //起飞时间  f_satrttime
 	private Time fOvertime;       //到达时间
 	private Double fPrice;        //票面价
@@ -146,16 +146,6 @@ public class Flight{
 	}
 
 
-	public Date getfStartDate() {
-		return fStartDate;
-	}
-
-
-	public void setfStartDate(Date fStartDate) {
-		this.fStartDate = fStartDate;
-	}
-
-
 	public Time getfStarttime() {
 		return fStarttime;
 	}
@@ -231,7 +221,7 @@ public class Flight{
 		return "Flight [fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName=" + fCompanyName
 				+ ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation + ", fLocationName="
 				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
-				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStartDate=" + fStartDate + ", fStarttime="
+				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStartDate=" + ", fStarttime="
 				+ fStarttime + ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal="
 				+ fTotal + ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
 	}
