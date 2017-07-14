@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cn.tarena.ht.mapper.BuyFlightMapper;
 import cn.tarena.ht.pojo.Flight;
+import cn.tarena.ht.pojo.Site;
 
 @Service
 public class BuyFlightServiceImpl implements BuyFlightService {
@@ -19,9 +20,37 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 		return buyFlightMapper.findAllFlight();
 	}
 
+	//默认当天时间查询所有航班
 	@Override
-	public Flight findFlights(String fLocation, String fDeparture,String fCompany) {
-		return buyFlightMapper.findFlights(fLocation,fDeparture,fCompany);
+	public List<Flight> findFlights(String fLocation, String fDeparture) {
+		
+		List<Flight> flightList = buyFlightMapper.findFlights(fLocation,fDeparture);
+		for (Flight flight : flightList) {
+			System.out.println(flight);
+		}
+		System.out.println("1");
+		return buyFlightMapper.findFlights(fLocation,fDeparture);
+	}
+
+	//默认当天时间 查询指定 航司航班
+	@Override
+	public List<Flight> findFlightsC(String fLocation, String fDeparture, String fCompany) {
+		return buyFlightMapper.findFlightsC(fLocation,fDeparture,fCompany);
+	}
+
+	@Override
+	public List<Flight> findFlightsT(String fLocation, String fDeparture, String fStarttime) {
+		return buyFlightMapper.findFlightsT(fLocation,fDeparture,fStarttime);
+	}
+
+	@Override
+	public List<Flight> findFlightsTC(String fLocation, String fDeparture, String fStarttime, String fCompany) {
+		return buyFlightMapper.findFlightsTC(fLocation,fDeparture,fStarttime,fCompany);
+	}
+
+	@Override
+	public List<Site> findAllSite(Integer fid) {
+		return buyFlightMapper.finAllSite(fid);
 	}
 
 }

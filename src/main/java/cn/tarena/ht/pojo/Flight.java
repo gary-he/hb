@@ -1,9 +1,11 @@
 package cn.tarena.ht.pojo;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class Flight{
+
+
+	private Integer id;			//主键
 	private String fId;           //航班编号
 	private String fType;         //航程类型
 	private String fCompany;      //航空公司代码
@@ -15,13 +17,7 @@ public class Flight{
 	private String fLoAirport;  //始发地机场
 	private String fDeparture;    //目的地三字代码
 	private String fDepartureName;//目的地名称
-	private String fDeAirport;    //目的地机场
-	/**
-	 * 
-	private Date fStartDate; 	  //航班起飞日期
-	private Time fStarttime;      //起飞时间  f_satrttime
-	private Time fOvertime;       //到达时间
-	*/
+	private String fDeAirport;    //目的地机场名
 	private Date fStarttime;      //起飞时间  f_satrttime
 	private Date fOvertime;       //到达时间
 	private Double fPrice;        //票面价
@@ -29,6 +25,12 @@ public class Flight{
 	private Double fTotal;        //票面总价
 	private Integer fReserve;         //仓位数量
 	private Double fCommission;   //代理费
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getfId() {
 		return fId;
 	}
@@ -143,18 +145,17 @@ public class Flight{
 	public void setfCommission(Double fCommission) {
 		this.fCommission = fCommission;
 	}
+
 	@Override
 	public String toString() {
-		return "Flight [fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName=" + fCompanyName
-				+ ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation + ", fLocationName="
-				+ fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture + ", fDepartureName="
-				+ fDepartureName + ", fDeAirport=" + fDeAirport + ", fStarttime=" + fStarttime + ", fOvertime="
-				+ fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal=" + fTotal + ", fReserve=" + fReserve
-				+ ", fCommission=" + fCommission + "]";
+		return "Flight [id=" + id + ", fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName="
+				+ fCompanyName + ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation
+				+ ", fLocationName=" + fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture
+				+ ", fDepartureName=" + fDepartureName + ", fDeAirport=" + fDeAirport + ", fStarttime=" + fStarttime
+				+ ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal=" + fTotal
+				+ ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
 	}
-	
 
-	
 	
 	
 

@@ -28,8 +28,8 @@ public class FlightController extends BaseController{
 	
 	//2.查看航班详情信息
 	@RequestMapping("/toview")
-	public String toView(String fId,Model model){
-		Flight flight=flightService.findOne(fId);
+	public String toView(Integer id,Model model){
+		Flight flight=flightService.findOne(id);
 		model.addAttribute("flight", flight);
 		return "/admin/flight/fFlightView";
 		
@@ -37,8 +37,8 @@ public class FlightController extends BaseController{
 	
 	//3.修改航班信息
 	@RequestMapping("toupdate")
-	public String toUpdate(String fId,Model model){
-		Flight flight=flightService.findOne(fId);
+	public String toUpdate(Integer id,Model model){
+		Flight flight=flightService.findOne(id);
 		model.addAttribute("flight", flight);
 		return"/admin/flight/fFlightUpdate";
 	}
@@ -63,7 +63,7 @@ public class FlightController extends BaseController{
 		
 	}
 	@RequestMapping("/save")
-	public String saveFlight(Flight flight){
+	public String saveFlight(Flight flight,Model model){
 		flightService.saveFlight(flight);
 		return "redirect:/admin/flight/list";
 	}

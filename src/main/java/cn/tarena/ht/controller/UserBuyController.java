@@ -1,6 +1,8 @@
 package cn.tarena.ht.controller;
 
 
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.tarena.ht.pojo.Flight;
+import cn.tarena.ht.pojo.Site;
 import cn.tarena.ht.service.BuyFlightService;
+import cn.tarena.ht.tool.AirportCode;
 
 @Controller
 public class UserBuyController {
@@ -25,23 +29,77 @@ public class UserBuyController {
 	}
 	
 	//订票页面
-	@RequestMapping("/index")
-	public String index(){
-		Date date = new Date();
-		System.out.println(date);
-		return "/hb/corptravel/index";
+	@RequestMapping("/search/{fLocationName}/{fDepartureName}/{time}")
+	public String searchTime(@PathVariable String fLocationName,@PathVariable String fDepartureName,@PathVariable Date time,String fCompany,Model model) throws Exception{
+		//手动编解码
+		byte[] bytes = fLocationName.getBytes("ISO8859-1");
+		fLocationName = new String(bytes,"utf-8");
+		bytes = fDepartureName.getBytes("ISO8859-1");
+		fDepartureName = new String(bytes,"utf-8");
+		time = new Date(time.getTime()-1000*60*60*24);
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String fStarttime = sd.format(time);
+		model.addAttribute("time", time);
+		return search(fLocationName,fDepartureName,fStarttime,fCompany,model);
 	}
+	
 	@RequestMapping("/search")
 	public String search(String fLocationName,String fDepartureName,String fStarttime,String fCompany,Model model){
-		System.out.println(fLocationName);
-		System.out.println(fDepartureName);
-		System.out.println(fStarttime);
-		System.out.println(fCompany);
-		String fLocation = "CAN";
-		String fDeparture = "PEK";
-		Flight flightList = buyFlightService.findFlights(fLocation,fDeparture,fCompany);
-		System.out.println(flightList);
-		model.addAttribute("f", flightList);
+		//回显数据
+		model.addAttribute("fLocationName",fLocationName);
+		model.addAttribute("fDepartureName",fDepartureName);
+		//存储时间
+		Date date = new Date();
+		for (int i = 0; i < 7; i++) {
+			model.addAttribute("date"+i, date);
+			date = new Date(date.getTime()+1000*60*60*24);
+		}
+		//根据城市名称 查找 机场三字代码
+		String fLocation = AirportCode.findCode(fLocationName);
+		String fDeparture = AirportCode.findCode(fDepartureName);
+		
+		System.out.println(fLocation);
+		System.out.println(fDeparture);
+		//查询操作
+		//1.查询
+		List<Flight> flightList = null;
+		List<Site> siteList = null;
+		int fid = 4;
+		if(fStarttime == null || fStarttime == ""){
+			//默认当天时间
+			if(fCompany == null || fCompany == ""){
+				//1.1 出发地+目的地+全部航司
+				flightList = buyFlightService.findFlights(fLocation,fDeparture);
+				siteList = buyFlightService.findAllSite(fid);
+				model.addAttribute("f", flightList);
+				model.addAttribute("s", siteList);
+				System.out.println("出发地+目的地+全部航司");
+			}else{
+				//1.2 出发地+目的地+指定航司
+				flightList = buyFlightService.findFlightsC(fLocation,fDeparture,fCompany);
+				siteList = buyFlightService.findAllSite(fid);
+				model.addAttribute("f", flightList);
+				model.addAttribute("s", siteList);
+				System.out.println("出发地+目的地+指定航司");
+			}
+		}else{//指定时间
+			if(fCompany == null || fCompany == ""){
+				//1.2 出发地+目的地+指定时间+全部航司
+				flightList = buyFlightService.findFlightsT(fLocation,fDeparture,fStarttime);
+				siteList = buyFlightService.findAllSite(fid);
+				model.addAttribute("f", flightList);
+				model.addAttribute("s", siteList);
+				System.out.println("出发地+目的地+指定时间+全部航司");
+			}else{
+				//1.4 出发地+目的地+指定时间+指定航司
+				flightList = buyFlightService.findFlightsTC(fLocation,fDeparture,fStarttime,fCompany);
+				siteList = buyFlightService.findAllSite(fid);
+				model.addAttribute("f", flightList);
+				model.addAttribute("s", siteList);
+				System.out.println("出发地+目的地+指定时间+指定航司");
+			}
+		}
+		//将查询到的数据存到页面
 		return "/hb/corptravel/search";
 	}
 	
@@ -62,13 +120,13 @@ public class UserBuyController {
 	}*/
 	
 	//订票 - 支付成功页面 -succeed
-	@RequestMapping("/pay/succeed")
+	/*@RequestMapping("/pay/succeed")
 	public String succeed(){
 		
 		
 		return "/hb/corptravel/pay/succeed";
 	}
-	
+	*/
 
 
 }

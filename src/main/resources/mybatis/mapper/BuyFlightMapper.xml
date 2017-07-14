@@ -9,11 +9,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<resultMap type="Flight" id="flightRM" autoMapping="true">
-		<id column="fId" property="f_id"/>	
+		<id column="id" property="id"/>	
 	</resultMap>
 	
 	<select id="findFlights" resultMap="flightRM">
+		select * from flight_p where f_location=#{fl} and f_departure=#{fd}
+	</select>
+	
+	<select id="findFlightsC" resultMap="flightRM">
 		select * from flight_p where f_location=#{fl} and f_departure=#{fd} and f_company=#{fc}
+	</select>
+	
+	<select id="findFlightsT" resultMap="flightRM">
+		select * from flight_p where f_location=#{fl} and f_departure=#{fd} and date_format(f_starttime,'%yyyy-%mm-%dd')= date_format(#{fs},'%yyyy-%mm-%dd')
+	</select>
+	
+	<select id="findFlightsTC" resultMap="flightRM">
+	select * from flight_p where f_location=#{fl} and f_departure=#{fd} and f_company=#{fc} and date_format(f_starttime,'%yyyy-%mm-%dd')= date_format(#{fs},'%yyyy-%mm-%dd')
+	</select>
+	
+	<select id="finAllSite" resultType="Site">
+	select * from site_p where s_flight_p_id=#{fid}
 	</select>
 	
 </mapper>

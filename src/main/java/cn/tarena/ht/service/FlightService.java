@@ -8,7 +8,7 @@ public interface FlightService {
 
 	List<Flight> findAll();
 
-	Flight findOne(String fId);
+	Flight findOne(Integer id);
 
 	void updateflight(Flight flight);
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tarena.ht.mapper.OrderMapper">
+	<!-- 封装成主对象 -->
+	<resultMap type="Order" id="OrderRM" autoMapping="true">
+		<id column="o_id" property="oId"/>
+		<result column="user_p_id" property="userPId"/>
+		<result column="o_payment" property="oPayment"/>
+		<result column="o_state" property="oState"/>
+		<result column="o_createtime" property="oCreatetime"/>
+		<result column="o_updatetime" property="oUpdatetime"/>
+		<result column="o_paytime" property="oPaytime"/>
+	</resultMap>
+	
+	
+	
+	
+	<insert id="add">
+	
+		insert into order_p values(
+		#{oId},
+		#{userPId},
+		#{oPayment},
+		#{oState},
+		#{oCreatetime,jdbcType=DATE},
+		#{oUpdatetime,jdbcType=DATE},
+		#{oPaytime,jdbcType=DATE}
+		)
+	
+	</insert>
+	
+	
+	
+</mapper>
