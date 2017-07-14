@@ -21,11 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where username=#{userName}
 	</select>
 	
+	<!-- 根据userId查询用户角色 -->
+	<select id="findUserRoleById" resultType="string">
+		select role from user where user_id=#{userId}
+	</select>
 	
 	<!-- =============================新增================================ -->
 	<!-- 注册用户 -->
 	<insert id="saveUser">
-		insert into user values(#{userId},#{username},#{password})
+		insert into user values(#{userId},#{username},#{password},'user')
 	</insert>
 
 	<!-- =============================修改================================ -->

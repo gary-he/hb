@@ -20,4 +20,11 @@ public interface UserService {
 	 */
 	public void saveUser(User user);
 
+	/**
+	 * 根据userId查询用户角色
+	 * @param userId
+	 * @return
+	 */
+	public String findUserRoleById(String userId);
+
 }
