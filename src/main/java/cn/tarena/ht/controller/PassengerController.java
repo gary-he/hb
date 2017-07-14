@@ -25,7 +25,6 @@ import cn.tarena.ht.service.PassengerService;
 import cn.tarena.ht.tool.PNRUtils;
 
 @Controller
-
 public class PassengerController {
 	@Autowired
 	PassengerService passengerService;

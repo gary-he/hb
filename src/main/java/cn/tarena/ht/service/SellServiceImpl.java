@@ -35,10 +35,10 @@ public class SellServiceImpl implements SellService {
 	
 	@Override
 	public List<Statement> findByRules(String location, String departure, String passengerName, String PNR,
-			String Airlines, String ticketState, Date ticketTime1, Date ticketTime2) {
+			String Airlines, String ticketState, String ticketTime1, String ticketTime2,String payTime1,String payTime2) {
 		
 		return sellMapper.findByRules(location,departure,passengerName,PNR,
-				Airlines,ticketState,ticketTime1,ticketTime2);
+				Airlines,ticketState,ticketTime1,ticketTime2,payTime1,payTime2);
 	}
 
 
@@ -67,148 +67,272 @@ public class SellServiceImpl implements SellService {
         
         HSSFCell cell =row.createCell(0);
         cell.setCellValue(TimeTool.getExcelTop(new Date())+":销售毛利统计");
-        
-        
-        
         /*
-         * 创建第二行   表单基本信息      全边框   字体微软雅黑   字体大小12
-         * 	1.票面信息 合并 23列 
-         *  2.利润明细 合并 5列 
-         *  3.备注信息 合并 5列
-        HSSFRow row1 = sheet.createRow(1);
+        //"票面字段"
         HSSFCellStyle style1 = workbook.createCellStyle();
-        style1.setBorderBottom(HSSFCellStyle.BORDER_THIN); //下边框    
-        style1.setBorderLeft(HSSFCellStyle.BORDER_THIN);//左边框    
-        style1.setBorderTop(HSSFCellStyle.BORDER_THIN);//上边框    
-        style1.setBorderRight(HSSFCellStyle.BORDER_THIN);//右边框   
-        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);   //居中
-        sheet.addMergedRegion(new CellRangeAddress(1, 1, (short)1,(short)23));
-       // sheet.addMergedRegion(new CellRangeAddress(1, 1, 2,5));
-       // sheet.addMergedRegion(new CellRangeAddress(1, 1,3,5));
-        style.setFont(font);  
-        HSSFFont font1 = workbook.createFont(); 
-        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD); 
-        font.setFontHeightInPoints((short) 12);  
+        
+        style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);  //居中
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);   // 字体增粗
+        font.setFontHeightInPoints((short) 12);  // 字体大小  
+        style.setBorderBottom(HSSFCellStyle.BORDER_THIN);//边框
+        style.setBorderBottom(border);
+        style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+        style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+        
+        style1.setFont(font);
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 1, 23));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 24, 28));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 29, 33));
+        
+        HSSFRow row1 = sheet.createRow(1);
+       
         HSSFCell cell1 =row1.createCell(1);
         cell1.setCellValue("票面信息");
-        String result="序号,产品类型,票证状态,国际国内,航程类型,票证类型,承运人,承运人-票号,乘机人类型,乘客PNR,乘机人,航司二字代码,航司名字,"
-				+ "始发地三字代码,目的地三字代码,始发地名称,目的地名称,航班,舱位,起飞时间,到达时间,账单价,税费,票面小计,采购代理费率,"
-				+ "采购代理费,采购金额,毛利小计,订单号,建单用户,支付状态,建单时间,支付时间\n";
-         */
+        cell1.setCellStyle(style1);
+        
+        
+        cell1 = row1.createCell(24);
+        cell1.setCellValue("销售明细");
+        cell1.setCellStyle(style1);
+        
+        cell1 = row1.createCell(29);
+        cell1.setCellValue("备注信息");
+        cell1.setCellStyle(style1);
+        */
         //表单头  项目名
         String [] result = {"序号","产品类型","票证状态","国际国内","航程类型","票证类型","承运人","承运人-票号","乘机人类型","乘客PNR","乘机人","航司二字代码","航司名字","始发地三字代码","目的地三字代码","始发地名称","目的地名称","航班","舱位","起飞时间","到达时间","账单价","税费","票面小计","采购代理费率","采购代理费","采购金额","毛利小计","订单号","建单用户","支付状态","建单时间","支付时间"};
-        HSSFRow row2 = sheet.createRow(2);
+        HSSFRow row2 = sheet.createRow(1);
         for (int i = 0; i < result.length; i++) {
-        	HSSFCell cell2 = row2.createCell(i+1);
+        	HSSFCell cell2 = row2.createCell(i);
         	cell2.setCellValue(result[i]); 
 		}
        
         int rowIndex = 0;
         int num = 1;
+        int cellcol = 0;
         //打印内容
         for (Statement state : list) {
 			//  gei..() 赋值
-        	HSSFRow row3 = sheet.createRow(3+rowIndex++);
-        	HSSFCell cell3 = row3.createCell(1);
+        	HSSFRow row3 = sheet.createRow(2+rowIndex++);
+        	HSSFCell cell3 = row3.createCell(cellcol++);
         	cell3.setCellValue(num++);
         	
-        	cell3 = row3.createCell(2);
+        	
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getProductType()==null){
+        		cell3.setCellValue("空");
+        	}
+        	
         	cell3.setCellValue(state.getProductType());
         	
-        	cell3 = row3.createCell(3);
-        	cell3.setCellValue(state.getOrder().getoState());
         	
-        	cell3 = row3.createCell(4);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getOrder().getoState().equals("0")){
+        		cell3.setCellValue("未出票");
+        	}
+        	if(state.getOrder().getoState().equals("1")){
+        		cell3.setCellValue("已出票");
+        	}
+        	if(state.getOrder().getoState().equals("2")){
+        		cell3.setCellValue("改签");
+        	}
+        	if(state.getOrder().getoState().equals("3")){
+        		cell3.setCellValue("退票");
+        	}
+        	//cell3.setCellValue(state.getOrder().getoState());
+        	
+        	
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getAbroadInland()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getAbroadInland());
         	
-        	cell3 = row3.createCell(5);
+        	
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfType()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfType());
         	
-        	cell3 = row3.createCell(6);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getTickerType()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getTickerType());
         	
-        	cell3 = row3.createCell(7);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfNumber()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfNumber());
         	
-        	cell3 = row3.createCell(8);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getHaulierNomber()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getHaulierNomber());
         	
-        	cell3 = row3.createCell(9);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getPassenger().getpType()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getPassenger().getpType());
         	
-        	cell3 = row3.createCell(10);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getPassenger().getpId()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getPassenger().getpId());
         	
-        	cell3 = row3.createCell(11);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getPassenger().getpName()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getPassenger().getpName());
         	
-        	cell3 = row3.createCell(12);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfCompany()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfCompany());
         	
-        	cell3 = row3.createCell(13);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfCompanyName()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfCompanyName());
         	
-        	cell3 = row3.createCell(14);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfLocation()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfLocation());
         	
-        	cell3 = row3.createCell(15);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfDeparture()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfDeparture());
         	
-        	cell3 = row3.createCell(16);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfLocationName()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfLocationName());
         	
-        	cell3 = row3.createCell(17);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfDepartureName()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfDepartureName());
         	
-        	cell3 = row3.createCell(18);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfId()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfId());
         	
-        	cell3 = row3.createCell(19);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfRank()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfRank());
         	
-        	cell3 = row3.createCell(20);
-        	cell3.setCellValue(state.getFlight().getfStarttime());
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfStarttime()==null){
+        		cell3.setCellValue("空");
+        	}
+        	cell3.setCellValue(TimeTool.getExcelTime(state.getFlight().getfStarttime()));
         	
-        	cell3 = row3.createCell(21);
-        	cell3.setCellValue(state.getFlight().getfOvertime());
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfOvertime()==null){
+        		cell3.setCellValue("空");
+        	}
+        	cell3.setCellValue(TimeTool.getExcelTime(state.getFlight().getfOvertime()));
         	
-        	cell3 = row3.createCell(22);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfPrice()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfPrice());
         	
-        	cell3 = row3.createCell(23);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfTax()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfTax());
         	
-        	cell3 = row3.createCell(24);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfTotal()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfTotal());
         	
-        	cell3 = row3.createCell(25);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getCommissionFreePercent()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getCommissionFreePercent());
         	
-        	cell3 = row3.createCell(26);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getFlight().getfCommission()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getFlight().getfCommission());
         	
-        	cell3 = row3.createCell(27);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getProcurement()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getProcurement());
         	
-        	cell3 = row3.createCell(28);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getProfit()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getProfit());
         	
-        	cell3 = row3.createCell(29);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getPassenger().getpOrderId()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getPassenger().getpOrderId());
         	
-        	cell3 = row3.createCell(30);
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getOrder().getUserPId()==null){
+        		cell3.setCellValue("空");
+        	}
         	cell3.setCellValue(state.getOrder().getUserPId());
         	
-        	cell3 = row3.createCell(31);
-        	cell3.setCellValue(state.getOrder().getoPayment());
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getOrder().getoPayment()==null){
+        		cell3.setCellValue("空");
+        	}
+        	if(state.getOrder().getoPayment().equals("0")){
+        		cell3.setCellValue("未支付");
+        	}
+        	if(state.getOrder().getoPayment().equals("1")){
+        		cell3.setCellValue("支付成功");
+        	}
+        	if(state.getOrder().getoPayment().equals("2")){
+        		cell3.setCellValue("支付失败");
+        	}
+        	//cell3.setCellValue(state.getOrder().getoPayment());
         	
-        	cell3 = row3.createCell(32);
-        	cell3.setCellValue(state.getOrder().getoCreatetime());
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getOrder().getoCreatetime()==null){
+        		cell3.setCellValue("空");
+        	}
+        	cell3.setCellValue(TimeTool.getExcelTime(state.getOrder().getoCreatetime()));
         	
-        	cell3 = row3.createCell(33);
-        	cell3.setCellValue(state.getOrder().getoPaytime());
+        	cell3 = row3.createCell(cellcol++);
+        	if(state.getOrder().getoPaytime()==null){
+        		cell3.setCellValue("空");
+        	}
+        	cell3.setCellValue(TimeTool.getExcelTime(state.getOrder().getoPaytime()));
         	
-        	
+        	cellcol=0;
 		}
 		
 		

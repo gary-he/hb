@@ -8,13 +8,16 @@
 	<title>报表</title>
 	<script type="text/javascript" src="${ctx}/staticfile/js/datepicker/WdatePicker.js "></script>
 	<script type="text/javascript">
-		 function wol(){
-			var mydateInput = document.getElementById("mydate");
-			var date = new Date();
-			var dateString = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
-			mydateInput.value=dateString;
-			document.getElementById(elementId)
-		 }
+		
+		var tofind= function(){
+			 document.getElementById("formid").action="tofind";
+			 document.getElementById("formid").submit();
+		}
+		
+		var POIExcel= function(){
+			 document.getElementById("formid").action="${ctx}/admin/forms/download/POIExcel";
+			 document.getElementById("formid").submit();
+		}
 		 
 </script>
 	<style type="text/css">
@@ -43,21 +46,27 @@
     报表
   </div> 
 <!-- 		/hb/src/main/webapp/WEB-INF/pages/admin/forms/ -->
-			<form action="tofind"  method="POST">
-				出票时间: <input id="qq" type="text" name="ticketTime1" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" />
+			<form id="formid" action="#"  method="POST">
+				出票时间: <input id="payTime1" type="text" name="payTime1" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" value="${ payTime1 }"/>
 				至
-				<input type="text" name="ticketTime2" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" />
+				<input type="text" name="payTime2" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" value="${ payTime2 }"/>
 				&nbsp;
 				&nbsp;
-				始发地: <input type="text" name="location"/>&nbsp;&nbsp; 目的地: <input type="text" name="departure"/>
+				始发地: <input type="text" name="location" value="${ location }"/>&nbsp;&nbsp; 目的地: <input type="text" name="departure" value="${ departure }"/>
+				
 				<br/>
 				<br/>
-				乘客名: <input type="text" name="passengerName" />
-				PNR: <input type="text" name="PNR" />
+				起飞时间: <input id="qq" type="text" name="ticketTime1" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" value="${ ticketTime1 }"/>
+				至
+				<input type="text" name="ticketTime2" onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" value="${ ticketTime2 }"/>
+				&nbsp;
+				&nbsp;
+				乘客名: <input type="text" name="passengerName" value="${ passengerName }"/>
+				PNR: <input type="text" name="PNR" value="${ PNR }"/>
 				&nbsp;
 				&nbsp;
 				航空公司:
-				<select id="dropAirlines" name="Airlines" class="form-control">
+				<select id="dropAirlines" name="Airlines" class="form-control"  >
                             <option value="">全部航司</option>
                                 <option value="3U">3U-川航</option>
                                 <option value="8C">8C-东星</option>
@@ -99,20 +108,19 @@
 				&nbsp;
 				&nbsp;
 				客票状态:
-				<select name="ticketState">
+				<select name="ticketState" >
 					<option value="">---无---</option>
 					<option value="1">已出票</option>
 					<option value="2">改签</option>
 					<option value="3">已退票</option>
 					<option value="0">未支付</option>
 				</select>
+    			<input type="button" value="查询" onclick="tofind()">
+				<input type="button" value="导出报表" onclick="POIExcel()" ></input>
 				
-				<input type="submit" value="查询"/>
-				<h1>销售榜单</h1>
-				<a href="download/jj">销售下载</a>
+				
 			</form>
-
-
+				
 
   
 <div >
@@ -123,9 +131,10 @@
 	<thead>
 	<tr>
 		<td class="tableHeader" colspan="24" align="centre">票面信息</td>
+		<td class="tableHeader" colspan="4" align="centre">销售明细</td>
+		<td class="tableHeader" colspan="5" align="centre">备注信息</td>
 	</tr>
 	<tr>
-		
 		<td class="tableHeader">序号</td>
 		<td class="tableHeader">产品类型</td>
 		<td class="tableHeader">票证状态</td>
@@ -150,16 +159,10 @@
 		<td class="tableHeader">账单价</td>
 		<td class="tableHeader">税费</td>
 		<td class="tableHeader">票面小计</td>
-		<tr>
-		<td class="tableHeader" colspan="4" align="centre">销售明细</td>
-		</tr>
 		<td class="tableHeader">采购代理费率</td>
 		<td class="tableHeader">采购代理费</td>
 		<td class="tableHeader">采购金额</td>
 		<td class="tableHeader">毛利小计</td>
-		<tr>
-		<td class="tableHeader" colspan="5" align="centre">备注信息</td>
-		</tr>
 		<td class="tableHeader">订单号</td>
 		<td class="tableHeader">建单用户</td>
 		<td class="tableHeader">支付状态</td>

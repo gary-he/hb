@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Flight{
 
+
 	private Integer id;			//主键
 	private String fId;           //航班编号
 	private String fType;         //航程类型

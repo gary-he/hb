@@ -16,7 +16,7 @@ public class TimeTool {
 	 * @return
 	 */
 	public static String getExcelTime(Date date){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(date);
 	}
 	
