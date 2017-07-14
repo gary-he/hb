@@ -12,7 +12,7 @@ public interface SellService {
 	List<Statement> findAll();
 
 	List<Statement> findByRules(String location, String departure, String passengerName, String pNR, String airlines,
-			String ticketState, Date ticketTime1, Date ticketTime2);
+			String ticketState, String ticketTime1, String ticketTime2, String payTime1, String payTime2);
 
 	HSSFWorkbook createExcel(List<Statement> list);
 

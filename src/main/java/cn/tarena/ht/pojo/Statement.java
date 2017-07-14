@@ -75,6 +75,7 @@ public class Statement {
 	}
 	public Double getCommissionFreePercent() {
 		double price = flight.getfPrice();
+		
 		double commission = flight.getfCommission();
 		double percent = commission/price;    // 采购率=代理费/票面价
 		

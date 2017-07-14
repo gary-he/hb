@@ -7,7 +7,7 @@ public class Order {
 	private String oId;//订单ID
 	private String userPId;//用户ID
 	private String oPayment;//0未支付,1支付成功,2支付失败
-	private String oState;//0未支付,1支付成功,2支付失败
+	private String oState;//机票状态(0:未出票,1:已出票,2改签,3退票)
 	private Date oCreatetime;//订单创建时间
 	private Date oUpdatetime;//订单更改时间
 	private Date oPaytime;//订单支付时间
