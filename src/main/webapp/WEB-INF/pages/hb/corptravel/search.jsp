@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
 <html lang="zh-CN">
 <head>
@@ -50,19 +51,22 @@
     </div>
     <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${userSession.username} <span class="caret"></span></a>
           <ul class="dropdown-menu">
+          	<shiro:hasPermission name="admin">
+           		 <li><a href="/home.action">后台管理</a></li>
+            </shiro:hasPermission>
             <li><a href="系统管理/修改密码.html">修改密码</a></li>
-            <li><a href="#">退出</a></li>
+            <li><a href="/logout.action">退出</a></li>
           </ul>
         </li>       
       </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 020-12345678 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）020-12345678</a></li>
+            <li><a href="#">（或）020-12345678</a></li>
             <!--<li role="separator" class="divider"></li>-->
           </ul>
         </li>
@@ -216,7 +220,7 @@
         <div class="hangbanlist-body " style=" background-color:#FEFCFC;">
           <!-- 仓位种类 -->
           <c:if test="${!empty s}">
-   			<c:forEach items="${s}" var="s">
+   			<c:forEach items="${f.sList}" var="s">
 	          <ul class="list-inline">
 		        <li class="w-percentage-20"><strong class="blue-0093dd">${s.sType}</strong></li>
 	            <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice*s.sRate*0.01}</span></li>
