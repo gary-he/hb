@@ -172,7 +172,7 @@
 <div class="col-sm-5 bg-gray-eee">
 <div style=" margin-left:-15px;">
 <h4 style="overflow:hidden; margin-left:10px;">
-  <span style="display:block; float:left;"><fmt:formatDate value="${flight.fStartDate}" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;周三</span>
+  <span style="display:block; float:left;"><fmt:formatDate value="${flight.fStarttime}" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;周三</span>
   <span style="display:block; float:left; margin-left:80px;">${flight.fLocationName }-${flight.fDepartureName}</span>
   <span style=" display:block; float:right;color:#999; font-size:14px; margin-right:5px;">${flight.fRank}</span>
 </h4>

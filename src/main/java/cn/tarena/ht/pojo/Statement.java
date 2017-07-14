@@ -1,8 +1,6 @@
 package cn.tarena.ht.pojo;
 
-import org.junit.Test;
 
-import com.google.common.annotations.VisibleForTesting;
 
 /**
  * 报表展示类 以乘客为主查询
@@ -117,20 +115,13 @@ public class Statement {
 				+ ", procurement=" + procurement + ", profit=" + profit + "]";
 	}
 	
-	/*
-	 * 	票证类型	承运人	
-	 * 承运人-票号	乘机人类型	乘客PNR	乘机人	航司二字代码	航司名字	始发地三字代码	目的地三字代码	始发地名称	目的地名称	
-	 * 航班	舱位	起飞时间	到达时间	账单价	税费	票面小计	采购代理费率	采购代理费	采购金额	毛利小计	订单号	
-	 * 建单用户	支付状态	建单时间	支付时间
-
-	 */
 	/**
 	 * 提供导出Excel文件字段
 	 * @return
 	 */
-	public String toExcelString() {
-		return productType+","+order.getoState()+","+abroadInland+","+
-				flight.getfType()+","+tickerType+","+flight.getfNumber()+","+haulierNomber+","+
+	public String toCSVString() {
+		return getProductType()+","+order.getoState()+","+getAbroadInland()+","+
+				flight.getfType()+","+tickerType+","+flight.getfNumber()+","+getHaulierNomber()+","+
 				passenger.getpType()+","+passenger.getpId()+","+passenger.getpName()+","+
 				flight.getfCompany()+","+flight.getfCompanyName()+","+flight.getfLocation()+
 				","+flight.getfDeparture()+","+flight.getfLocationName()+","+flight.getfDepartureName()+
@@ -141,24 +132,29 @@ public class Statement {
 				","+order.getoPaytime();
 	}
 	
+	/**
+	 * 提供数据 数组
+	 * @return
+	 */
+	public String [] toExcelString(){
+		
+		String [] date = {getProductType(),order.getoState(),getAbroadInland(),
+				flight.getfType(),tickerType,flight.getfNumber().toString(),getHaulierNomber(),
+				passenger.getpType(),passenger.getpId(),passenger.getpName(),
+				flight.getfCompany(),flight.getfCompanyName(),flight.getfLocation()
+				,flight.getfDeparture(),flight.getfLocationName(),flight.getfDepartureName()
+				,flight.getfId(),flight.getfRank(),"'"+flight.getfStarttime()+"'",
+				flight.getfOvertime().toString(),flight.getfPrice().toString(),flight.getfTax().toString(),flight.getfTotal().toString()
+				,getCommissionFreePercent().toString(),flight.getfCommission().toString(),getProcurement().toString(),getProfit().toString()
+				,order.getoId(),order.getUserPId(),order.getoPayment(),order.getoCreatetime().toString()
+				,order.getoPaytime().toString()
+				};
+		
 	
-	//private String pType;//乘机人类型
-	//private String pName;//乘客名称
-//	private String fCompany;      //航司名字二字代码
-//	private String fCompanyName;  //航司名称
-//	private String fLocation;     //始发地三字代码
-//	private String fLocationName; //始发地名称
-//	private String fDeparture;    //目的地三字代码
-//	private String fDepartureName;//目的地名称
-//	private String fId;     //航班编号
-//	private String fRank;         //仓位
-//	private String fStarttime;    //起飞时间
-//	private String fOvertime;     //到达时间
-//	private Double fPrice;        //票面价
-//	private Double fTax;          //税费
-//	private Double fTotal;        //票面小计
-//	private Double fCommission;   // 代理费
-	
+		
+		
+		return date;
+	}
 	
 	
 	
