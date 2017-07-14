@@ -51,6 +51,8 @@ public class UserBuyController {
 		String fLocation = AirportCode.findCode(fLocationName);
 		String fDeparture = AirportCode.findCode(fDepartureName);
 		
+		System.out.println(fLocation);
+		System.out.println(fDeparture);
 		//查询操作
 		//1.默认查询当天航班
 		List<Flight> flightList = null;

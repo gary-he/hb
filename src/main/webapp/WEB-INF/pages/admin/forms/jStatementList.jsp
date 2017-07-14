@@ -109,7 +109,7 @@
 				
 				<input type="submit" value="查询"/>
 				<h1>销售榜单</h1>
-				<a href="download">销售下载</a>
+				<a href="download/jj">销售下载</a>
 			</form>
 
 
