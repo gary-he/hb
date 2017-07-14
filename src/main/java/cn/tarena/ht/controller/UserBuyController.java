@@ -1,6 +1,7 @@
 package cn.tarena.ht.controller;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,18 @@ public class UserBuyController {
 		model.addAttribute("date", date);
 		return "/hb/corptravel/index";
 	}
+	
+	@RequestMapping("/search/{time}")
+	public String searchTime(String fLocationName,String fDepartureName,@PathVariable Date time,String fCompany,Model model){
+		System.out.println("指定时间查询");
+		System.out.println(time);
+		time = new Date(time.getTime()-1000*60*60*24);
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String fStarttime = sd.format(time);
+		System.out.println(fStarttime);
+		return search(fLocationName,fDepartureName,fStarttime,fCompany,model);
+	}
+	
 	@RequestMapping("/search")
 	public String search(String fLocationName,String fDepartureName,String fStarttime,String fCompany,Model model){
 		System.out.println("fLocationName："+fLocationName);
@@ -56,18 +69,20 @@ public class UserBuyController {
 		//查询操作
 		//1.默认查询当天航班
 		List<Flight> flightList = null;
-		
-		
-		if(fCompany == null || fCompany == ""){
-			//1.1全部航司
-			flightList = buyFlightService.findFlights(fLocation,fDeparture);
-			model.addAttribute("f", flightList);
+		if(fStarttime == null){
+			if(fCompany == null || fCompany == ""){
+				//1.1全部航司
+				flightList = buyFlightService.findFlights(fLocation,fDeparture);
+				model.addAttribute("f", flightList);
+			}else{
+				//1.2指定航司
+				flightList = buyFlightService.findFlightsOneF_C(fLocation,fDeparture,fCompany);
+				model.addAttribute("f", flightList);
+			}
 		}else{
-			//1.2指定航司
-			flightList = buyFlightService.findFlightsOneF_C(fLocation,fDeparture,fCompany);
+			flightList = buyFlightService.findFlightsT(fLocation,fDeparture,fStarttime);
 			model.addAttribute("f", flightList);
 		}
-		
 		//将查询到的数据存到页面
 		return "/hb/corptravel/search";
 	}
@@ -89,13 +104,13 @@ public class UserBuyController {
 	}*/
 	
 	//订票 - 支付成功页面 -succeed
-	@RequestMapping("/pay/succeed")
+	/*@RequestMapping("/pay/succeed")
 	public String succeed(){
 		
 		
 		return "/hb/corptravel/pay/succeed";
 	}
-	
+	*/
 
 
 }

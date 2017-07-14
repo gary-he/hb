@@ -1,10 +1,10 @@
 package cn.tarena.ht.pojo;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class Flight{
-	private Integer id;           //主键           
+
+	private Integer id;			//主键
 	private String fId;           //航班编号
 	private String fType;         //航程类型
 	private String fCompany;      //航空公司代码
@@ -144,7 +144,17 @@ public class Flight{
 	public void setfCommission(Double fCommission) {
 		this.fCommission = fCommission;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Flight [id=" + id + ", fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName="
+				+ fCompanyName + ", fNumber=" + fNumber + ", fRank=" + fRank + ", fLocation=" + fLocation
+				+ ", fLocationName=" + fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture
+				+ ", fDepartureName=" + fDepartureName + ", fDeAirport=" + fDeAirport + ", fStarttime=" + fStarttime
+				+ ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal=" + fTotal
+				+ ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
+	}
+
 	
 	
 
