@@ -58,8 +58,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
             <!--<li role="separator" class="divider"></li>-->
           </ul>
         </li>
@@ -188,7 +188,7 @@
         </div>
         <div class="flight-info" style="float:left; margin-left:100px;">
             <img src="${ctx}/hb/img/a.png">
-            <span class="font12 gray-999">2h35m</span>
+            <span class="font12 gray-999"><fmt:formatDate value="${pTakeTime }" pattern="HH:mm"/></span>
             <img src="${ctx}/hb/img/b.png"><br/>
             <span class="text-center font12 gray-999 mar-left-10">${flight.fCompanyName}有限公司 ${flight.fCompany}</span><br/>
             <img src="${ctx}/hb/img/c.png" class="mar-left-10">

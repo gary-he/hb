@@ -222,7 +222,7 @@
 	            <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice*s.sRate*0.01}</span></li>
 	            <li  class="w-percentage-20 ">网站团购价：<strong class="rmb orange-f60 font16">
 	            		￥<fmt:formatNumber maxFractionDigits="1" value="${f.fPrice*s.sRate*0.01*0.9}" /></strong> <span class="gray font12">9折</span></li>
-	            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='pay/insurance/${f.id}';">订票</button></li>
+	            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='${pageContext.request.contextPath}/pay/insurance/${f.id}';">订票</button></li>
 	            <li  class="w-percentage-25">余位数：${s.sNum}</li>
 	          </ul>
           	</c:forEach>

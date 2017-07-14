@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 双核使用webkit内核 -->
 <meta name="renderer" content="webkit">
-<title>商旅系统</title>
+<title>菜鸟航空</title>
 <link href="${ctx}/hb/css/bootstrap.min.css" rel="stylesheet">
 <link href="${ctx}/hb/css/common.css" rel="stylesheet">
 <link href="${ctx}/hb/css/corptravel.css" rel="stylesheet">
@@ -81,8 +81,8 @@ $(document).ready(function() {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
             <!--<li role="separator" class="divider"></li>-->
           </ul>
         </li>
@@ -135,9 +135,6 @@ $(document).ready(function() {
   </div>
 <!-- 航班信息 结束 -->
 
-<!-- 判断乘客类型 -->
-
-
 <!-- 旅客信息 -->
   <h3 class="mar-bottom-20">订单信息 <small class="mar-left-20 font14">乘客人数：1 人</small></h3>
   <div class="lh30 ">
@@ -148,6 +145,7 @@ $(document).ready(function() {
         <li class="">手机：${pa.pPhone}</li>
       </ul>
       
+      <!-- 判断乘客类型 -->
       <td>
 		<c:if test="${pa.pType =='成人'}">
       		<ul class="list-inline ">
@@ -157,30 +155,24 @@ $(document).ready(function() {
         	<li class="pull-right">合计：<input type="hidden" name="totalPrice">${flight.fTotal+30}</input></li>
      	</ul>
     	</div>
-        
     		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">${flight.fTotal+30}</span></div>
     		<div class="clearfix"></div>
-    		
-    		
     		</c:if>
-		
+    		
 			<c:if test="${pa.pType =='儿童'}">
-		
-		
       		<ul class="list-inline ">
        		<li class="w-percentage-25">结算价：${flight.fPrice*0.5}（票面价：${flight.fPrice}）</li>
         	<li class="w-percentage-25">机建/燃油/服务费：0/0/0</li>
        		<li class=""><b>中国人保 30元旅游航意险（10天）</b> 30元</li>
-        	<li class="pull-right">合计：<input type="text" name="totalPrice">${flight.fPrice+30}</b></li>
+        	<li class="pull-right">合计：<input type="hidden" name="totalPrice">${flight.fPrice*0.5+30}</b></li>
      	</ul>
     	</div>
-        
-    		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">1916</span></div>
+    		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">${flight.fPrice*0.5+30}</span></div>
     		<div class="clearfix"></div>
-    		
     		
     		</c:if>
 		</td>
+		<!-- 判断乘客类型 结束-->
 		
 		
   </div>
@@ -306,7 +298,7 @@ $(document).ready(function() {
 
 <div class="clearfix"></div>
 <div class="text-center mar-bottom-10">
-  <input type="button" value="立即支付" class="btn btn-danger" onClick="window.location.href ='succeed.html';" > 
+  <input type="submit" value="立即支付" class="btn btn-danger" onClick="window.location.href ='succeed.html';" > 
 </div>
 
 </div>
