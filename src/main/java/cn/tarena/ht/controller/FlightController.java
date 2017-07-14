@@ -50,8 +50,8 @@ public class FlightController extends BaseController{
 	
 	//4.删除航班信息
 	@RequestMapping("/delete")
-	public String toDelete(@RequestParam("fId")String[] fIds){
-		flightService.deleteFlight(fIds);
+	public String toDelete(@RequestParam("id")String[] ids){
+		flightService.deleteFlight(ids);
 		return "redirect:/admin/flight/list";
 		
 	}

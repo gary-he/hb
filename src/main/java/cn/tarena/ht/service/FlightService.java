@@ -12,7 +12,7 @@ public interface FlightService {
 
 	void updateflight(Flight flight);
 
-	void deleteFlight(String[] fIds);
+	void deleteFlight(String[] ids);
 
 	void saveFlight(Flight flight);
 
