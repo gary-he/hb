@@ -37,7 +37,7 @@ public class PassengerController {
 
 	// 订票跳转至保险确认页面
 	@RequestMapping("/pay/insurance/{airlineType}")
-	public String insurance(@PathVariable String airlineType, Model model,HttpSession session) {
+	public String insurance(@PathVariable Integer airlineType, Model model,HttpSession session) {
 		
 		Flight flight = flightService.findOne(airlineType);
 		
