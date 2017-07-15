@@ -71,7 +71,7 @@
 		 		/regist.action=anon
 		 		/staticfile/** = anon
 		 		<!-- /**匹配所有的请求和静态资源文件 -->
-		 		/** = authc
+		 		/pay/** = authc
 		 	</value>
 	 	</property>
 	 

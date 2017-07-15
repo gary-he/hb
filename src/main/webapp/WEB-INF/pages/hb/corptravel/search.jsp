@@ -51,7 +51,15 @@
     </div>
     <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${userSession.username} <span class="caret"></span></a>
+          	<c:if test="${empty userSession }">
+          	您好，<a href="tologin.action" style="display: inline;">请登录</a>
+          	</c:if>
+          	<c:if test="${!empty userSession }">
+	          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	          	您好，${userSession.username}<span class="caret"></span></a> 
+          	</c:if>
+          	
+          
           <ul class="dropdown-menu">
           	<shiro:hasPermission name="admin">
            		 <li><a href="/home.action">后台管理</a></li>

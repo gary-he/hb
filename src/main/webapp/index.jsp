@@ -3,7 +3,7 @@
 <head>
 </head>
 <script type="text/javascript">
-	top.location.href = "tologin.action";
+	top.location.href = "search";
 </script>
 <body>
 </body>

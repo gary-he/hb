@@ -4,7 +4,10 @@ body {
 	background-color: #fff;
 	background-image: url("../images/login/bgimg.jpg");
 	background-position: -200px 0px;
+	background-size:cover;
 	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
 }
 
 #logo_box{
