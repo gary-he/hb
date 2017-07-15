@@ -32,16 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
-	<update id="payOrder">
-		update order_p 
-		<set>
-			o_payment=1,
-			o_state=1,
-			o_updatetime=#{date,jdbcType=DATE},
-			o_paytiem=#{date,jdbcType=DATE}
-		</set>
-		where o_id=#{orderId}
-		
+	<update id="updateOrder">
+		update order_p set o_payment=#{state},o_state=#{state} where o_id=#{orderId}
 	</update>
 	
 	

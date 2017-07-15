@@ -66,7 +66,7 @@ $(document).ready(function() {
 <!-- 支付提示 -->
 <div class="tishibox">
   <p class="title">支付已成功!</p>
-   <p>您可以继续操作：<a href="../order/orderList.html">[查看我的订单]</a> <a href="../search.html">[返回首页]</a> </p>
+   <p>您可以继续操作：<a href="../order/orderInfo">[查看我的订单]</a> <a href="../search">[返回首页]</a> </p>
   <div class="img_fudong"> <a href="#"><img src="${ctx}/hb/img/chenggong2.gif" width="50" height="50" border="0" /></a></div>
   <div class="clearfix"></div>
 </div>

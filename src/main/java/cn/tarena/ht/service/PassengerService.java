@@ -15,6 +15,6 @@ public interface PassengerService {
 	 */
 	public void add(Passenger passenger, Order order);
 
-	public void payOrder(String orderId, Date date);
+	public void updateOrder(String orderId, Date date);
 
 }

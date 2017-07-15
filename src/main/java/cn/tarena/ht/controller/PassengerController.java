@@ -93,7 +93,7 @@ public class PassengerController {
 		
 		//设置订单信息
 		order.setoId(oid);
-		order.setUserPId(userId);//要根据用户ID来查询order信息
+		order.setUserPId(pid);//要根据用户ID来查询order信息
 		order.setoPayment("0");
 		order.setoState("0");
 		order.setoCreatetime(date);
@@ -120,13 +120,20 @@ public class PassengerController {
 		//设置更改和支付时间
 		Date date=new Date();
 		
-		System.out.println(date);
 		
-		passengerService.payOrder(orderId,date);
+		passengerService.updateOrder(orderId,date);
 		
 		System.out.println(1);
 		
 		return "/hb/corptravel/pay/succeed";
+	}
+	
+	
+	@RequestMapping("/order/orderInfo")
+	public String orderList(){
+		
+		
+		return "/hb/corptravel/order/orderInfo";
 	}
 		
 	
