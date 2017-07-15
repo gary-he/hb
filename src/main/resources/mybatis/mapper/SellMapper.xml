@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select p.p_id pid,p_id,p.p_name,p.p_sex,p_type,p_identily,p.p_phone,p.p_f_id,p.p_order_id from passenger p)p
 			left join
 			flight_p  f
-			on p.p_f_id=f.f_id)pf
+			on p.p_f_id=f.id)pf
 		left join 
 		order_p o
 		on pf.p_order_id=o.o_id
@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select p.p_id pid,p_id,p.p_name,p.p_sex,p_type,p_identily,p.p_phone,p.p_f_id,p.p_order_id from passenger p)p
 			left join
 			flight_p  f
-			on p.p_f_id=f.f_id)pf
+			on p.p_f_id=f.id)pf
 		left join 
 		order_p o
 		on pf.p_order_id=o.o_id
