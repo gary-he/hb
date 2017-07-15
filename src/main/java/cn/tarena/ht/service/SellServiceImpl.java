@@ -1,5 +1,8 @@
 package cn.tarena.ht.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +14,10 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +50,7 @@ public class SellServiceImpl implements SellService {
 
 
 	/**
-	 * 根据list 打印Excel
+	 * 根据list 打印Excel 类型HSSF
 	 */
 	@Override
 	public HSSFWorkbook createExcel(List<Statement> list) {
@@ -329,16 +336,31 @@ public class SellServiceImpl implements SellService {
         	cell3 = row3.createCell(cellcol++);
         	if(state.getOrder().getoPaytime()==null){
         		cell3.setCellValue("空");
-        	}
+        	}else{
         	cell3.setCellValue(TimeTool.getExcelTime(state.getOrder().getoPaytime()));
-        	
+        	}
         	cellcol=0;
 		}
 		
-		
-		
-		
 		return workbook;
 	}
+	
+	
+
+
+	@Override
+	public XSSFWorkbook createXSSFExcel(List<Statement> list, String path) throws Exception {
+
+		FileInputStream fis = new FileInputStream(new File("/POI/StatementStyle.xls"));
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet sheet = wb.getSheet("明细报表");
+		XSSFRow row = sheet.createRow(0);
+		XSSFCell cell = row.createCell(0);
+		cell.setCellValue(TimeTool.getExcelTop(new Date())+":销售毛利统计");
+		
+		
+		return wb;
+	}
+	
 	
 }

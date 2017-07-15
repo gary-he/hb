@@ -215,7 +215,7 @@
 			    	<div id="mask">
 <div id="menuContent">
 		<span id="topmenu" onclick="toModule('home');">系统首页</span><span id="tm_separator"></span>
-		<span id="topmenu" onclick="toModule('user');">用户</span><span id="tm_separator"></span>
+		<span id="topmenu" onclick="toModule('user');">订单管理</span><span id="tm_separator"></span>
 		<span id="topmenu" onclick="toModule('admin');">管理员</span>
 </div>
 					<span id="rightKey" onmouseover="periodOffset(this, 'right')"><img src="${ctx}/staticfile/skin/default/images/title/right_arrow.png"/></span>

@@ -20,30 +20,6 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 		return buyFlightMapper.findAllFlight();
 	}
 
-	//默认当天时间查询所有航班
-	@Override
-	public List<Flight> findFlights(String fLocation, String fDeparture) {
-		
-		List<Flight> ff = buyFlightMapper.findFlights(fLocation,fDeparture);
-		for (Flight flight : ff) {
-			int fid = flight.getId();
-			List<Site> sList = buyFlightMapper.finAllSite(fid);
-			flight.setsList(sList);
-		}
-		return ff;
-	}
-
-	//默认当天时间 查询指定 航司航班
-	@Override
-	public List<Flight> findFlightsC(String fLocation, String fDeparture, String fCompany) {
-		List<Flight> ff = buyFlightMapper.findFlightsC(fLocation,fDeparture,fCompany);
-		for (Flight flight : ff) {
-			int fid = flight.getId();
-			List<Site> sList = buyFlightMapper.finAllSite(fid);
-			flight.setsList(sList);
-		}
-		return ff; 
-	}
 
 	@Override
 	public List<Flight> findFlightsT(String fLocation, String fDeparture, String fStarttime) {
