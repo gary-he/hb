@@ -127,7 +127,7 @@
       </div>
       <div class="form-group mar-left-10">
         <label for="">返回日期</label>
-        <input type="text" name="fOvertime" disabled class="form-control " style="width:110px;" onClick="WdatePicker()" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>">
+        <input type="text" name="fOvertime" disabled class="form-control " style="width:110px;" onClick="WdatePicker()" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>" value="<fmt:formatDate value="${time}" pattern="yyyy-MM-dd"/>">
       </div>
       <div class="form-group mar-left-10">
         <select id="dropAirlines"  name="fCompany" class="form-control" style=" width:120px;">
@@ -197,7 +197,9 @@
 <div class="container mar-bottom-30 ">
   <div class="hangbanlist">
    
-   <c:if test="${empty f}">没有查询到符合要求的航班</c:if>
+   <c:if test="${empty f}">
+   	<div  align="center" ><strong class="rmb orange-f60 font16">没有查询到符合要求的航班</strong></div>
+   </c:if>
    <!-- 循环 -->
    <c:if test="${!empty f}">
    	<c:forEach items="${f}" var="f">
@@ -221,6 +223,7 @@
           <!-- 仓位种类 -->
           <c:if test="${!empty s}">
    			<c:forEach items="${f.sList}" var="s">
+   			 <c:if test="${s.sNum > 0}">
 	          <ul class="list-inline">
 		        <li class="w-percentage-20"><strong class="blue-0093dd">${s.sType}</strong></li>
 	            <li  class="w-percentage-25">票面价：<span class="rmb">￥${f.fPrice*s.sRate*0.01}</span></li>
@@ -229,6 +232,7 @@
 	            <li class="pull-right "><button type="button" class="btn btn-danger btn-sm" onClick="window.location.href ='${pageContext.request.contextPath}/pay/insurance/${f.id}';">订票</button></li>
 	            <li  class="w-percentage-25">余位数：${s.sNum}</li>
 	          </ul>
+   			 </c:if>
           	</c:forEach>
           </c:if>
         </div>
