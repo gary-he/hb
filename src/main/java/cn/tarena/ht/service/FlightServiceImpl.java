@@ -1,7 +1,11 @@
 package cn.tarena.ht.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.mybatis.spring.batch.MyBatisBatchItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +38,8 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	//删除航班信息
-	public void deleteFlight(String[] fIds) {
-		flightMapper.deleteFlight(fIds);
+	public void deleteFlight(String[] ids) {
+		flightMapper.deleteFlight(ids);
 		
 	}
 	//航班的新增
@@ -45,5 +49,6 @@ public class FlightServiceImpl implements FlightService {
 		flightMapper.saveFlight(flight);
 		
 	}
+	
 
 }

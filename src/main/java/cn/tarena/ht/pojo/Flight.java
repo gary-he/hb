@@ -1,6 +1,7 @@
 package cn.tarena.ht.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Flight{
 
@@ -156,7 +157,15 @@ public class Flight{
 				+ ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
 	}
 
-	
+	//1
+	private List<Site> sList;
+	public List<Site> getsList() {
+		return sList;
+	}
+	public void setsList(List<Site> sList) {
+		this.sList = sList;
+	}
+	//2
 	
 
 }

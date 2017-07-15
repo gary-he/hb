@@ -24,28 +24,48 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 	@Override
 	public List<Flight> findFlights(String fLocation, String fDeparture) {
 		
-		List<Flight> flightList = buyFlightMapper.findFlights(fLocation,fDeparture);
-		for (Flight flight : flightList) {
-			System.out.println(flight);
+		List<Flight> ff = buyFlightMapper.findFlights(fLocation,fDeparture);
+		for (Flight flight : ff) {
+			int fid = flight.getId();
+			List<Site> sList = buyFlightMapper.finAllSite(fid);
+			flight.setsList(sList);
 		}
-		System.out.println("1");
-		return buyFlightMapper.findFlights(fLocation,fDeparture);
+		return ff;
 	}
 
 	//默认当天时间 查询指定 航司航班
 	@Override
 	public List<Flight> findFlightsC(String fLocation, String fDeparture, String fCompany) {
-		return buyFlightMapper.findFlightsC(fLocation,fDeparture,fCompany);
+		List<Flight> ff = buyFlightMapper.findFlightsC(fLocation,fDeparture,fCompany);
+		for (Flight flight : ff) {
+			int fid = flight.getId();
+			List<Site> sList = buyFlightMapper.finAllSite(fid);
+			flight.setsList(sList);
+		}
+		return ff; 
 	}
 
 	@Override
 	public List<Flight> findFlightsT(String fLocation, String fDeparture, String fStarttime) {
-		return buyFlightMapper.findFlightsT(fLocation,fDeparture,fStarttime);
+		List<Flight> ff = buyFlightMapper.findFlightsT(fLocation,fDeparture,fStarttime);
+		System.out.println("关联仓位操作");
+		for (Flight flight : ff) {
+			int fid = flight.getId();
+			List<Site> sList = buyFlightMapper.finAllSite(fid);
+			flight.setsList(sList);
+		}
+		return ff;
 	}
 
 	@Override
 	public List<Flight> findFlightsTC(String fLocation, String fDeparture, String fStarttime, String fCompany) {
-		return buyFlightMapper.findFlightsTC(fLocation,fDeparture,fStarttime,fCompany);
+		List<Flight> ff = buyFlightMapper.findFlightsTC(fLocation,fDeparture,fStarttime,fCompany);
+		for (Flight flight : ff) {
+			int fid = flight.getId();
+			List<Site> sList = buyFlightMapper.finAllSite(fid);
+			flight.setsList(sList);
+		}
+		return ff;
 	}
 
 	@Override

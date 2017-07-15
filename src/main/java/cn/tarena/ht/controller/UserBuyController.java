@@ -77,9 +77,7 @@ public class UserBuyController {
 			}else{
 				//1.2 出发地+目的地+指定航司
 				flightList = buyFlightService.findFlightsC(fLocation,fDeparture,fCompany);
-				siteList = buyFlightService.findAllSite(fid);
 				model.addAttribute("f", flightList);
-				model.addAttribute("s", siteList);
 				System.out.println("出发地+目的地+指定航司");
 			}
 		}else{//指定时间

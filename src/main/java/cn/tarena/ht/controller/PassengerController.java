@@ -1,5 +1,6 @@
 package cn.tarena.ht.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,13 +40,29 @@ public class PassengerController {
 	@RequestMapping("/pay/insurance/{airlineType}")
 	public String insurance(@PathVariable Integer airlineType, Model model,HttpSession session) {
 		
+		//获取航班
 		Flight flight = flightService.findOne(airlineType);
+		
+		//航班耗时
+		System.out.println(flight.getfOvertime().getTime());
+		System.out.println(flight.getfStarttime().getTime());
+		long time = flight.getfOvertime().getTime()-flight.getfStarttime().getTime();
+		
+		System.out.println(time);
+		Date pTakeTime = new Date();
+		pTakeTime.setTime(time);
+		System.out.println(pTakeTime);
+		
+		
+		//回显用户名
+		String remUserName=((User)session.getAttribute("userSession")).getUsername();
+		
+		//回显用户
+		model.addAttribute("remUserName",remUserName);
 		
 		model.addAttribute("flight", flight);
 		
-		String remUserName=((User)session.getAttribute("userSession")).getUsername();
-		
-		model.addAttribute("remUserName",remUserName);
+		model.addAttribute("pTakeTime",pTakeTime);
 
 		return "/hb/corptravel/pay/insurance";
 	}
