@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<resultMap type="Statement" id="statementList" >
-		<id column="id" property="id"/>
+		<id column="pid" property="id"/>
 		
 		<association property="order" javaType="Order" autoMapping="true">
 			<id column="o_id" property="oId"/>

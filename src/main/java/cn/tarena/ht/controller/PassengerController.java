@@ -53,8 +53,10 @@ public class PassengerController {
 	// 订票 - 支付确认页面
 	@SuppressWarnings("null")
 	@RequestMapping("/pay/payment")
-	public String payment(String airlineType, Model model, Passenger pa, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) {
+	public String payment(Integer airlineType, Model model, Passenger pa
+			, HttpSession session) {
+		
+		System.out.println(pa);
 		// 检查是否输入为空
 		if (StringUtils.isEmpty(pa.getpName()) || StringUtils.isEmpty(pa.getpIdentily())
 				|| StringUtils.isEmpty(pa.getpPhone())) {
@@ -65,17 +67,19 @@ public class PassengerController {
 		}
 
 		Date date = new Date();
-		String pid = PNRUtils.getPNRUtils().getPNR();// 乘客Id
-//		String pid = UUID.randomUUID().toString();// 乘客Id
-//		String poid = UUID.randomUUID().toString();// 乘客--订单关联id
+		//String pid = PNRUtils.getPNRUtils().getPNR();// 乘客Id
+		String pid = UUID.randomUUID().toString();// 乘客Id
 		String oid = UUID.randomUUID().toString();// 订单id
 		Order order = new Order();// 声明订单
 		String userId = ((User)session.getAttribute("userSession")).getUserId();//用户Id
 		String remUserName=((User)session.getAttribute("userSession")).getUsername();
 		
+		//获取航班信息
+		Flight flight=flightMapper.findOne(airlineType);
+		
 		//设置乘客信息
 		pa.setpId(pid);
-		pa.setpFId(airlineType);
+		pa.setpFId(flight.getId().toString());
 		pa.setpOrderId(oid);
 		
 		//设置订单信息
@@ -85,23 +89,17 @@ public class PassengerController {
 		order.setoState("0");
 		order.setoCreatetime(date);
 		order.setoUpdatetime(date);
-//		order.setoPaytime(null);
 
 		passengerService.add(pa,order);// 添加乘客.订单信息至数据库
-		
-		//查询飞机详情
-	//	Flight flight=flightMapper.findOne(airlineType);
 		
 		//回传乘客,订单信息
 		model.addAttribute("pa", pa);
 		model.addAttribute("order",order);
-		//model.addAttribute("flight",flight);
+		model.addAttribute("flight",flight);
+		model.addAttribute("remUserName",remUserName);//用户回显
 		
+		System.out.println(flight);
 		
-		
-		
-		
-
 		return "/hb/corptravel/pay/payment";
 	}
 

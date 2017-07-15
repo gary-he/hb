@@ -1,11 +1,11 @@
 package cn.tarena.ht.tool;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Random;
 
-import org.junit.Test;
+
 
 public class PNRUtils {
 	
@@ -27,13 +27,14 @@ public class PNRUtils {
 	
 	
 	public static void main(String[] args) {
-		for (int i = 0; i < 20; i++) {
-			String str = getPNR();
-			System.out.println(str);
-			
-		}
+		Double str1 = 0.0;
+		Double str2 = 0.0;
+		double   f   =   str1/str2; 
+		BigDecimal   b   =   new   BigDecimal(f); 
+		double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();  
+		System.out.println(f1);
 	}
-	@Test
+	
 	public static String getPNR(){
 		 char c = 'i';
          StringBuffer sb = new StringBuffer();

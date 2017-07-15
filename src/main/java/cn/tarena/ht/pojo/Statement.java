@@ -1,6 +1,7 @@
 package cn.tarena.ht.pojo;
 
-
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * 报表展示类 以乘客为主查询
@@ -74,15 +75,21 @@ public class Statement {
 		this.flight = flight;
 	}
 	public Double getCommissionFreePercent() {
-		double price = flight.getfPrice();
+		if(flight.getfPrice() == null){
+			return 0.0;
+		}
 		
-		double commission = flight.getfCommission();
+		if(flight.getfCommission() == null){
+			return 0.0;
+		}
+		Double price = flight.getfPrice();
+		Double commission = flight.getfCommission();
 		double percent = commission/price;    // 采购率=代理费/票面价
 		
-		String num = String.valueOf(percent);
-		String str = num.substring(0, 6);
-		
-		return Double.valueOf(str);
+		BigDecimal  b = new BigDecimal(percent); 
+		double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();  
+		this.commissionFreePercent = Double.valueOf(f1);
+		return this.commissionFreePercent;
 	}
 	
 	public void setCommissionFreePercent(Double commissionFreePercent) {
@@ -90,6 +97,14 @@ public class Statement {
 	}
 	
 	public Double getProcurement() {
+		
+		if(flight.getfTotal() == null){
+			return 0.0;
+		}
+		if(flight.getfCommission()==null){
+			return 0.0;
+		}
+		
 		double total = flight.getfTotal();
 		double commission = flight.getfCommission();
 		return total-commission;
@@ -101,6 +116,9 @@ public class Statement {
 	
 	
 	public Double getProfit() {
+		if(flight.getfTotal()==null){
+			return 0.0;
+		}
 		double total = flight.getfTotal();
 		return  total-getProcurement();
 	

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,8 @@ public class SellController extends BaseController{
 		List<Statement> list = sellService.findByRules(location,departure,passengerName,PNR,
 				Airlines,ticketState,ticketTime1,ticketTime2,payTime1,payTime2);
 		model.addAttribute("statementList",list);
+		System.out.println(list);
+		
 		
 		model.addAttribute("location", location);
 		model.addAttribute("departure", departure);
@@ -136,6 +139,29 @@ public class SellController extends BaseController{
 		
 	}
 	
-	
+	@RequestMapping("/download/XSSFExcel")
+	public void download3(String location,String departure,String passengerName,String PNR,
+			String Airlines,String ticketState,String ticketTime1,String ticketTime2,String payTime1,String payTime2,HttpServletResponse response,HttpServletRequest request) throws Exception{
+		
+		
+		List<Statement> list = sellService.findByRules(location,departure,passengerName,PNR,
+				Airlines,ticketState,ticketTime1,ticketTime2,payTime1,payTime2);
+		
+		String path = request.getContextPath();
+		
+		XSSFWorkbook workbook = sellService.createXSSFExcel(list,path);
+		//定义excle名称 ISO-8859-1防止名称乱码  
+		try {
+			String fileName = new String(
+					("明细报表"+TimeTool.getExcelTime(new Date())+".xlsx").getBytes(),"ISO-8859-1");
+			response.setCharacterEncoding("GBK");
+			response.setHeader("Content-Disposition", 
+					"attachment;filename="+fileName);
+			workbook.write(response.getOutputStream());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

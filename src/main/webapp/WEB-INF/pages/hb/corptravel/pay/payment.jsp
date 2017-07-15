@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
-<head>
+<head lang="zh-CN">
 <meta charset="utf-8">
 <!-- IE 浏览器运行最新的渲染模式-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,7 +79,7 @@ $(document).ready(function() {
       </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">（或）028-12345678</a></li>
             <li><a href="#">（或）028-12345678</a></li>
@@ -150,17 +150,15 @@ $(document).ready(function() {
       
       <td>
 		<c:if test="${pa.pType =='成人'}">
-		
-		
       		<ul class="list-inline ">
-       		<li class="w-percentage-25">结算价：${flight.pTotal}（票面价：${flight.pTotal}）</li>
-        	<li class="w-percentage-25">机建/燃油/服务费：${flight.pTax}/0/0</li>
+       		<li class="w-percentage-25">结算价：${flight.fPrice}(票面价：${flight.fPrice})</li>
+        	<li class="w-percentage-25">机建/燃油/服务费：${flight.fTax}/0/0</li>
        		<li class=""><b>中国人保 30元旅游航意险（10天）</b> 30元</li>
-        	<li class="pull-right">合计：<b>1058</b></li>
+        	<li class="pull-right">合计：<input type="hidden" name="totalPrice">${flight.fTotal+30}</input></li>
      	</ul>
     	</div>
         
-    		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">1916</span></div>
+    		<div class=" pull-right mar-top-10" >支出金额：<span class="rmb orange-f60">￥</span><span class=" orange-f60 text-right font24">${flight.fTotal+30}</span></div>
     		<div class="clearfix"></div>
     		
     		
@@ -170,10 +168,10 @@ $(document).ready(function() {
 		
 		
       		<ul class="list-inline ">
-       		<li class="w-percentage-25">结算价：${flight.pTotal*0.5}（票面价：${flight.pTotal}）</li>
+       		<li class="w-percentage-25">结算价：${flight.fPrice*0.5}（票面价：${flight.fPrice}）</li>
         	<li class="w-percentage-25">机建/燃油/服务费：0/0/0</li>
        		<li class=""><b>中国人保 30元旅游航意险（10天）</b> 30元</li>
-        	<li class="pull-right">合计：<b>1058</b></li>
+        	<li class="pull-right">合计：<input type="text" name="totalPrice">${flight.fPrice+30}</b></li>
      	</ul>
     	</div>
         
