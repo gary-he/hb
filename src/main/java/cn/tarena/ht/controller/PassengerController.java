@@ -44,15 +44,7 @@ public class PassengerController {
 		Flight flight = flightService.findOne(airlineType);
 		
 		//航班耗时
-		System.out.println(flight.getfOvertime().getTime());
-		System.out.println(flight.getfStarttime().getTime());
-		long time = flight.getfOvertime().getTime()-flight.getfStarttime().getTime();
-		
-		System.out.println(time);
-		Date pTakeTime = new Date();
-		pTakeTime.setTime(time);
-		System.out.println(pTakeTime);
-		
+		Date pTakeTime = new Date(flight.getfOvertime().getTime()-flight.getfStarttime().getTime()-28800000);//东八区减少8小时
 		
 		//回显用户名
 		String remUserName=((User)session.getAttribute("userSession")).getUsername();
@@ -101,7 +93,7 @@ public class PassengerController {
 		
 		//设置订单信息
 		order.setoId(oid);
-		order.setUserPId(userId);//要根据用户ID来查询order信息
+		order.setUserPId(pid);//要根据用户ID来查询order信息
 		order.setoPayment("0");
 		order.setoState("0");
 		order.setoCreatetime(date);
@@ -119,5 +111,32 @@ public class PassengerController {
 		
 		return "/hb/corptravel/pay/payment";
 	}
+
+	@RequestMapping("/pay/succeed")
+	public String payOrder(String orderId,Double totalPrice){
+		
+		System.out.println(orderId);
+		System.out.println(totalPrice);
+		//设置更改和支付时间
+		Date date=new Date();
+		
+		
+		passengerService.updateOrder(orderId,date);
+		
+		System.out.println(1);
+		
+		return "/hb/corptravel/pay/succeed";
+	}
+	
+	
+	@RequestMapping("/order/orderInfo")
+	public String orderList(){
+		
+		
+		return "/hb/corptravel/order/orderInfo";
+	}
+		
+	
+
 
 }

@@ -28,6 +28,17 @@ public class PassengerServiceImpl implements PassengerService {
 
 	}
 
+	@Override
+	public void updateOrder(String orderId, Date date) {
+		
+		System.out.println(date);
+		
+		String state = "1" ; 
+		
+		orderMapper.updateOrder(orderId,date,state);
+		
+	}
+
 	
 
 	
