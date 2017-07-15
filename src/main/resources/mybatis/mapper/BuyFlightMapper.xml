@@ -12,13 +12,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="id" property="id"/>	
 	</resultMap>
 	
-	<select id="findFlights" resultMap="flightRM">
-		select * from flight_p where f_location=#{fl} and f_departure=#{fd}
-	</select>
-	
-	<select id="findFlightsC" resultMap="flightRM">
-		select * from flight_p where f_location=#{fl} and f_departure=#{fd} and f_company=#{fc}
-	</select>
 	
 	<select id="findFlightsT" resultMap="flightRM">
 		select * from flight_p where f_location=#{fl} and f_departure=#{fd} and date_format(f_starttime,'%yyyy-%mm-%dd')= date_format(#{fs},'%yyyy-%mm-%dd')

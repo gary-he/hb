@@ -11,10 +11,6 @@ public interface BuyFlightMapper {
 
 	List<Flight> findAllFlight();
 
-	List<Flight> findFlights(@Param("fl") String fLocation,@Param("fd") String fDeparture);
-
-	List<Flight> findFlightsC(@Param("fl") String fLocation,@Param("fd") String fDeparture,@Param("fc") String fCompany);
-
 	List<Flight> findFlightsT(@Param("fl") String fLocation, @Param("fd") String fDeparture, @Param("fs") String fStarttime);
 
 	List<Flight> findFlightsTC(@Param("fl") String fLocation, @Param("fd") String fDeparture, @Param("fs") String fStarttime,@Param("fc") String fCompany);

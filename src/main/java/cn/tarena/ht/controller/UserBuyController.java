@@ -67,17 +67,21 @@ public class UserBuyController {
 		int fid = 4;
 		if(fStarttime == null || fStarttime == ""){
 			//默认当天时间
+			Date date1 = new Date();
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+			fStarttime = sd.format(date1);
 			if(fCompany == null || fCompany == ""){
 				//1.1 出发地+目的地+全部航司
-				flightList = buyFlightService.findFlights(fLocation,fDeparture);
+				flightList = buyFlightService.findFlightsT(fLocation,fDeparture,fStarttime);
 				siteList = buyFlightService.findAllSite(fid);
 				model.addAttribute("f", flightList);
 				model.addAttribute("s", siteList);
 				System.out.println("出发地+目的地+全部航司");
 			}else{
 				//1.2 出发地+目的地+指定航司
-				flightList = buyFlightService.findFlightsC(fLocation,fDeparture,fCompany);
+				flightList = buyFlightService.findFlightsTC(fLocation,fDeparture,fStarttime,fCompany);
 				model.addAttribute("f", flightList);
+				model.addAttribute("s", siteList);
 				System.out.println("出发地+目的地+指定航司");
 			}
 		}else{//指定时间

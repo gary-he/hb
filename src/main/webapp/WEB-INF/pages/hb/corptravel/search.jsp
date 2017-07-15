@@ -127,7 +127,7 @@
       </div>
       <div class="form-group mar-left-10">
         <label for="">返回日期</label>
-        <input type="text" name="fOvertime" disabled class="form-control " style="width:110px;" onClick="WdatePicker()" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>">
+        <input type="text" name="fOvertime" disabled class="form-control " style="width:110px;" onClick="WdatePicker()" placeholder="<fmt:formatDate value="${date0}" pattern="yyyy-MM-dd"/>" value="<fmt:formatDate value="${time}" pattern="yyyy-MM-dd"/>">
       </div>
       <div class="form-group mar-left-10">
         <select id="dropAirlines"  name="fCompany" class="form-control" style=" width:120px;">
