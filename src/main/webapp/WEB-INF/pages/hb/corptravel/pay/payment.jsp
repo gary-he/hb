@@ -295,13 +295,17 @@ $(document).ready(function() {
 <!-- 支付选择 结束 -->
 
 
-
+<form action="/pay/succeed" method="post">
 <div class="clearfix"></div>
 <div class="text-center mar-bottom-10">
-  <input type="submit" value="立即支付" class="btn btn-danger" onClick="window.location.href ='succeed.html';" > 
+	<input type="hidden" name="orderId" value=" ${order.oId}">
+	<input type="hidden" name="totalPrice" value=" ${flight.fTotal+30}">
+  <input type="submit" value="立即支付" class="btn btn-danger" > 
 </div>
 
 </div>
+
+</form>
 
 
 <!-- 修改联系人弹框 -->

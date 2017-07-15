@@ -28,6 +28,12 @@ public class PassengerServiceImpl implements PassengerService {
 
 	}
 
+	@Override
+	public void payOrder(String orderId, Date date) {
+		orderMapper.payOrder(orderId,date);
+		
+	}
+
 	
 
 	

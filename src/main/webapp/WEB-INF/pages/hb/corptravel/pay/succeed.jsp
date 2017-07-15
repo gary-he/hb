@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 双核使用webkit内核 -->
 <meta name="renderer" content="webkit">
-<title>商旅系统</title>
+<title>菜鸟航空</title>
 <link href="${ctx}/hb/css/bootstrap.min.css" rel="stylesheet">
 <link href="${ctx}/hb/css/common.css" rel="stylesheet">
 <link href="${ctx}/hb/css/corptravel.css" rel="stylesheet">
@@ -56,7 +56,7 @@ $(document).ready(function() {
 <div class="container mar-top-10 mar-bottom-10">
   <div class="row ">
     <div class="col-md-5"> <img src="${ctx}/hb/img/logo.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30">
-      <h3 class="gray-666">企业商旅管理</h3>
+      <h3 class="gray-666">菜鸟航空管理</h3>
     </div>
   </div>
 </div>
