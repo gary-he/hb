@@ -77,7 +77,7 @@ public class PassengerController {
 
 		Date date = new Date();
 		//String pid = PNRUtils.getPNRUtils().getPNR();// 乘客Id
-		String pid = UUID.randomUUID().toString();// 乘客Id
+		String pid = PNRUtils.getPNR();// 乘客Id
 		String oid = UUID.randomUUID().toString();// 订单id
 		Order order = new Order();// 声明订单
 		String userId = ((User)session.getAttribute("userSession")).getUserId();//用户Id

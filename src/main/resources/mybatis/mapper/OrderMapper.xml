@@ -33,9 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<update id="updateOrder">
-		update order_p set o_payment=#{state},o_state=#{state} where o_id=#{orderId}
+		update order_p set o_payment=#{state} where o_id=#{orderId}
 	</update>
-	
+	 
 	
 	
 	
