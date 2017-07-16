@@ -33,7 +33,7 @@
 	<table id="ec_table" class="tableRegion" width="98%" >
 	
 		<tr class="odd">
-		<td>航班ID:</td>
+			<td>航班ID:</td>
 			<td>${flight.id}</td>
 			<td>航班编号:</td>
 			<td>${flight.fId}</td>
@@ -44,13 +44,13 @@
 			<td>${flight.fCompany}</td>
 			<td>航空公司:</td>
 			<td>${flight.fCompanyName}</td>
-			
 		</tr>
+		
 		<tr class="odd">
 			<td>航司票证:</td>
 			<td>${flight.fNumber}</td>
-			<td>仓位代码:</td>
-			<td>${flight.fRank}</td>
+			<td>税费:</td>
+			<td>${flight.fTax}</td>
 		</tr>
 		
 		<tr class="odd">
@@ -79,8 +79,6 @@
 			<td>${flight.fType}</td>
 			<td>代理费:</td>
 			<td>${flight.fCommission}</td>
-			<%-- <td>起飞日期:</td>
-			<td><fmt:formatDate value="${flight.fStartDate}" pattern="yyyy-MM-dd"/></td> --%>
 		</tr>
 		
 		<tr class="odd">
@@ -93,20 +91,23 @@
 		<tr class="odd">
 			<td>票面价:</td>
 			<td>${flight.fPrice}</td>
-			<td>税费:</td>
-			<td>${flight.fTax}</td>
-		</tr>	
-		
-		<tr class="odd">
 			<td>票面总价:</td>
 			<td>${flight.fTotal}</td>
-			<td>仓位数量:</td>
-			<td>${flight.fReserve}</td>
 			
 		</tr>
 		
-		
-		
+		<!-- 仓位信息 -->		
+		<c:forEach items="${flight.sList }" var="site">
+			<tr>
+				<td>仓位类型</td>
+				<td>${site.sType}</td>
+				<td>票率</td> 
+				<td>${site.sRate}</td>
+				<td>仓位数量</td>
+				<td>${site.sNum}</td> 
+			</tr>
+		</c:forEach>
+	
 	</table>
 </div>
  
