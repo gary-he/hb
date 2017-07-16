@@ -49,18 +49,10 @@
 		</tr>
 		
 		<tr class="odd">
-			<td>航司票证:</td>
-			<td><input type="text" name="fNumber" value="${flight.fNumber}"/></td>
-			<td>仓位代码:</td>
-			<td><input type="text" name="fRank" value="${flight.fRank}"/></td>
-		</tr>
-		
-		<tr class="odd">
 			<td>始发地代码:</td>
 			<td><input type="text" name="fLocation" value="${flight.fLocation}"/></td>
 			<td>始发地名称:</td>
 			<td><input type="text" name="fLocationName" value="${flight.fLocationName}"/></td>
-			
 		</tr>
 		
 		<tr class="odd">
@@ -77,42 +69,66 @@
 			<td><input type="text" name="fDeAirport" value="${flight.fDeAirport}"/></td>
 		</tr>
 		
-		<tr class=""odd>
-			<%-- <td>起飞日期:</td>
-			<td><input type="text" name="fStartDate" value="<fmt:formatDate value="${flight.fStartDate}"
-			 pattern="yyyy-MM-dd"/>"/>
-			 </td> --%>
+		<tr class="odd">
+			 <td>税费:</td>
+			<td><input type="text" name="fTax" value="${flight.fTax}"/></td>
 			<td>代理费:</td>
 			<td><input type="text" name="fCommission" value="${flight.fCommission}"/></td>
 		</tr>
+		
 		<tr class="odd">
 			<td>起飞时间:</td>
 			<td><input type="text" name="fStarttime" value="<fmt:formatDate value="${flight.fStarttime}"
 			 pattern="yyyy-MM-dd HH:mm:ss"/>" />
-			 <!-- onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});" -->
-	
 			 </td>
 			<td>到达时间:</td>
 			<td><input type="text" name="fOvertime" value="<fmt:formatDate value="${flight.fOvertime}" 
 			pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 			</td>
-			
 		</tr>
 		
 		<tr class="odd">
-			<td>票面价:</td>
-			<td><input type="text" name="fPrice" value="${flight.fPrice}"/></td>
-			<td>税费:</td>
-			<td><input type="text" name="fTax" value="${flight.fTax}"/></td>
-		</tr>	
-		
-		<tr class="odd">
-			<td>票面总价:</td>
-			<td><input type="text" name="fTotal" value="${flight.fTotal}"/></td>
-			<td>仓位数量:</td>
-			<td><input type="text" name="fReserve" value="${flight.fReserve}"/></td>
-			
+				<td>航司票证:</td>
+				<td><input type="text" name="fNumber" value="${flight.fNumber}"/></td>
+				<td>票面价:</td>
+				<td><input type="text" name="fPrice" value="${flight.fPrice}"/></td>
+				<td>票面总价:</td>
+				<td><input type="text" name="fTotal" value="${flight.fTotal}"/></td>
 		</tr>
+		
+		
+		<!-- 仓位信息 -->
+		<c:if test="${empty sList }">
+			<c:forEach begin="0" end="3" step="1" >
+				<tr>
+					<input type="hidden" name="sId" value="${site.sId }"></input>
+					<input type="hidden" name="sFlightPId" value="${flight.id }"></input>
+					<td>仓位类型</td>
+					<td><input type="text" name="sType" ></td>
+					<td>票率</td> 
+					<td><input type="text" name="sRate" ></td>
+					<td>仓位数量</td>
+					<td><input type="text" name="sNum" ></td> 
+				</tr>
+			</c:forEach>
+		</c:if>
+		
+		<c:if test="${!empty sList }">
+			<c:forEach items="${sList }" var="site" >
+				<tr>
+					<input type="hidden" name="sId" value="${site.sId }"></input>
+					<input type="hidden" name="sFlightPId" value="${flight.id }"></input>  
+					<td>仓位类型</td>
+					<td><input type="text" name="sType" value="${site.sType}"></td>
+					<td>票率</td> 
+					<td><input type="text" name="sRate" value="${site.sRate}"></td>
+					<td>仓位数量</td>
+					<td><input type="text" name="sNum" value="${site.sNum}"></td> 
+				</tr>
+			</c:forEach>
+		</c:if>
+		
+		
 		
 	</table>
 </div>

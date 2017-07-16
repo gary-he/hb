@@ -1,6 +1,9 @@
 package cn.tarena.ht.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.tarena.ht.pojo.Flight;
+import cn.tarena.ht.pojo.FlightSite;
+import cn.tarena.ht.pojo.Site;
 import cn.tarena.ht.service.FlightService;
 
 @Controller
@@ -28,7 +33,7 @@ public class FlightController extends BaseController{
 	
 	//2.查看航班详情信息
 	@RequestMapping("/toview")
-	public String toView(Integer id,Model model){
+	public String toView(String id,Model model){
 		Flight flight=flightService.findOne(id);
 		model.addAttribute("flight", flight);
 		return "/admin/flight/fFlightView";
@@ -37,20 +42,43 @@ public class FlightController extends BaseController{
 	
 	//3.修改航班信息
 	@RequestMapping("toupdate")
-	public String toUpdate(Integer id,Model model){
+	public String toUpdate(String id,Model model){
 		Flight flight=flightService.findOne(id);
+		List<Site> sList=flightService.findSiteById(id);
 		model.addAttribute("flight", flight);
+		model.addAttribute("sList", sList);
 		return"/admin/flight/fFlightUpdate";
 	}
 	@RequestMapping("/update")
-	public String UpdateDept(Flight flight){
-		flightService.updateflight(flight);
+	public String UpdateDept(Flight flight,Model model,Integer[] sId,String[] sType,String[]sFlightPId,String[] sRate,String[] sNum){
+		List<Site> sList=new ArrayList<Site>();
+		for (int i=0;i<sType.length;i++) {
+			if(sType[i]==null || sType[i].trim().equals("")){
+				
+				continue;
+			}
+			if(sRate[i]==null || sRate[i].trim().equals("")){
+				continue;
+			}
+			if(sNum[i]==null || sNum[i].trim().equals("")){
+				continue;
+			}
+			Site site=new Site();
+			site.setsId(sId[i]);
+			site.setsFlightPId(sFlightPId[i]);
+			site.setsType(sType[i]);
+			site.setsRate(Integer.parseInt(sRate[i]));
+			site.setsNum(Integer.parseInt(sNum[i]));
+			sList.add(site);
+		}
+		System.out.println("集合sList"+sList);
+		flightService.updateflight(flight,sList);
 		return "redirect:/admin/flight/list";
 	}
 	
-	//4.删除航班信息
+	//4.删除航班信息s
 	@RequestMapping("/delete")
-	public String toDelete(@RequestParam("id")String[] ids){
+	public String toDelete(@RequestParam(value="id",required=true)String[] ids){
 		flightService.deleteFlight(ids);
 		return "redirect:/admin/flight/list";
 		
@@ -63,12 +91,35 @@ public class FlightController extends BaseController{
 		
 	}
 	@RequestMapping("/save")
-	public String saveFlight(Flight flight,Model model){
-		flightService.saveFlight(flight);
+	public String saveFlight(Flight flight,Model model,String[] sType,String[] sRate,String[] sNum){
+		String id=UUID.randomUUID().toString();
+		List<Site> sList=new ArrayList<Site>();
+		for (int i=0;i<sType.length;i++) {
+			if(sType[i]==null || sType[i].trim().equals("")){
+				
+				continue;
+			}
+			if(sRate[i]==null || sRate[i].trim().equals("")){
+				continue;
+			}
+			if(sNum[i]==null || sNum[i].trim().equals("")){
+				continue;
+			}
+			Site site=new Site();
+			site.setsFlightPId(id);
+			site.setsType(sType[i]);
+			site.setsRate(Integer.parseInt(sRate[i]));
+			site.setsNum(Integer.parseInt(sNum[i]));
+			sList.add(site);
+			
+		}
+		flight.setId(id);
+		System.out.println(sList);
+		flightService.saveFlight(flight,sList);
 		return "redirect:/admin/flight/list";
 	}
 	
-	//6.航班信息的导出
+	
 	
 	
 
