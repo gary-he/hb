@@ -127,12 +127,12 @@
 
 
 <div class="eXtremeTable" style="position:absolute; height:400px;width:100%"  >
-<table id="ec_table" class="tableRegion"    >
+<table id="ec_table" class="tableRegion"  >
 	<thead>
 	<tr>
-		<td class="tableHeader" colspan="24" align="centre">票面信息</td>
-		<td class="tableHeader" colspan="4" align="centre">销售明细</td>
-		<td class="tableHeader" colspan="5" align="centre">备注信息</td>
+		<td  class="tableHeader" colspan="24" align="centre">票面信息</td>
+		<td  class="tableHeader" colspan="4" align="centre">销售明细</td>
+		<td  class="tableHeader" colspan="5" align="centre">备注信息</td>
 	</tr>
 	<tr>
 		<td class="tableHeader">序号</td>

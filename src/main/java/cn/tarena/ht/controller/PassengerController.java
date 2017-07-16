@@ -1,5 +1,6 @@
 package cn.tarena.ht.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,13 +40,21 @@ public class PassengerController {
 	@RequestMapping("/pay/insurance/{airlineType}")
 	public String insurance(@PathVariable Integer airlineType, Model model,HttpSession session) {
 		
+		//获取航班
 		Flight flight = flightService.findOne(airlineType);
+		
+		//航班耗时
+		Date pTakeTime = new Date(flight.getfOvertime().getTime()-flight.getfStarttime().getTime()-28800000);//东八区减少8小时
+		
+		//回显用户名
+		String remUserName=((User)session.getAttribute("userSession")).getUsername();
+		
+		//回显用户
+		model.addAttribute("remUserName",remUserName);
 		
 		model.addAttribute("flight", flight);
 		
-		String remUserName=((User)session.getAttribute("userSession")).getUsername();
-		
-		model.addAttribute("remUserName",remUserName);
+		model.addAttribute("pTakeTime",pTakeTime);
 
 		return "/hb/corptravel/pay/insurance";
 	}
@@ -68,7 +77,7 @@ public class PassengerController {
 
 		Date date = new Date();
 		//String pid = PNRUtils.getPNRUtils().getPNR();// 乘客Id
-		String pid = UUID.randomUUID().toString();// 乘客Id
+		String pid = PNRUtils.getPNR();// 乘客Id
 		String oid = UUID.randomUUID().toString();// 订单id
 		Order order = new Order();// 声明订单
 		String userId = ((User)session.getAttribute("userSession")).getUserId();//用户Id
@@ -84,7 +93,7 @@ public class PassengerController {
 		
 		//设置订单信息
 		order.setoId(oid);
-		order.setUserPId(userId);//要根据用户ID来查询order信息
+		order.setUserPId(pid);//要根据用户ID来查询order信息
 		order.setoPayment("0");
 		order.setoState("0");
 		order.setoCreatetime(date);
@@ -102,5 +111,32 @@ public class PassengerController {
 		
 		return "/hb/corptravel/pay/payment";
 	}
+
+	@RequestMapping("/pay/succeed")
+	public String payOrder(String orderId,Double totalPrice){
+		
+		System.out.println(orderId);
+		System.out.println(totalPrice);
+		//设置更改和支付时间
+		Date date=new Date();
+		
+		
+		passengerService.updateOrder(orderId,date);
+		
+		System.out.println(1);
+		
+		return "/hb/corptravel/pay/succeed";
+	}
+	
+	
+	@RequestMapping("/order/orderInfo")
+	public String orderList(){
+		
+		
+		return "/hb/corptravel/order/orderInfo";
+	}
+		
+	
+
 
 }

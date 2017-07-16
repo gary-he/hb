@@ -56,7 +56,7 @@
 	 	<!-- 配置shiro安全中心 -->
 	 	<property name="securityManager" ref="securityManager"></property>
 	 	<!-- 指定登录的地址，当用户没有登录时，默认跳转到此页面 -->
-	 	<property name="loginUrl" value="/index.jsp"></property>
+	 	<property name="loginUrl" value="/tologin"></property>
 	 	<!-- 过滤器链 -->
 	 	<property name="filterChainDefinitions">
 		 	<!-- 
@@ -71,7 +71,7 @@
 		 		/regist.action=anon
 		 		/staticfile/** = anon
 		 		<!-- /**匹配所有的请求和静态资源文件 -->
-		 		/** = authc
+		 		/pay/** = authc
 		 	</value>
 	 	</property>
 	 

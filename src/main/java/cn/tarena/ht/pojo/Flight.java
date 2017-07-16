@@ -173,5 +173,25 @@ public class Flight{
 	}
 	//2
 	
+	public Double getNoNullPrice(){
+		if(this.fPrice == null){
+			return 0.0;
+		}
+		return this.fPrice;
+	}
+	
+	public Double getNoNullCommission(){
+		if(this.fCommission == null){
+			return 0.0;
+		}
+		return this.fCommission;
+	}
 
+	public Double getNoNullTotal(){
+		if(this.fTotal == null){
+			return 0.0;
+		}
+		return this.fTotal;
+	}
+	
 }

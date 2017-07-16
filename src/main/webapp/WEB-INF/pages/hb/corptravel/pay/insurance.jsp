@@ -58,8 +58,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
             <!--<li role="separator" class="divider"></li>-->
           </ul>
         </li>
@@ -188,7 +188,7 @@
         </div>
         <div class="flight-info" style="float:left; margin-left:100px;">
             <img src="${ctx}/hb/img/a.png">
-            <span class="font12 gray-999">2h35m</span>
+            <span class="font12 gray-999"><fmt:formatDate value="${pTakeTime }" pattern="HH:mm"/></span>
             <img src="${ctx}/hb/img/b.png"><br/>
             <span class="text-center font12 gray-999 mar-left-10">${flight.fCompanyName}有限公司 ${flight.fCompany}</span><br/>
             <img src="${ctx}/hb/img/c.png" class="mar-left-10">
@@ -277,8 +277,8 @@
 
 
 <div class="text-center mar-top-10">
-  <input type="checkbox" name="choice" value="1">&nbsp;我已阅读并接受免责条款、费用扣除、退保等在内的重要事项，其中包括 <a href="">《网络电子客票协议》</a> <a href="">《航意险说明》</a> <a href="">《延误险说明》</a> <a href="">《保险经纪委托协议》</a><br/>
-  <input type="submit" value="提交订单" class="btn btn-danger mar-top-20" ;" > 
+  <input id="agree" type="checkbox" name="choice" value="1">&nbsp;我已阅读并接受免责条款、费用扣除、退保等在内的重要事项，其中包括 <a href="">《网络电子客票协议》</a> <a href="">《航意险说明》</a> <a href="">《延误险说明》</a> <a href="">《保险经纪委托协议》</a><br/>
+  <input id="submitOrder" type="submit" value="提交订单" class="btn btn-danger mar-top-20" disabled="disabled" > 
 </div>
 
 </form>
@@ -310,7 +310,19 @@
 
 </form>
 
-
+<script type="text/javascript">
+	$(function(){
+		$("#agree").click(function(){
+			if($("#agree").attr("checked")){
+				$("#agree").removeAttr("checked");
+				$("#submitOrder").attr("disabled","disabled");
+			}else{
+				$("#agree").attr("checked","checked");
+				$("#submitOrder").removeAttr("disabled");
+			}
+		});
+	})
+</script>
 <script type="text/javascript">
 
     $(function() {

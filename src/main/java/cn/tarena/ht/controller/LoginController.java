@@ -84,7 +84,7 @@ public class LoginController {
 			}
 			
 			//转跳到前台首页
-			return "redirect:/hb.action";
+			return "redirect:/search";
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 			//登录失败，输出信息到页面
