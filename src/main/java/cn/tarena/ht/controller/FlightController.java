@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.tarena.ht.pojo.Flight;
-import cn.tarena.ht.pojo.FlightSite;
+
 import cn.tarena.ht.pojo.Site;
 import cn.tarena.ht.service.FlightService;
 
