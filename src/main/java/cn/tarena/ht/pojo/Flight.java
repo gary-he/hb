@@ -6,7 +6,7 @@ import java.util.List;
 public class Flight{
 
 
-	private Integer id;			//主键
+	private String id;			//主键
 	private String fId;           //航班编号
 	private String fType;         //航程类型
 	private String fCompany;      //航空公司代码
@@ -26,10 +26,13 @@ public class Flight{
 	private Double fTotal;        //票面总价
 	private Integer fReserve;         //仓位数量
 	private Double fCommission;   //代理费
-	public Integer getId() {
+	
+	
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getfId() {
@@ -147,6 +150,7 @@ public class Flight{
 		this.fCommission = fCommission;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Flight [id=" + id + ", fId=" + fId + ", fType=" + fType + ", fCompany=" + fCompany + ", fCompanyName="
@@ -154,8 +158,10 @@ public class Flight{
 				+ ", fLocationName=" + fLocationName + ", fLoAirport=" + fLoAirport + ", fDeparture=" + fDeparture
 				+ ", fDepartureName=" + fDepartureName + ", fDeAirport=" + fDeAirport + ", fStarttime=" + fStarttime
 				+ ", fOvertime=" + fOvertime + ", fPrice=" + fPrice + ", fTax=" + fTax + ", fTotal=" + fTotal
-				+ ", fReserve=" + fReserve + ", fCommission=" + fCommission + "]";
+				+ ", fReserve=" + fReserve + ", fCommission=" + fCommission + ", siteList="  + ", sList="
+				+ sList + "]";
 	}
+
 
 	//1
 	private List<Site> sList;
@@ -167,5 +173,25 @@ public class Flight{
 	}
 	//2
 	
+	public Double getNoNullPrice(){
+		if(this.fPrice == null){
+			return 0.0;
+		}
+		return this.fPrice;
+	}
+	
+	public Double getNoNullCommission(){
+		if(this.fCommission == null){
+			return 0.0;
+		}
+		return this.fCommission;
+	}
 
+	public Double getNoNullTotal(){
+		if(this.fTotal == null){
+			return 0.0;
+		}
+		return this.fTotal;
+	}
+	
 }

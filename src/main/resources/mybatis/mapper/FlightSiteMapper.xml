@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tarena.ht.mapper.FlightSiteMapper">
+	<!-- 查询座位信息 -->
+	<select id="findFlightSiteList" resultType="FlightSite">
+	select * from site_p
+	</select>
+	
+	<!-- 根据航班ID查询座位 -->
+	<select id="findListBySFlightPId" resultType="Site">
+		select * from site_p where s_flight_p_id=#{id}
+	</select>
+	
+	<!-- 新增仓位信息 -->
+	<insert id="saveFlightSite">
+		insert into site_p (s_flight_p_id,s_type,s_rate,s_num)
+		values
+		(
+			#{sFlightPId}, 
+			#{sType},
+			#{sRate},
+			#{sNum}
+		)
+	</insert>
+	
+	<!-- 修改航班仓位信息 -->
+	<update id="updateSite">
+		update site_p set
+		s_flight_p_id=#{sFlightPId},
+		s_type=#{sType},
+		s_rate=#{sRate},
+		s_num=#{sNum}
+		where s_id=#{sId}
+	</update>
+	
+	<!--关联删除仓位信息  -->
+	<delete id="deleteFlightSite">
+		delete from site_p where s_flight_p_id in(
+			<foreach collection="array" item="sFlightPId" separator=",">
+				#{sFlightPId}
+			</foreach>
+		)
+	</delete>
+	
+</mapper>

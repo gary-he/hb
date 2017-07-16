@@ -24,4 +24,6 @@ public interface PassengerService {
 
 	public Flight getFlightByOrderId(String orderId);
 
+	public Flight findOne(String airlineType);
+
 }

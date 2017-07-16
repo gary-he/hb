@@ -62,6 +62,12 @@ public class PassengerServiceImpl implements PassengerService {
 		return flightMapper.getFlightByOrderId(orderId);
 	}
 
+	@Override
+	public Flight findOne(String airlineType) {
+		
+		return flightMapper.findOne(airlineType);
+	}
+
 	
 
 	

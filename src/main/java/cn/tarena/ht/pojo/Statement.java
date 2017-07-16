@@ -75,15 +75,19 @@ public class Statement {
 		this.flight = flight;
 	}
 	public Double getCommissionFreePercent() {
-		if(flight.getfPrice() == null){
-			return 0.0;
-		}
+//		if(flight.getfPrice() == null){
+//			return 0.0;
+//		}
+//		
+//		if(flight.getfCommission() == null){
+//			return 0.0;
+//		}
 		
-		if(flight.getfCommission() == null){
+		Double price = flight.getNoNullPrice();
+		Double commission = flight.getNoNullCommission();
+		if(price == 0.0 || commission == 0.0){
 			return 0.0;
 		}
-		Double price = flight.getfPrice();
-		Double commission = flight.getfCommission();
 		double percent = commission/price;    // 采购率=代理费/票面价
 		
 		BigDecimal  b = new BigDecimal(percent); 
@@ -98,15 +102,15 @@ public class Statement {
 	
 	public Double getProcurement() {
 		
-		if(flight.getfTotal() == null){
-			return 0.0;
-		}
-		if(flight.getfCommission()==null){
-			return 0.0;
-		}
+//		if(flight.getfTotal() == null){
+//			return 0.0;
+//		}
+//		if(flight.getfCommission()==null){
+//			return 0.0;
+//		}
 		
-		double total = flight.getfTotal();
-		double commission = flight.getfCommission();
+		double total = flight.getNoNullTotal();
+		double commission = flight.getNoNullCommission();
 		return total-commission;
 	}
 	public void setProcurement(Double procurement) {
@@ -116,7 +120,7 @@ public class Statement {
 	
 	
 	public Double getProfit() {
-		if(flight.getfTotal()==null){
+		if(flight.getNoNullTotal()==null){
 			return 0.0;
 		}
 		double total = flight.getfTotal();
@@ -157,8 +161,8 @@ public class Statement {
 	 */
 	public String [] toExcelString(){
 		
-		String [] date = {getProductType(),order.getoState(),getAbroadInland(),
-				flight.getfType(),tickerType,flight.getfNumber().toString(),getHaulierNomber(),
+		String [] date = {productType,order.getoState(),abroadInland,
+				flight.getfType(),tickerType,flight.getfNumber().toString(),haulierNomber,
 				passenger.getpType(),passenger.getpId(),passenger.getpName(),
 				flight.getfCompany(),flight.getfCompanyName(),flight.getfLocation()
 				,flight.getfDeparture(),flight.getfLocationName(),flight.getfDepartureName()

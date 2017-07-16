@@ -33,12 +33,11 @@ public class PassengerController {
 	FlightService flightService;
 	@Autowired
 	OrderService orderService;
-	@Autowired
-	FlightMapper flightMapper;
+
 
 	// 订票跳转至保险确认页面
 	@RequestMapping("/pay/insurance/{airlineType}")
-	public String insurance(@PathVariable Integer airlineType, Model model,HttpSession session) {
+	public String insurance(@PathVariable String airlineType, Model model,HttpSession session) {
 		
 		//获取航班
 		Flight flight = flightService.findOne(airlineType);
@@ -62,7 +61,7 @@ public class PassengerController {
 	// 订票 - 支付确认页面
 	//@SuppressWarnings("null")
 	@RequestMapping("/pay/payment")
-	public String payment(Integer airlineType, Model model, Passenger pa
+	public String payment(String airlineType, Model model, Passenger pa
 			, HttpSession session) {
 		
 		System.out.println(pa);
@@ -81,14 +80,13 @@ public class PassengerController {
 		Date date = new Date();
 		//String pid = PNRUtils.getPNRUtils().getPNR();// 乘客Id
 		String pid = PNRUtils.getPNR();// 乘客Id
-		System.out.println(pid);
 		String oid = UUID.randomUUID().toString();// 订单id
 		Order order = new Order();// 声明订单
 		String userId = ((User)session.getAttribute("userSession")).getUserId();//用户Id
 		String remUserName=((User)session.getAttribute("userSession")).getUsername();
 		
 		//获取航班信息
-		Flight flight=flightMapper.findOne(airlineType);
+		Flight flight=passengerService.findOne(airlineType);
 		
 		//设置乘客信息
 		pa.setpId(pid);

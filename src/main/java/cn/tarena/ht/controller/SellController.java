@@ -116,7 +116,7 @@ public class SellController extends BaseController{
 		
 	}
 	
-	@RequestMapping("/download/POIExcel")
+	@RequestMapping("/download/POIExcelPOIExcel")
 	public void download2(String location,String departure,String passengerName,String PNR,
 			String Airlines,String ticketState,String ticketTime1,String ticketTime2,String payTime1,String payTime2,HttpServletResponse response){
 		
@@ -139,7 +139,7 @@ public class SellController extends BaseController{
 		
 	}
 	
-	@RequestMapping("/download/XSSFExcel")
+	@RequestMapping("/download/POIExcel")
 	public void download3(String location,String departure,String passengerName,String PNR,
 			String Airlines,String ticketState,String ticketTime1,String ticketTime2,String payTime1,String payTime2,HttpServletResponse response,HttpServletRequest request) throws Exception{
 		

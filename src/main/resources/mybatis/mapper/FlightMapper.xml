@@ -6,11 +6,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 封装成主对象 -->
 	<resultMap type="Flight" id="flightRM" autoMapping="true">
 		<id column="id" property="id" />
+		<!-- 封装座位信息 -->
+		<collection property="sList" ofType="Site">
+			<id column="s_id" property="sId"/>
+			<result column="s_flight_p_id" property="sFlightPId"/>
+			<result column="s_type" property="sType"/>
+			<result column="s_rate" property="sRate"/>
+			<result column="s_num" property="sNum"/>
+		</collection>
 	</resultMap>
 
 	<!-- 查找所有航班信息 -->
 	<select id="findAll" resultMap="flightRM">
-		select * from flight_p
+		select * from flight_p p
+		 left  join 
+		(select * from site_p)s
+		on s.s_flight_p_id=p.id
 	</select>
 	
 	
@@ -23,8 +34,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 根据id查询航班详情信息 -->
 	<select id="findOne" resultMap="flightRM">
-		select * from flight_p where
-		id=#{id}
+	select * from 
+		(select * from flight_p p
+		 left  join 
+		(select * from site_p)s
+		on s.s_flight_p_id=p.id
+		)f
+		where id=#{id}
 	</select>
 
 	<!-- 根据id修改航班信息 -->

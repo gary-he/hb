@@ -18,8 +18,6 @@
 	<li id="new"><a href="#" onclick="formSubmit('tocreate','_self');this.blur();">新增</a></li>
 	<li id="update"><a href="#" onclick="formSubmit('toupdate','_self');this.blur();">修改</a></li>
 	<li id="delete"><a href="#" onclick="formSubmit('delete','_self');this.blur();">删除</a></li>
-	<li id="new"><a href="#" onclick="formSubmit('import','_self');this.blur();">导入</a></li>
-	<li id="new"><a href="#" onclick="formSubmit('export','_self');this.blur();">导出</a></li>
 </ul>
   </div>
 </div>
@@ -47,10 +45,7 @@
 		<td class="tableHeader">目的地代码</td>
 		<td class="tableHeader">起飞时间</td>
 		<td class="tableHeader">到达时间</td>
-		<td class="tableHeader">票面价</td>
-		<td class="tableHeader">税费</td>
-		<td class="tableHeader">仓位折扣</td>
-		<td class="tableHeader">代理费</td>
+		
 	</tr>
 	</thead>
 	<tbody class="tableBody" >
@@ -66,10 +61,7 @@
 		<td>${f.fDeparture}</td> 
 		<td><fmt:formatDate value="${f.fOvertime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		<td><fmt:formatDate value="${f.fStarttime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-		<td>${f.fPrice}</td>
-		<td>${f.fTax}</td>
-		<td>${f.fRank}</td>
-		<td>${f.fCommission}</td>
+		
 	</tr>
 	</c:forEach>
 	
