@@ -110,13 +110,16 @@
   <h3 class="mar-bottom-20" style=" display:block; float:left;">乘机人</h3>
   <a href="" style=" display:block;float:left; margin-left:310px; line-height:70px; ">历史乘机人</a>
 </div>
+	<div style="overflow:hidden;">
+  		<span type="hidden" style="color:#F00;display:block;float:left; margin-left:5px; line-height:30px;">${msg }</span>
+	</div>
   <div>
-     <input name="pName" type="text" class="form-control input-sm w150" style=" display: inline-block;" placeholder="姓名，与登机所持证件中的姓名一致">
-     <select name="pType" class="form-control input-sm w150" style=" display: inline-block;">
+  		<input name="pName" type="text" class="form-control input-sm w200" style=" display: inline-block;" placeholder="姓名，与登机所持证件一致"/>
+     <select name="pType" class="form-control input-sm w120" style=" display: inline-block;">
             <option value="成人" selected="selected">成人</option>
             <option value="儿童">儿童（0-12岁）</option>
      </select>
-     <select name="pSex" class="form-control input-sm w150" style=" display: inline-block;">
+     <select name="pSex" class="form-control input-sm w120" style=" display: inline-block;">
             <option value="男" selected="selected">男</option>
             <option value="女">女</option>
      </select>
@@ -124,6 +127,7 @@
   <div class="mar-top-10">
      <select name="select" class="form-control input-sm w150" style=" display: inline-block;">
             <option value="身份证" selected="selected">身份证</option>
+            <option value="港澳通行证" ">港澳台通行证</option>
      </select>
      <input name="pIdentily" type="text" class="form-control input-sm w300" style=" display: inline-block;" placeholder="证件号码">
   </div>
@@ -206,7 +210,7 @@
 <div class="instruction">
 <table class="table table-bordered" style="height:150px;">
   <tr>
-    <td>成人票</td>
+    <td>成人票/儿童票</td>
     <td>退票扣费</td>
     <td>改期加收手续费</td>
     <td>签转</td>

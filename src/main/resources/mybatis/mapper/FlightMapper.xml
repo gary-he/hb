@@ -12,6 +12,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findAll" resultMap="flightRM">
 		select * from flight_p
 	</select>
+	
+	
+	<!-- 根据订单Id查询航班 -->
+	<select id="getFlightByOrderId" resultMap="flightRM">
+			select * from flight_p where id=
+			(select p_f_id from passenger where p_order_id=#{orderId})
+	</select>
+	
 
 	<!-- 根据id查询航班详情信息 -->
 	<select id="findOne" resultMap="flightRM">

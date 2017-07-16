@@ -13,4 +13,6 @@ public interface OrderMapper {
 
 	public void updateOrder(@Param("orderId")String orderId,@Param("date")Date date,@Param("state") String state);
 
+	public Order getOrderById(String orderId);
+
 }

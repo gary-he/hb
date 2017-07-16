@@ -14,9 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="o_paytime" property="oPaytime"/>
 	</resultMap>
 	
-	
-	
-	
+	<!-- 添加订单 -->	
 	<insert id="add">
 	
 		insert into order_p values(
@@ -24,17 +22,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{userPId},
 		#{oPayment},
 		#{oState},
-		#{oCreatetime,jdbcType=DATE},
-		#{oUpdatetime,jdbcType=DATE},
-		#{oPaytime,jdbcType=DATE}
+		#{oCreatetime},
+		#{oUpdatetime},
+		#{oPaytime}
 		)
 	
 	</insert>
 	
-	
+	<!-- 根据订单Id更新订单详情 -->
 	<update id="updateOrder">
 		update order_p set o_payment=#{state},o_state=#{state} where o_id=#{orderId}
 	</update>
+	
+	<!-- 根据订单Id获得订单详情 -->
+	<select id="getOrderById" resultMap="OrderRM">
+		select * from order_p where o_id=#{orderId}
+		
+	</select>
 	
 	
 	

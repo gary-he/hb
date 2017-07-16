@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}/staticfile"/>
 <head>
 <meta charset="utf-8">
@@ -28,6 +29,7 @@
 <script type="text/javascript" src="${ctx}/hb/js/layer/layer.js"></script>
 <script>
 $(document).ready(function() {	
+	
 	$(".qiye01").click(function(){  //查看企业
 	   layer.open({
        type: 1,
@@ -104,7 +106,7 @@ $(document).ready(function() {
     </div>
     <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${remUserName } <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../系统管理/修改密码.html">修改密码</a></li>
             <li><a href="#">退出</a></li>
@@ -113,10 +115,10 @@ $(document).ready(function() {
       </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 400-111-8989<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
+            <li><a href="#">（或）400-111-8989</a></li>
             <!--<li role="separator" class="divider"></li>-->
           </ul>
         </li>
@@ -182,11 +184,18 @@ $(document).ready(function() {
         <th style="width:15%">舱位</th>
       </tr>
       <tr class="">
-        <td class="font16"><strong class="blue-0093dd">三亚</strong> <span class="font12">至</span> <strong class="blue-0093dd">哈尔滨</strong></td>
-        <td><p>2015-12-20 <span>11:45 </span>凤凰国际机场</p></td>
-        <td><p>2015-12-20 <span>14:25 </span>太平国际机场</p></td>
-        <td>（国航）HU7360</td>
-        <td>经济舱</td>
+      	
+        <td class="font16"><strong class="blue-0093dd">${flight.fLocationName}</strong> <span class="font12">至</span> <strong class="blue-0093dd">${flight.fDepartureName}</strong></td>
+        <td><p><fmt:formatDate value="${flight.fStarttime}" pattern="yyyy-MM-dd HH:mm"/><span></span>${flight.fLoAirport}</p></td>
+        <td><p><fmt:formatDate value="${flight.fOvertime}" pattern="yyyy-MM-dd HH:mm"/><span></span>${flight.fDeAirport}</p></td>
+        <td>（${ flight.fCompanyName}）${ flight.fId}</td>
+        <td>
+		<c:if test="${flight.fRank=='S' }">经济舱</c:if> 
+        <c:if test="${flight.fRank=='M' }">经济舱</c:if> 
+        <c:if test="${flight.fRank=='Y' }">经济舱</c:if> 
+        <c:if test="${flight.fRank=='F' }">头等舱</c:if> 
+        <c:if test="${flight.fRank=='C' }">商务舱</c:if>
+        </td>
       </tr>
     </table>
         <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
@@ -197,10 +206,14 @@ $(document).ready(function() {
         <th class=" bg-gray-f5 text-right">结算总价</th>
         </tr>
       <tr class="">
-        <td>16-01-15 09:19</td>
-        <td>1601151023024030101001106</td>
-        <td>已出票</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">1234.00</td>
+        <td><fmt:formatDate value="${orderInfo.oCreatetime}" pattern="yyyy-MM-dd HH:mm"/></td>
+        <td>${orderInfo.oId }</td>
+        <td>
+        <c:if test="${orderInfo.oState=='0' }">未付款</c:if> 
+        <c:if test="${orderInfo.oState=='1' }">已出票</c:if> 
+        <c:if test="${orderInfo.oState=='2' }">支付失败</c:if> 
+        </td>
+        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">${totalPrice }</td>
       </tr>
       
     </table>
@@ -232,49 +245,30 @@ $(document).ready(function() {
     <h3>政策备注</h3>
     <div class="lh25 pad-10 mar-bottom-20" style="background-color:#f4f2f2;">签转换开跨月改期收回代理费</div>
    
-    <h3>乘客信息<small class="mar-left-10">联系人：孙中山（13800005555）</small></h3>
+    <h3>乘客信息<small class="mar-left-10"></small></h3>
     <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
       <tr class=" bg-gray-f5">
         <th>乘客姓名</th>
         <th>证件类型</th>
         <th>证件号码</th>
         <th>手机号码</th>
-        <th>票号</th>
+        
         <th>票面价</th>
         <th>机建燃油</th>
         <th class="text-right">结算价</th>
       </tr>
       <tr class="">
-        <td>吴光团</td>
+        <td>${passenger.pName }</td>
         <td>身份证</td>
-        <td>350425197011110557</td>
-        <td>18381668542</td>
-        <td>0123456</td>
-        <td>850</td>
-        <td>50/0</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">280.00</td>
+        <td>${passenger.pIdentily }</td>
+        <td>${passenger.pPhone }</td>
+        
+        <td>${flight.fPrice }</td>
+        <td>${flight.fTax }/0</td>
+        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">${flight.fTotal }</td>
       </tr>
-      <tr class="">
-        <td>吴光团（儿）</td>
-        <td>身份证</td>
-        <td>350425197011110557</td>
-        <td>18381668542</td>
-        <td>0123456</td>
-        <td>850</td>
-        <td>50/0</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">1200.00</td>
-      </tr>
-      <tr class="">
-        <td>吴光团（婴）</td>
-        <td>身份证</td>
-        <td>350425197011110557</td>
-        <td>18381668542</td>
-        <td>0123456</td>
-        <td>850</td>
-        <td>50/0</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">1250.00</td>
-      </tr>
-    </table>
+      </table>
+      
     
 <h3>保险信息</h3>
         <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
@@ -287,43 +281,15 @@ $(document).ready(function() {
         <th class="text-right">销售价</th>
         </tr>
       <tr class="">
-        <td>吴光团</td>
+        <td>${passenger.pName }</td>
         <td>PICC 航意险 A款</td>
         <td>1份</td>
         <td>605137813164008</td>
         <td>出保成功</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">40.00</td>
+        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">30.00</td>
         </tr>
     </table>    
-    <h3>支付信息</h3>
-    <table border="0" cellspacing="0" cellpadding="0" class="table  font12  v-align-top bor-bottom-solid-1" >
-      <tr class="bg-gray-f5">
-        <th>方式</th>
-        <th>时间</th>
-        <th>交易号</th>
-        <th>付款单位</th>
-        <th>付款账号</th>
-        <th>收款单位</th>
-        <th>收款账号</th>
-        <th>金额</th>
-        <th>收支</th>
-        <th>状态</th>
-        <th>业务类型</th>
-      </tr>
-      <tr class="">
-        <td>预存款</td>
-        <td>16-01-15 11:09</td>
-        <td>TD1601151110166104919</td>
-        <td><abbr title="四川方法数码科技公司">方法数码</abbr></td>
-        <td>111122223333444</td>
-        <td><abbr title="四川龙翔国际旅行社">四川龙翔</abbr></td>
-        <td>111122223333444</td>
-        <td>820.00</td>
-        <td>支</td>
-        <td>已支</td>
-        <td>机票款</td>
-      </tr>
-    </table>
+    
 <!--<h3>保险信息</h3>
         <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
       <tr class="bg-gray-f5">

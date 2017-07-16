@@ -6,8 +6,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.tarena.ht.mapper.FlightMapper;
 import cn.tarena.ht.mapper.OrderMapper;
 import cn.tarena.ht.mapper.PassengerMapper;
+import cn.tarena.ht.pojo.Flight;
 import cn.tarena.ht.pojo.Order;
 import cn.tarena.ht.pojo.Passenger;
 
@@ -18,6 +20,9 @@ public class PassengerServiceImpl implements PassengerService {
 	
 	@Autowired
 	OrderMapper orderMapper;
+	
+	@Autowired
+	FlightMapper flightMapper;
 	
 	@Override
 	public void add(Passenger passenger, Order order) {
@@ -37,6 +42,24 @@ public class PassengerServiceImpl implements PassengerService {
 		
 		orderMapper.updateOrder(orderId,date,state);
 		
+	}
+
+	@Override
+	public Order getOrderById(String orderId) {
+		
+		return orderMapper.getOrderById(orderId);
+	}
+
+	@Override
+	public Passenger getPassengerByOrderId(String orderId) {
+		
+		return passengerMapper.getPassengerByOrderId(orderId);
+	}
+
+	@Override
+	public Flight getFlightByOrderId(String orderId) {
+		
+		return flightMapper.getFlightByOrderId(orderId);
 	}
 
 	

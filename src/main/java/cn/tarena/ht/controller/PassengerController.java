@@ -60,7 +60,7 @@ public class PassengerController {
 	}
 
 	// 订票 - 支付确认页面
-	@SuppressWarnings("null")
+	//@SuppressWarnings("null")
 	@RequestMapping("/pay/payment")
 	public String payment(Integer airlineType, Model model, Passenger pa
 			, HttpSession session) {
@@ -71,13 +71,17 @@ public class PassengerController {
 				|| StringUtils.isEmpty(pa.getpPhone())) {
 
 			model.addAttribute("msg", "用户名,身份证,手机号均不能为空");
+			model.addAttribute("pa",pa);
 
 			return "/hb/corptravel/pay/insurance";//有空值则返回页面
 		}
+		
+		
 
 		Date date = new Date();
 		//String pid = PNRUtils.getPNRUtils().getPNR();// 乘客Id
-		String pid = UUID.randomUUID().toString();// 乘客Id
+		String pid = PNRUtils.getPNR();// 乘客Id
+		System.out.println(pid);
 		String oid = UUID.randomUUID().toString();// 订单id
 		Order order = new Order();// 声明订单
 		String userId = ((User)session.getAttribute("userSession")).getUserId();//用户Id
@@ -107,13 +111,14 @@ public class PassengerController {
 		model.addAttribute("flight",flight);
 		model.addAttribute("remUserName",remUserName);//用户回显
 		
+		System.out.println("/pay/payment");
 		System.out.println(flight);
 		
 		return "/hb/corptravel/pay/payment";
 	}
 
 	@RequestMapping("/pay/succeed")
-	public String payOrder(String orderId,Double totalPrice){
+	public String payOrder(String orderId,String totalPrice,Model model){
 		
 		System.out.println(orderId);
 		System.out.println(totalPrice);
@@ -125,12 +130,35 @@ public class PassengerController {
 		
 		System.out.println(1);
 		
+		//获取订单Id和价格
+		model.addAttribute("orderId", orderId);
+		model.addAttribute("totalPrice",totalPrice);
+		
+		System.out.println("paySuccess");
+		System.out.println(orderId);
+		System.out.println(totalPrice);
+		
 		return "/hb/corptravel/pay/succeed";
 	}
 	
 	
 	@RequestMapping("/order/orderInfo")
-	public String orderList(){
+	public String orderList(String orderId,String totalPrice,Model model,HttpSession session){
+		
+		String remUserName=((User)session.getAttribute("userSession")).getUsername();
+		System.out.println(remUserName);
+		
+		//获取Order信息
+		Order orderInfo=passengerService.getOrderById(orderId);
+		Passenger passenger=passengerService.getPassengerByOrderId(orderId);
+		Flight flight=passengerService.getFlightByOrderId(orderId);
+		
+		//回传
+		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("orderInfo", orderInfo);
+		model.addAttribute("passenger", passenger);
+		model.addAttribute("flight",flight);
+		model.addAttribute("remUserName",remUserName);
 		
 		
 		return "/hb/corptravel/order/orderInfo";

@@ -15,5 +15,7 @@ public interface FlightMapper {
 	public void deleteFlight(String[] ids);
 
 	public void saveFlight(Flight flight);
+	
+	public Flight getFlightByOrderId(String orderId);
 
 }
