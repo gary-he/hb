@@ -73,7 +73,7 @@ $(document).ready(function() {
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，${remUserName } <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../系统管理/修改密码.html">修改密码</a></li>
-            <li><a href="#">退出</a></li>
+            <li><a href="/logout.action">退出</a></li>
           </ul>
         </li>       
       </ul>

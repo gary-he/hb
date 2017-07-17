@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据订单Id更新订单详情 -->
 	<update id="updateOrder">
 
-		update order_p set o_payment=#{state} where o_id=#{orderId}
+		update order_p set o_payment=#{state},o_state=#{state},o_updatetime=#{date},o_paytime=#{date} where o_id=#{orderId}
 
 	</update>
 

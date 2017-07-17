@@ -72,6 +72,7 @@
 		 		/staticfile/** = anon
 		 		<!-- /**匹配所有的请求和静态资源文件 -->
 		 		/pay/** = authc
+		 		/order/** = authc
 		 	</value>
 	 	</property>
 	 
