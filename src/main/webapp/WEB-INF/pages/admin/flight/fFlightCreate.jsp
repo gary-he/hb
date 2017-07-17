@@ -35,97 +35,46 @@
 	
 		<tr class="odd">
 			<td>航班编号:</td>
-			<td><input type="text" name="fId" value="${flight.fId}"/></td>
+			<td><input type="text" name="fId"/></td>
 			<td>航程类型:</td>
-			<!-- <select id="fType">
-			<option value="">单程</option>
-			<option value="">往返</option>
-			</select> -->
-			<td><input type="text" name="fType" value="${flight.fType}"/></td>
+			<td><input type="text" name="fType"/></td>
 		</tr>
 		
 		<tr class="odd">
 			<td>航空公司代码:</td>
-			<td><input type="text" name="fCompany" value="${flight.fCompany}"/></td>
+			<td><input type="text" name="fCompany"/></td>
 			<td>航空公司:</td>
-			<!-- <td><select id="dropAirlines" name="Airlines" class="form-control">
-                            <option value="" >全部航司</option>
-                                <option value="3U">3U-川航</option>
-                                <option value="8C">8C-东星</option>
-                                <option value="8L">8L-祥鹏</option>
-                                <option value="9C">9C-春秋</option>
-                                <option value="BK">BK-奥凯</option>
-                                <option value="CA">CA-国航</option>
-                                <option value="CN">CN-新华</option>
-                                <option value="CZ">CZ-南航</option>
-                                <option value="DR">DR-瑞丽航空</option>
-                                <option value="DZ">DZ-东海</option>
-                                <option value="EU">EU-成都(鹰联)</option>
-                                <option value="FM">FM-上航</option>
-                                <option value="FU">FU-福州航空</option>
-                                <option value="G5">G5-华夏</option>
-                                <option value="GJ">GJ-长龙航空</option>
-                                <option value="GS">GS-天津</option>
-                                <option value="GX">GX-广西航空</option>
-                                <option value="GY">GY-多彩贵州航空</option>
-                                <option value="HO">HO-吉祥</option>
-                                <option value="HU">HU-海航</option>
-                                <option value="JD">JD-首都(金鹿)</option>
-                                <option value="JR">JR-幸福</option>
-                                <option value="KN">KN-联航</option>
-                                <option value="KY">KY-昆航</option>
-                                <option value="MF">MF-厦航</option>
-                                <option value="MU">MU-东航</option>
-                                <option value="NS">NS-河北</option>
-                                <option value="PN">PN-西部</option>
-                                <option value="QW">QW-青岛</option>
-                                <option value="SC">SC-山东</option>
-                                <option value="TV">TV-西藏</option>
-                                <option value="UQ">UQ-乌鲁木齐航空</option>
-                                <option value="VD">VD-鲲鹏</option>
-                                <option value="Y8">Y8-扬子江快运航空</option>
-                                <option value="YI">YI-英安</option>
-                                <option value="ZH">ZH-深航</option>
-                        </select></td> -->
-			<td><input type="text" name="fCompanyName" value="${flight.fCompanyName}"/></td> 
+			<td><input type="text" name="fCompanyName"/></td> 
 		</tr>
 		
-		<tr class="odd">
-			<td>航司票证:</td>
-			<td><input type="text" name="fNumber" value="${flight.fNumber}"/></td>
-			<td>仓位代码:</td>
-			<td><input type="text" name="fRank" value="${flight.fRank}"/></td>
-		</tr>
 		
 		<tr class="odd">
 			<td>始发地代码:</td>
-			<td><input type="text" name="fLocation" value="${flight.fLocation}"/></td>
+			<td><input type="text" name="fLocation" /></td>
 			<td>始发地名称:</td>
-			<td><input type="text" name="fLocationName" value="${flight.fLocationName}"/></td>
+			<td><input type="text" name="fLocationName"/></td>
 			
 		</tr>
 		
 		<tr class="odd">
 		    <td>始发地机场:</td>
-		    <td><input type="text" name="fLoAirport" value="${flight.fLoAirport}"/></td>
+		    <td><input type="text" name="fLoAirport" /></td>
 			<td>目的地代码:</td>
-			<td><input type="text" name="fDeparture" value="${flight.fDeparture}"/></td>
+			<td><input type="text" name="fDeparture" /></td>
 		</tr>
 		
 		<tr class="odd">	
 			<td>目的地名称:</td>
-			<td><input type="text" name="fDepartureName" value="${flight.fDepartureName}"/></td>
+			<td><input type="text" name="fDepartureName"/></td>
 			<td>目的地机场:</td>
-			<td><input type="text" name="fDeAirport" value="${flight.fDeAirport}"/></td>
+			<td><input type="text" name="fDeAirport" /></td>
 		</tr>
 		
 		<tr class="odd">
 			<td>代理费:</td>
-			<td><input type="text" name="fCommission" value="${flight.fCommission}"/></td>
-			<td>起飞日期:</td>
-			<td><input type="text" name="fStartDate" value="<fmt:formatDate value="${flight.fStartDate}"
-			 pattern="yyyy-MM-dd"/>" />
-			 </td>
+			<td><input type="text" name="fCommission" /></td>
+			<td>税费:</td>
+			<td><input type="text" name="fTax" value="50"/></td>
 		</tr>
 		
 		<tr class="odd">
@@ -133,29 +82,33 @@
 			<td><input type="text" name="fStarttime" value="<fmt:formatDate value="${flight.fStarttime}"
 			 pattern="HH:mm:ss"/>" />
 			 </td>
-			
 			<td>到达时间:</td>
 			<td><input type="text" name="fOvertime" value="<fmt:formatDate value="${flight.fOvertime}" 
 			pattern="HH:mm:ss"/>"/>
 			</td>
-			
 		</tr>
 		
 		<tr class="odd">
+			<td>航司票证:</td>
+			<td><input type="text" name="fNumber" /></td>
 			<td>票面价:</td>
-			<td><input type="text" name="fPrice" value="${flight.fPrice}"/></td>
-			<td>税费:</td>
-			<td><input type="text" name="fTax" value="50"/></td>
-		</tr>	
-		
-		<tr class="odd">
+			<td><input type="text" name="fPrice" /></td>
 			<td>票面总价:</td>
-			<td><input type="text" name="fTotal" value="${flight.fPrice}"/></td>
-			<td>仓位数量:</td>
-			<td><input type="text" name="fReserve" value="${flight.fReserve}"/></td>
-			
+			<td><input type="text" name="fTotal" /></td>
 		</tr>
-		
+
+			
+		<!-- 仓位信息 -->
+		<c:forEach begin="0" end="3" step="1" >
+			<tr>
+				<td>仓位类型</td>
+				<td><input type="text" name="sType"></td>
+				<td>票率</td> 
+				<td><input type="text" name="sRate"></td>
+				<td>仓位数量</td>
+				<td><input type="text" name="sNum"></td> 
+			</tr>
+		</c:forEach>
 	</table>
 </div>
  

@@ -66,7 +66,16 @@ $(document).ready(function() {
 <!-- 支付提示 -->
 <div class="tishibox">
   <p class="title">支付已成功!</p>
-   <p>您可以继续操作：<a href="../order/orderInfo">[查看我的订单]</a> <a href="../search">[返回首页]</a> </p>
+  
+  <!-- 传递订单Id &价格 -->
+  <form method="post" action="../order/orderInfo">
+  <input type="hidden" name="orderId" value="${orderId }">
+  <input type="hidden" name="totalPrice" value="${totalPrice }">
+  <p>您可以继续操作：<input  type="submit" value="[查看我的订单]"/>
+   </p></form>
+   
+   <!-- 结束  传递订单Id &价格 -->
+   
   <div class="img_fudong"> <a href="#"><img src="${ctx}/hb/img/chenggong2.gif" width="50" height="50" border="0" /></a></div>
   <div class="clearfix"></div>
 </div>
@@ -74,8 +83,9 @@ $(document).ready(function() {
 
 <div class="clearfix"></div>
 <div class="text-center mar-bottom-10">
-  <input type="button" value="返回" class="btn btn-default " onclick="javascript: history.go(-1);" > 
-</div>
+	<a href="../search">[返回首页]</a>
+<!--   <input type="button" value="返回" class="btn btn-default " onclick="javascript: history.go(-1);" > 
+ --></div>
 
 </div>
 

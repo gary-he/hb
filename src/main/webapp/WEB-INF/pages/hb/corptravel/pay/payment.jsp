@@ -298,9 +298,9 @@ $(document).ready(function() {
 <form action="/pay/succeed" method="post">
 <div class="clearfix"></div>
 <div class="text-center mar-bottom-10">
-	<input type="hidden" name="orderId" value=" ${order.oId}">
-	<input type="hidden" name="totalPrice" value=" ${flight.fTotal+30}">
-  <input type="submit" value="立即支付" class="btn btn-danger" > 
+	<input type="hidden" name="orderId" value="${order.oId}"/>
+	<input type="hidden" name="totalPrice" value="${flight.fTotal+30}"/>
+  <input type="submit" value="立即支付" class="btn btn-danger" /> 
 </div>
 
 </div>

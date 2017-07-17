@@ -41,4 +41,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<!-- 根据订单Id查询乘客 -->
+	<select id="getPassengerByOrderId" resultMap="PassengerRM">
+			select * from passenger where p_order_id=#{orderId}
+			
+	</select>
+	
+	
 </mapper>

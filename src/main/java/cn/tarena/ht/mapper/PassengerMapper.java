@@ -1,5 +1,6 @@
 package cn.tarena.ht.mapper;
 
+import cn.tarena.ht.pojo.Flight;
 import cn.tarena.ht.pojo.Passenger;
 
 public interface PassengerMapper {
@@ -8,5 +9,7 @@ public interface PassengerMapper {
 	 * @param passenger
 	 */
 	public void add(Passenger passenger);
+
+	public Passenger getPassengerByOrderId(String orderId);
 
 }

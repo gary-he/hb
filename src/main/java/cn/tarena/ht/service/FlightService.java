@@ -4,16 +4,20 @@ import java.util.List;
 
 import cn.tarena.ht.pojo.Flight;
 
+import cn.tarena.ht.pojo.Site;
+
 public interface FlightService {
 
 	List<Flight> findAll();
 
-	Flight findOne(Integer id);
+	Flight findOne(String id);
 
-	void updateflight(Flight flight);
+	void updateflight(Flight flight, List<Site> sList);
 
 	void deleteFlight(String[] ids);
 
-	void saveFlight(Flight flight);
+	void saveFlight(Flight flight, List<Site> sList);
+
+	List<Site> findSiteById(String id);
 
 }
