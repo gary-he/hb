@@ -81,7 +81,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class=" " href="差旅报告/汇总.html" ><img src="${ctx}/skin/default/images/login/hblogo2.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30" style="margin-left:-15px;" ></a>
+      <a class=" " href="差旅报告/汇总.html" ><img src="${ctx}/skin/default/images/login/hblogo2.png" width="210" height="50"  alt="系统LOGO" class="pull-left mar-right-30" style="margin-left:-15px;margin-top:20px;" ></a>
     </div>
     
     <!-- Collect the nav links, forms, and other content for toggling -->

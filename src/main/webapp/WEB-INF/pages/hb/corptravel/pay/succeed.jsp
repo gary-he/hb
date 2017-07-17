@@ -55,7 +55,7 @@ $(document).ready(function() {
 <!-- header -->
 <div class="container mar-top-10 mar-bottom-10">
   <div class="row ">
-    <div class="col-md-5"> <img src="${ctx}/skin/default/images/login/hblogo2.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30">
+    <div class="col-md-5"> <img src="${ctx}/skin/default/images/login/hblogo2.png" width="210" height="50" alt="系统LOGO" class="pull-left mar-right-30">
       <h3 class="gray-666">菜鸟航空管理</h3>
     </div>
   </div>
