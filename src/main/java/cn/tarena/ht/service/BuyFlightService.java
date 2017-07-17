@@ -13,5 +13,5 @@ public interface BuyFlightService {
 
 	public List<Flight> findFlightsTC(String fLocation, String fDeparture, String fStarttime, String fCompany);
 
-	public List<Site> findAllSite(Integer fid);
+	public List<Site> findAllSite(String fid);
 }

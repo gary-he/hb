@@ -64,7 +64,7 @@ public class UserBuyController {
 		//1.查询
 		List<Flight> flightList = null;
 		List<Site> siteList = null;
-		int fid = 4;
+		String fid = "4";
 		if(fStarttime == null || fStarttime == ""){
 			//默认当天时间
 			Date date1 = new Date();

@@ -26,7 +26,7 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 		List<Flight> ff = buyFlightMapper.findFlightsT(fLocation,fDeparture,fStarttime);
 		System.out.println("关联仓位操作");
 		for (Flight flight : ff) {
-			int fid = flight.getId();
+			String fid = flight.getId();
 			List<Site> sList = buyFlightMapper.finAllSite(fid);
 			flight.setsList(sList);
 		}
@@ -37,7 +37,7 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 	public List<Flight> findFlightsTC(String fLocation, String fDeparture, String fStarttime, String fCompany) {
 		List<Flight> ff = buyFlightMapper.findFlightsTC(fLocation,fDeparture,fStarttime,fCompany);
 		for (Flight flight : ff) {
-			int fid = flight.getId();
+			String fid = flight.getId();
 			List<Site> sList = buyFlightMapper.finAllSite(fid);
 			flight.setsList(sList);
 		}
@@ -45,7 +45,7 @@ public class BuyFlightServiceImpl implements BuyFlightService {
 	}
 
 	@Override
-	public List<Site> findAllSite(Integer fid) {
+	public List<Site> findAllSite(String fid) {
 		return buyFlightMapper.finAllSite(fid);
 	}
 
